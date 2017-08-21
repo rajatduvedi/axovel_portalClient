@@ -1,0 +1,56 @@
+hello
+<md-card class="example-card">
+  <md-card-header>
+    <!-- <div md-card-avatar class="example-header-image"></div> -->
+    <md-card-title><h1>ADD Empolyee</h1></md-card-title>
+    <md-card-subtitle><h3>add Documents </h3></md-card-subtitle>
+  </md-card-header>
+  <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
+  <md-card-content>
+    <form class="form-horizontal" role="form" (ngSubmit)="f.form.valid && add()" #f="ngForm">
+      <span><h3> ADD profile picture</h3> </span>
+    <input type="file"  (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" required>
+    <!-- <p *ngIf="(f.submitted && !image.valid) || errors.image" class="help-block">
+    <span *ngIf="errors.image; else imageError">
+        {{ errors.image }}
+    </span>
+    <ng-template #imageError>Image is required</ng-template>
+</p> -->
+<!-- <img *ngIf="showImage" src="{{ model.image }}" height="90"  class="img-responsive"> -->
+
+</form>
+    <form [formGroup]="invoiceForm">
+  <div formArrayName="itemRows">
+    <!-- Check the correct way to iterate your form array -->
+    <div *ngFor="let itemrow of invoiceForm.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+      <button md-mini-fab class="buttone-fab" *ngIf="invoiceForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger"><md-icon>clear</md-icon></button>
+      <h3>Add Document #{{ i + 1 }}</h3>
+      <div class="form-group">
+        <label>Document Name</label>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="Document name"  formControlName="itemname" class="form-control" >
+          </md-input-container></td>
+        <!-- </tr></table> -->
+        <th><label>Document upload</label></th>
+        <!-- <table class="example-full-width" cellspacing="0"><tr> -->
+        <td>  <input type="file"  (change)="changeList($event,i)"  accept="pdf/*" required></td>
+        </tr></table>
+        <!-- <input formControlName="itemname" class="form-control"> -->
+      </div>
+
+    </div>
+  </div>
+  <button md-mini-fab color="primary" (click)="addNewRow()"><md-icon>add</md-icon></button>
+
+</form>
+<!-- <pre>{{itemrow.value | json}}</pre> -->
+
+<!-- <pre>{{itemrow.value | json}}</pre> -->
+  </md-card-content>
+
+  <md-card-actions>
+    <button md-raised-button color="primary"(click)="gotonextStep()">Next</button>
+    <!-- <button md-button>SHARE</button> -->
+  </md-card-actions>
+</md-card>

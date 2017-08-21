@@ -1,0 +1,54 @@
+hello
+<md-card class="example-card">
+  <md-card-header>
+    <!-- <div md-card-avatar class="example-header-image"></div> -->
+    <md-card-title><h1>ADD Empolyee</h1></md-card-title>
+    <md-card-subtitle><h3>add previous-company details</h3></md-card-subtitle>
+  </md-card-header>
+  <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
+  <md-card-content>
+    <form class="formgroup" name="myform">
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="Company Name" name="company_name" [(ngModel)]="model.company_name">
+        </md-input-container></td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+      <!-- <md-input-container>
+      <input mdInput [mdDatepicker]="picker" placeholder="Join-Date">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+      </md-input-container>
+      <md-datepicker #picker></md-datepicker> -->
+    <td>  <md-input-container class="example-full-width">
+        <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" >
+      </md-input-container></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="C.T.C" name="ctc" [(ngModel)]="model.ctc" >
+      </md-input-container></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><md-input-container class="example-full-width">
+      <span mdPrefix>+91 &nbsp;</span>
+      <input type="tel" mdInput placeholder="HR Number" name="HR_no" [(ngModel)]="model.HR_no" >
+      <md-icon mdSuffix>mode_edit</md-icon>
+    </md-input-container></td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+      <td><md-input-container class="example-full-width">
+      <span mdPrefix>+91 &nbsp;</span>
+      <input type="tel" mdInput placeholder="TL Number" name="TL_no" [(ngModel)]="model.TL_no" >
+      <md-icon mdSuffix>mode_edit</md-icon>
+    </md-input-container></td>
+
+    </tr></table>
+    </form>
+  </md-card-content>
+
+  <md-card-actions>
+    <button md-raised-button color="primary"(click)="gotonextStep()">Next</button>
+    <!-- <button md-button>SHARE</button> -->
+  </md-card-actions>
+</md-card>

@@ -1,0 +1,76 @@
+<md-card class="example-card">
+  <md-card-header>
+<md-toolbar class="primary">
+      <!-- <div class="toggle">
+        <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidenav.toggle()">
+          <md-icon>menu</md-icon>
+        </button>
+</div> -->
+
+
+<!-- <div md-card-avatar class="example-header-image"></div> -->
+
+
+    <div>
+    <span> ADMIN</span>
+    </div>
+    <div class="header-content">
+    <!-- <span class="example-spacer"></span> -->
+    <!-- <div class="serachbox"> -->
+    <!-- <md-icon>search</md-icon> -->
+      <md-input-container>
+        <md-icon>search</md-icon>
+        <input mdInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;search here" type="search" floatPlaceholder="auto">
+
+      </md-input-container>
+    <!-- </div> -->
+    <!-- <div class="items"> -->
+      <button md-icon-button [mdMenuTriggerFor]="notifications">
+      <md-icon>notifications</md-icon>
+      <!-- <span>HR</span> -->
+      </button>
+      <md-menu #notifications="mdMenu">
+      <button md-menu-item>
+        <!-- <md-icon>person_add</md-icon> -->
+        <span>1 notification</span>
+      </button>
+      <!-- <button md-menu-item disabled>
+        <md-icon>voicemail</md-icon>
+        <span>Check voicemail</span>
+      </button> -->
+      <button md-menu-item>
+        <!-- <md-icon>view_list</md-icon> -->
+        <span>2 notification</span>
+      </button>
+      </md-menu>
+
+      <button md-icon-button [mdMenuTriggerFor]="Account">
+      <img md-card-avatar src="assets/images/rj.jpg">
+
+      <!-- <span>HR</span> -->
+      </button>
+      <md-menu #Account="mdMenu">
+      <button md-menu-item>
+        <md-icon>Account</md-icon>
+        <span>Account</span>
+      </button>
+      <!-- <button md-menu-item disabled>
+        <md-icon>voicemail</md-icon>
+        <span>Check voicemail</span>
+      </button> -->
+      <button md-menu-item>
+        <md-icon>view_list</md-icon>
+        <span>List Employee</span>
+      </button>
+      </md-menu>
+    <!-- </div> -->
+
+    <!-- </div> -->
+    </div>
+
+
+
+
+</md-toolbar>
+</md-card-header>
+</md-card>

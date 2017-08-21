@@ -1,0 +1,14 @@
+.example-card {
+  width: 50%;
+  /*text-align: center;*/
+  /*float: center;*/
+  margin:0px auto;
+  /*height:100px;*/
+}
+.example-form {
+  width: 500px;
+}
+
+.example-full-width {
+  width: 100%;
+}

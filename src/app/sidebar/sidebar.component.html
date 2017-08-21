@@ -1,0 +1,152 @@
+<md-sidenav-container class="example-sidenav-fab-container">
+  <md-sidenav #sidenav mode="side" opened="true">
+    <!-- <button md-mini-fab class="example-fab" (click)="sidenav.toggle()">
+      <md-icon>clear</md-icon>
+    </button> -->
+    <div class="sidebarheader"></div>
+    <div class="example-scrolling-content">
+      <div class="nav">
+          <div class="items">
+
+             <a md-raised-button routerLink="dashboard" color="primary"><md-icon>dashboard</md-icon>&nbsp;&nbsp;Dashboard</a>
+          </div>
+          <!-- <div class="items"> -->
+            <!-- <md-icon>supervisor_account</md-icon>&nbsp;&nbsp;
+            <md-select placeholder="ADMIN" class="md-no-underline">
+              <md-option>
+                1: hii admin
+              </md-option>
+              <md-option>
+                1: hii admin
+              </md-option>
+              <md-option>
+                1: hii admin
+              </md-option>
+            </md-select> -->
+            <!-- <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>supervisor_account</md-icon>&nbsp;&nbsp;&nbsp;
+            <span>ADMIN</span>
+            </button>
+            <md-menu #menu="mdMenu">
+            <button md-menu-item>
+              <md-icon>dialpad</md-icon>
+              <span>Redial</span>
+            </button>
+            <button md-menu-item disabled>
+              <md-icon>voicemail</md-icon>
+              <span>Check voicemail</span>
+            </button>
+            <button md-menu-item>
+              <md-icon>notifications_off</md-icon>
+              <span>Disable alerts</span>
+            </button>
+            </md-menu>
+          </div> -->
+
+          <div class="items">
+            <button md-icon-button [mdMenuTriggerFor]="HR">
+            <md-icon>supervisor_account</md-icon>&nbsp;&nbsp;&nbsp;
+            <span>HR</span>
+            </button>
+            <md-menu #HR="mdMenu">
+            <button md-menu-item>
+              <button md-icon-button [mdMenuTriggerFor]="EMP">
+              <md-icon>person_add</md-icon>
+              <span>Employee</span>
+            </button>
+            <md-menu #EMP="mdMenu">
+            <button md-menu-item>
+              <md-icon>view_list</md-icon>
+              <span>ADD Employee</span>
+            </button>
+          </md-menu>
+            </button>
+            <button md-menu-item>
+              <md-icon>view_list</md-icon>
+              <span>List Employee</span>
+            </button>
+            </md-menu>
+          </div>
+          <div class="items">
+            <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>person</md-icon>&nbsp;&nbsp;&nbsp;
+            <span>Employee</span>
+            </button>
+            <md-menu #menu="mdMenu">
+            <button md-menu-item>
+              <md-icon>dialpad</md-icon>
+              <span>Redial</span>
+            </button>
+            <button md-menu-item disabled>
+              <md-icon>voicemail</md-icon>
+              <span>Check voicemail</span>
+            </button>
+            <button md-menu-item>
+              <md-icon>notifications_off</md-icon>
+              <span>Disable alerts</span>
+            </button>
+            </md-menu>
+          </div>
+          <!-- <div>
+            <a href="#menu3" class="list-group-item collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><i class="fa fa-book"></i> <span class="hidden-sm-down">Item 3 </span></a>
+                <div class="collapse" id="menu3">
+                    <a href="#" class="list-group-item" data-parent="#menu3">3.1</a>
+                    <a href="#menu3sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
+                    <div class="collapse" id="menu3sub2">
+                        <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 a</a>
+                        <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 b</a>
+                        <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 c</a>
+                    </div>
+                    <a href="#" class="list-group-item" data-parent="#menu3">3.3</a>
+                </div>
+          </div> -->
+          <div class="items">
+            <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>account_box
+</md-icon>&nbsp;&nbsp;&nbsp;
+            <span>Account</span>
+            </button>
+            <md-menu #menu="mdMenu">
+            <button md-menu-item>
+              <md-icon>dialpad</md-icon>
+              <span>Redial</span>
+            </button>
+            <button md-menu-item disabled>
+              <md-icon>voicemail</md-icon>
+              <span>Check voicemail</span>
+            </button>
+            <button md-menu-item>
+              <md-icon>notifications_off</md-icon>
+              <span>Disable alerts</span>
+            </button>
+            </md-menu>
+          </div>
+          <div class="items">
+            <a md-raised-button routerLink="table" color="primary"><md-icon>list</md-icon>&nbsp;&nbsp;&nbsp;&nbsp;Table</a>
+          </div>
+          <!-- <div class="items">
+            <a md-raised-button routerLink="table" color="primary"><md-icon>list</md-icon>&nbsp;&nbsp;&nbsp;&nbsp;Sales</a>
+          </div> -->
+          <!-- <div class="items">
+            <a md-raised-button routerLink="." color="primary"><md-icon>notifications</md-icon>&nbsp;&nbsp;Notification</a>
+          </div> -->
+</div>
+    </div>
+  </md-sidenav>
+  <!-- <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidenav.toggle()">
+    <md-icon>menu</md-icon>
+  </button> -->
+  <div class="toggle">
+    <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button>
+</div>
+  <app-header></app-header>
+  <div class="example-scrolling-content">
+    <router-outlet></router-outlet>
+    <!-- Lorem ipsum dolor sit amet, pede a libero aenean phasellus, lectus metus sint ut risus, fusce
+    vel in pellentesque. Nisl rutrum etiam morbi consectetuer tempor magna, aenean nullam nunc id, -->
+
+  </div>
+  <app-footer></app-footer>
+</md-sidenav-container>

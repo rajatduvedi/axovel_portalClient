@@ -1,0 +1,12 @@
+.primary{
+  background-color: black;
+  margin-top: 35%;
+
+}
+.primary span{
+  color : white;
+}
+.header-content{
+  display:inline;
+  /*float:left;*/
+}
