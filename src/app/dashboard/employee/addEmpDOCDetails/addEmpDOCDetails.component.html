@@ -47,10 +47,19 @@ hello
 <!-- <pre>{{itemrow.value | json}}</pre> -->
 
 <!-- <pre>{{itemrow.value | json}}</pre> -->
+
   </md-card-content>
 
   <md-card-actions>
-    <button md-raised-button color="primary"(click)="gotonextStep()">Next</button>
+    <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
+    <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button>
     <!-- <button md-button>SHARE</button> -->
   </md-card-actions>
+  <div *ngIf="checkAddErrorMsg">
+    <ul *ngFor="let error of checkAddErrorMsg ; let i = index">
+  <md-error>
+  {{i+1}} :  {{error.message}} <h4>{{error.value}}  is not consider</h4>
+  </md-error>
+</ul>
+  </div>
 </md-card>

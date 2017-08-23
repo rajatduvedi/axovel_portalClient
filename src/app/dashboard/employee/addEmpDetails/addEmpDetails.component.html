@@ -7,20 +7,26 @@ working
   </md-card-header>
   <img md-card-image src="assets/img/examples/shiba2.jpg">
   <md-card-content>
-    <form class="formgroup" name="myform">
+    <form class="formgroup" name="myform" (ngSubmit)="onSubmit()" #f="ngForm">
 
       <table class="example-full-width" cellspacing="0"><tr>
         <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="First name" name="first_name" [(ngModel)]="model.first_name" [formControl]="fnameFormControl">
+          <input mdInput placeholder="First name" name="first_name"  [(ngModel)]="model.first_name" [formControl]="fnameFormControl" required>
           <md-error *ngIf="fnameFormControl.hasError('required') ">
         first  Name <strong>required</strong>
         </md-error>
+        <md-error *ngIf="fnameFormControl.hasError('pattern') ">
+      alphabet allow firts letter <strong>required</strong>
+      </md-error>
         </md-input-container></td>
         <td><md-input-container class="example-full-width">
           <input mdInput placeholder=" Last Name" name="last_name" [(ngModel)]="model.last_name" [formControl]="lnameFormControl">
           <md-error *ngIf="lnameFormControl.hasError('required') ">
         last  Name <strong>required</strong>
         </md-error>
+        <md-error *ngIf="lnameFormControl.hasError('pattern') ">
+      alphabet allow firts letter  <strong>required</strong>
+      </md-error>
         </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
@@ -59,11 +65,14 @@ working
       </md-input-container></td>
       <td><md-input-container class="example-full-width">
       <span mdPrefix>+91 &nbsp;</span>
-      <input type="tel" mdInput placeholder="Contact Number" name="emergency_cont_no" [(ngModel)]="model.emergency_cont_no"[formControl]="conpermobFormControl" >
+      <input type="tel" mdInput placeholder="Contact Number" maxlength="10" name="emergency_cont_no" [(ngModel)]="model.emergency_cont_no"[formControl]="conpermobFormControl" >
       <md-icon mdSuffix>mode_edit</md-icon>
-      <md-error *ngIf="conpernameFormControl.hasError('required') ">
+      <md-error *ngIf="conpermobFormControl.hasError('required') ">
       contact number of contact person <strong>required</strong>
     </md-error>
+    <md-error *ngIf="conpermobFormControl.hasError('pattern') ">
+    contact number should  <strong>well form(10 digits require)</strong>
+  </md-error>
     </md-input-container></td>
 
     </tr></table>
@@ -101,11 +110,33 @@ working
       </md-error>
       </md-input-container></td>
     </tr></table>
+    <div class="md-radio-group">
+      <label for="user_role">Employee Role</label>
+      <md-radio-group class="example-radio-group" name="emp_role" [(ngModel)]="model.emp_role">
+      <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
+      {{season}}
+      </md-radio-button>
+      </md-radio-group>
+      <div class="example-selected-value">Employee Role is: {{model.emp_role}}</div>
+    </div>
+    <div class="md-radio-group">
+      <label for="Status">Employee Status</label>
+      <md-radio-group class="example-radio-group" name="status" [(ngModel)]="model.status">
+      <md-radio-button class="example-radio-button" *ngFor="let status of status" [value]="status">
+      {{status}}
+      </md-radio-button>
+      </md-radio-group>
+      <div class="example-selected-value">Employee Status is : {{model.status}}</div>
+    </div>
+
+    <!-- <md-checkbox class="example-margin" (click)="checkbox()" >save above details </md-checkbox> -->
+    <button md-raised-button color="primary" type="submit" >Save and Countinue </button>
     </form>
   </md-card-content>
 
   <md-card-actions>
-    <button md-raised-button color="primary"(click)="gotonextStep()">Next</button>
+    <!-- <button md-raised-button color="primary" (click)="gotonextStep()">Back</button> -->
+
     <!-- <button md-button>SHARE</button> -->
   </md-card-actions>
 </md-card>

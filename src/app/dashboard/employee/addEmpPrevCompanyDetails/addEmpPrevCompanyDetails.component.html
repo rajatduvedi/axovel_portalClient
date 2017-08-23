@@ -2,8 +2,13 @@ hello
 <md-card class="example-card">
   <md-card-header>
     <!-- <div md-card-avatar class="example-header-image"></div> -->
-    <md-card-title><h1>ADD Empolyee</h1></md-card-title>
-    <md-card-subtitle><h3>add previous-company details</h3></md-card-subtitle>
+    <md-card-title><h1>ADD Empolyee</h1>
+
+    </md-card-title>
+    <md-card-subtitle><h3>add previous-company details</h3>
+      <button md-raised-button color="primary" (click)="skipnextStep()">Skip</button>
+    </md-card-subtitle>
+
   </md-card-header>
   <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
   <md-card-content>
@@ -32,15 +37,28 @@ hello
     <table class="example-full-width" cellspacing="0"><tr>
       <td><md-input-container class="example-full-width">
       <span mdPrefix>+91 &nbsp;</span>
-      <input type="tel" mdInput placeholder="HR Number" name="HR_no" [(ngModel)]="model.HR_no" >
+      <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10"[(ngModel)]="model.HR_no" [formControl]="hr_noFormControl" >
       <md-icon mdSuffix>mode_edit</md-icon>
+      <md-error *ngIf="hr_noFormControl.hasError('pattern') ">
+      contact number should  <strong>well form(10 digits require)</strong>
+    </md-error>
     </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
       <td><md-input-container class="example-full-width">
       <span mdPrefix>+91 &nbsp;</span>
-      <input type="tel" mdInput placeholder="TL Number" name="TL_no" [(ngModel)]="model.TL_no" >
+      <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" [(ngModel)]="model.TL_no" [formControl]="tl_noFormControl">
       <md-icon mdSuffix>mode_edit</md-icon>
+      <md-error *ngIf="tl_noFormControl.hasError('pattern') ">
+      contact number should  <strong>well form(10 digits require)</strong>
+    </md-error>
+    <!-- <md-error *ngIf="tl.hasError('minLength')">
+    contact number should  <strong>well form(10 digits require)</strong>
+  </md-error> -->
+
+  <!-- <md-error *ngIf="!(10-TL_no.value.length)">
+pincode  is <strong> digit form</strong>
+</md-error> -->
     </md-input-container></td>
 
     </tr></table>
@@ -48,7 +66,8 @@ hello
   </md-card-content>
 
   <md-card-actions>
-    <button md-raised-button color="primary"(click)="gotonextStep()">Next</button>
+    <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
+    <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button>
     <!-- <button md-button>SHARE</button> -->
   </md-card-actions>
 </md-card>

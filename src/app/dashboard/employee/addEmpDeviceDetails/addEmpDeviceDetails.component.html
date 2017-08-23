@@ -3,32 +3,38 @@ hello
   <md-card-header>
     <!-- <div md-card-avatar class="example-header-image"></div> -->
     <md-card-title><h1>ADD Empolyee</h1></md-card-title>
-    <md-card-subtitle><h3>add Devices details</h3></md-card-subtitle>
+    <md-card-subtitle><h3>add Devices details</h3>
+      <button md-raised-button color="primary" (click)="skipnextStep()">Skip</button>
+    </md-card-subtitle>
   </md-card-header>
   <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
   <md-card-content>
-    <form class="formgroup" name="myform">
+    <form [formGroup]="form">
 
       <table class="example-full-width" cellspacing="0"><tr>
         <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="laptop no" name="laptop_no" [(ngModel)]="model.laptop_no">
+          <input mdInput placeholder="laptop no" name="laptop_no" [(ngModel)]="model.laptop_no" formControlName="laptop_no">
+          <!-- <md-error *ngIf="laptop_no.hasError('required') ">
+        first  Name <strong>required</strong>
+        </md-error> -->
         </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
         <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="mouse no" name="mouse_no" [(ngModel)]="model.mouse_no">
+          <input mdInput placeholder="mouse no" name="mouse_no" [(ngModel)]="model.mouse_no" formControlName="mouse_no">
         </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
         <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="keyboard no" name="keyboard_no" [(ngModel)]="model.keyboard_no">
+          <input mdInput placeholder="keyboard no" name="keyboard_no" [(ngModel)]="model.keyboard_no" formControlName="keyboard_no">
         </md-input-container></td>
       </tr></table>
     </form>
   </md-card-content>
 
   <md-card-actions>
-    <button md-raised-button color="primary"(click)="gotonextStep()">Next</button>
+    <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
+    <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button>
     <!-- <button md-button>SHARE</button> -->
   </md-card-actions>
 </md-card>

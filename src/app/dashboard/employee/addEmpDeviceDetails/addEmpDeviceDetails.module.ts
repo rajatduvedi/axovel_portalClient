@@ -7,8 +7,8 @@ import { HttpModule,Headers } from '@angular/http';
 // } from '@ng-bootstrap/ng-bootstrap';
 
 
-import { AddEmpAddressRoutingModule } from './addEmpAddress-routing.module';
-import { AddEmpAddressComponent } from './addEmpAddress.component';
+import { AddEmpDeviceDetailsRoutingModule } from './addEmpDeviceDetails-routing.module';
+import { AddEmpDeviceDetailsComponent } from './addEmpDeviceDetails.component';
 import {MdSidenavModule,
         MdTableModule,
         MdInputModule,
@@ -20,6 +20,7 @@ import {MdSidenavModule,
         MdCardModule,
         MdDatepickerModule,
         MdNativeDateModule,
+        MdCheckboxModule
 
 
 } from '@angular/material';
@@ -29,7 +30,7 @@ import {MdSidenavModule,
     imports: [
         CommonModule,
         // NgbAlertModule.forRoot(),
-        AddEmpAddressRoutingModule,
+        AddEmpDeviceDetailsRoutingModule,
         MdSidenavModule,
         MdTableModule,
         MdInputModule,
@@ -42,12 +43,13 @@ import {MdSidenavModule,
         MdDatepickerModule,
         MdNativeDateModule,
         FormsModule,ReactiveFormsModule,HttpModule,
+        MdCheckboxModule
         // StatModule,
         // SharedModule,
         // AlertSharedModule
     ],
     declarations: [
-        AddEmpAddressComponent
+        AddEmpDeviceDetailsComponent
     ]
 })
-export class AddEmpAddressModule { }
+export class AddEmpDeviceDetailsModule { }

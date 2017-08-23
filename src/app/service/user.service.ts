@@ -2,6 +2,7 @@ import{ Injectable } from '@angular/core';
 import{ Http , Response , Headers} from '@angular/http';
 import{ Observable }from 'rxjs/Observable';
 
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { User } from '../user';
@@ -9,7 +10,7 @@ import{ EmployeeDetails } from '../employeeDetails';
 @Injectable()
 export class UserService{
   private dataurl='http://localhost:8000/apis/register';
-  private loginurl='http://localhost:8000/apis/login';
+  private loginurl='http://192.241.153.62:1223/api/login';
   constructor( private http:Http){}
   userRegister(item:any) {
         let body = '';
@@ -39,9 +40,11 @@ export class UserService{
       return this.http.post(this.loginurl, body, {headers: headers})
       .map((res: Response) => {
         let user = res.json();
-        if(user){
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
+        // console.log("service");
+        // console.log(user.data);
+        // if(user.data){
+        //   );
+        // }
         return user;
       });
 
@@ -49,6 +52,7 @@ export class UserService{
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+      
     }
     sendDataNextStep(item:any){
         // console.log("hello");
