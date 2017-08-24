@@ -1,5 +1,5 @@
 .example-card {
-  width: 50%;
+  width: 60%;
   /*text-align: center;*/
   /*float: center;*/
   margin:0px auto;
@@ -11,6 +11,7 @@
 
 .example-full-width {
   width: 100%;
+  margin-top:10px;
 }
 .example-radio-group {
   display: inline-flex;
@@ -19,6 +20,10 @@
 
 .example-radio-button {
   margin: 5px;
+}
+.email-check{
+  float:right;
+  
 }
 
 .example-selected-value {

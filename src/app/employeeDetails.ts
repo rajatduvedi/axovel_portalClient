@@ -1,4 +1,4 @@
-export class  EmployeeDetails{
+export interface  EmployeeDetails{
   first_name: string;
   last_name:string;
   username:string;

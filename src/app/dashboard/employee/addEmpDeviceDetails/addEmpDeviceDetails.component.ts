@@ -29,22 +29,13 @@ export class AddEmpDeviceDetailsComponent implements OnInit {
       this.model = JSON.parse(localStorage.getItem('empDetails'));
       this.form = new FormGroup({
         'laptop_no' : new FormControl('not allocated',[
-            Validators.required]),
+                    Validators.required]),
         'mouse_no' : new FormControl('not allocated'),
         'keyboard_no' : new FormControl('not allocated'),
 
       });
-      console.log(this.form.value.laptop_no);
-      // this.model.laptop_no = this.form.value.laptop_no;
-      // this.model.mouse_no = this.form.value.mouse_no;
-      // this.model.keyboard_no = this.form.value.keyboard_no;
     }
     gotonextStep(){
-      // this.userService.sendDataNextStep(this.model);
-      // console.log(this.form.value.laptop_no)
-      // this.model.laptop_no = this.form.value.laptop_no;
-      // this.model.mouse_no = this.form.value.mouse_no;
-      // this.model.keyboard_no = this.form.value.keyboard_no;
       if(!this.model.laptop_no){
         this.model.laptop_no = "not allocated"
       }
@@ -54,14 +45,9 @@ export class AddEmpDeviceDetailsComponent implements OnInit {
       if(!this.model.keyboard_no){
         this.model.keyboard_no = "not allocated"
       }
-      // this.model=this.form.value;
-      console.log(this.model);
-      // console.log(this.form.value.laptop_no);
       localStorage.setItem('empDetails', JSON.stringify(this.model));
       this.model = JSON.parse(localStorage.getItem('empDetails'));
-      console.log("step4");
-      console.log(this.model);
-        this.router.navigate(['dashboard/add-step5']);
+      this.router.navigate(['dashboard/add-step5']);
     }
     skipnextStep(){
       this.router.navigate(['dashboard/add-step5']);

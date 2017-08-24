@@ -21,7 +21,8 @@ import {MdSidenavModule,
         MdDatepickerModule,
         MdNativeDateModule,
           MdCheckboxModule,
-          MdRadioModule
+          MdRadioModule,
+          MdSnackBarModule
 
 
 
@@ -46,7 +47,8 @@ import {MdSidenavModule,
         MdNativeDateModule,
         FormsModule,ReactiveFormsModule,HttpModule,
           MdCheckboxModule,
-          MdRadioModule
+          MdRadioModule,
+          MdSnackBarModule
         // StatModule,
         // SharedModule,
         // AlertSharedModule

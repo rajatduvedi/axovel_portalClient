@@ -12,7 +12,9 @@ import { AppComponent }   from './app.component';
 
 import { CdkTableModule } from '@angular/cdk';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { DropdownDirective } from './shared/dropdown.directive';
+// import { Ng4DropdownModule } from 'ng4-material-dropdown';
+// import {TableComponent} from './table/table.component'
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {MdSidenavModule,
         MdTableModule,
@@ -23,7 +25,7 @@ import {MdSidenavModule,
         MdToolbarModule,
         MdMenuModule,
         MdCardModule,
-
+        // Ng4DropdownModule
 
 } from '@angular/material';
 // import { FooterComponent } from './footer/footer.component';
@@ -53,7 +55,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
         MdCardModule,
         FormsModule,
 ReactiveFormsModule,
-
+        // Ng4DropdownModule
         // SidebarModule,
         // MdSidenavModule,
         // NavbarModule,
@@ -66,12 +68,14 @@ ReactiveFormsModule,
         // ])
     ],
     declarations: [ AppComponent,
+                    DropdownDirective,
                     // DashBoardComponent,
                     // TableComponent,
                     // FooterComponent,
                     // HeaderComponent,
                     // SidebarComponent,
                     // HrComponent,
+                    // TableComponent,
                     UserLoginComponent,
                     // RegisterComponent,
                     // LoginComponent,

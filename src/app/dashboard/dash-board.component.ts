@@ -49,5 +49,11 @@ export class DashBoardComponent implements OnInit {
         console.log(this.role);
     }
   }
+  addEmp(){
+        this.router.navigate(['dashboard/add']);
+  }
+  listEmp(){
+        this.router.navigate(['dashboard/list']);
+  }
 
 }

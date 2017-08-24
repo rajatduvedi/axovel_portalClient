@@ -8,7 +8,7 @@
       <div class="nav">
           <div class="items">
 
-             <a md-raised-button routerLink="/dashboard/add" color="primary"><md-icon>dashboard</md-icon>&nbsp;&nbsp;Dashboard</a>
+             <a md-raised-button routerLink="/dashboard" color="primary"><md-icon>dashboard</md-icon>&nbsp;&nbsp;Dashboard</a>
           </div>
           <!-- <div class="items"> -->
             <!-- <md-icon>supervisor_account</md-icon>&nbsp;&nbsp;
@@ -49,19 +49,11 @@
             <span>HR</span>
             </button>
             <md-menu #HR="mdMenu">
-            <button md-menu-item>
-              <button md-icon-button [mdMenuTriggerFor]="EMP">
-              <md-icon>person_add</md-icon>
-              <span>Employee</span>
+            <button md-menu-item (click)="addEmp()">
+            <md-icon>person_add</md-icon>&nbsp;&nbsp;ADD
+             <!-- <a md-raised-button routerLink="/dashboard/add" color="primary"></a> -->
             </button>
-            <md-menu #EMP="mdMenu">
-            <button md-menu-item>
-              <md-icon>view_list</md-icon>
-              <span>ADD Employee</span>
-            </button>
-          </md-menu>
-            </button>
-            <button md-menu-item>
+            <button md-menu-item (click)="listEmp()">
               <md-icon>view_list</md-icon>
               <span>List Employee</span>
             </button>
@@ -122,14 +114,8 @@
             </md-menu>
           </div>
           <div class="items">
-            <a md-raised-button routerLink="table" color="primary"><md-icon>list</md-icon>&nbsp;&nbsp;&nbsp;&nbsp;Table</a>
+            <a md-raised-button routerLink="list" color="primary"><md-icon>list</md-icon>&nbsp;&nbsp;&nbsp;&nbsp;Table</a>
           </div>
-          <!-- <div class="items">
-            <a md-raised-button routerLink="table" color="primary"><md-icon>list</md-icon>&nbsp;&nbsp;&nbsp;&nbsp;Sales</a>
-          </div> -->
-          <!-- <div class="items">
-            <a md-raised-button routerLink="." color="primary"><md-icon>notifications</md-icon>&nbsp;&nbsp;Notification</a>
-          </div> -->
 </div>
     </div>
   </md-sidenav>
@@ -144,7 +130,7 @@
   <app-header></app-header>
   <div class="example-scrolling-content">
     <router-outlet></router-outlet>
-    <!-- <app-hr></app-hr> -->
+    <!-- <app-table></app-table> -->
 
 
     <!-- Lorem ipsum dolor sit amet, pede a libero aenean phasellus, lectus metus sint ut risus, fusce

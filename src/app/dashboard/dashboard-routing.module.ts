@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DashBoardComponent } from './dash-board.component';
 import { HrComponent } from './hr/hr.component';
+import {TableComponent} from './table/table.component';
 // import { AdminAuthGuard } from './shared/guard/auth.guard';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
           { path: 'add-step3', loadChildren: './employee/addEmpPrevCompanyDetails/addEmpPrevCompanyDetails.module#AddEmpPrevCompanyDetailsModule'},
           { path: 'add-step4', loadChildren: './employee/addEmpDeviceDetails/addEmpDeviceDetails.module#AddEmpDeviceDetailsModule'},
           { path: 'add-step5', loadChildren: './employee/addEmpDOCDetails/addEmpDOCDetails.module#AddEmpDOCDetailsModule'},
+          { path: 'list', component:TableComponent },
 
         ]
       },{path: 'hr', component:HrComponent},

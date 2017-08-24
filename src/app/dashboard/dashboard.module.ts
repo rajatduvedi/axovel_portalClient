@@ -9,6 +9,8 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HrComponent } from './hr/hr.component';
+import {TableComponent} from './table/table.component';
+import { CdkTableModule } from '@angular/cdk';
 // import { EmployeeComponent } from './employee/employee.component';
 // import{EmployeeComponent }from '../employee/employee.Component';
 // import { AdminAuthGuard } from './shared/guard/auth.guard';
@@ -21,7 +23,7 @@ import {MdSidenavModule,
         MdToolbarModule,
         MdMenuModule,
         MdCardModule,
-
+        MdListModule
         } from '@angular/material';
 
 @NgModule({
@@ -38,6 +40,8 @@ import {MdSidenavModule,
                 MdToolbarModule,
                 MdMenuModule,
                 MdCardModule,
+                // CdkTableModule,
+                MdListModule
                 // RouterModule.forRoot([
                 //   { path: 'emp',component:EmployeeComponent },
                 //   // {path:'table',component:TableComponent},
@@ -51,7 +55,8 @@ import {MdSidenavModule,
         FooterComponent,
         HeaderComponent,
         SidebarComponent,
-        HrComponent
+        HrComponent,
+        TableComponent
         // EmployeeComponent
 
     ],

@@ -1,5 +1,5 @@
 import{ Injectable } from '@angular/core';
-import{ Http , Response , Headers} from '@angular/http';
+import{ Http , Response , Headers ,  RequestOptions} from '@angular/http';
 import{ Observable }from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -9,8 +9,14 @@ import{ EmployeeDetails } from '../employeeDetails';
 @Injectable()
 export class EmpAddService{
   private dataurl='http://192.241.153.62:1223/api/addEmpDetail';
+  private emailCheckUrl='http://192.241.153.62:1223/api/checkEmail';
+  private userCheckUrl='http://192.241.153.62:1223/api/checkUsername';
+  private options: any;
   // private loginurl='http://localhost:8000/apis/login';
-  constructor( private http:Http){}
+  constructor( private http:Http){
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    this.options = new RequestOptions({ headers: headers });
+  }
   empAddDetails(item:any) {
     // console.log( item.doc[0]);
         let body = '';
@@ -35,9 +41,31 @@ export class EmpAddService{
             return res.json();
         });
     }
+    emailCheck(item:any){
+      let params = new URLSearchParams();
+      for(let key in item){
+        params.set(key, item[key])
+      }
+      return this.http
+        .post(this.emailCheckUrl, params.toString(), this.options)
+        .map((response: Response) => {
+          return response.json();
+        });
+    }
+    userCheck(item:any){
+      let params = new URLSearchParams();
+      for(let key in item){
+        params.set(key, item[key])
+      }
+      return this.http
+        .post(this.userCheckUrl, params.toString(), this.options)
+        .map((response: Response) => {
+          return response.json();
+        });
+    }
+    }
 
 
     // gotonextStep(){
     //
     // }
-}
