@@ -20,9 +20,9 @@ import {MdSidenavModule,
         MdCardModule,
         MdDatepickerModule,
         MdNativeDateModule,
-          MdCheckboxModule,
-          MdRadioModule,
-          MdSnackBarModule
+        MdCheckboxModule,
+        MdRadioModule,
+        MdSnackBarModule
 
 
 

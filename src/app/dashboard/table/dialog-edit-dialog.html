@@ -1,0 +1,175 @@
+<h1 md-dialog-title>Edit</h1>
+<div md-dialog-content>
+
+  <md-card class="example-card">
+    <md-card-header>
+      <!-- <div md-card-avatar class="example-header-image"></div> -->
+      <md-card-title><h1>Edit Employee Details</h1>
+      </md-card-title>
+      <md-card-subtitle><h3>add previous-company details</h3>
+        <!-- <button md-raised-button color="primary" (click)="skipnextStep()">Skip</button> -->
+      </md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- basic details -->
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="first_name" name="emp_fname" [(ngModel)]="model.emp_fname" formControlName="emp_fname">
+            <md-error *ngIf="!form.get('emp_fname').valid">
+              first  Name <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="last_name" name="emp_lname" [(ngModel)]="model.emp_lname" formControlName="emp_lname">
+            <md-error *ngIf="!form.get('emp_lname').valid">
+              Last  Name <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <span mdPrefix>+91 &nbsp;</span>
+            <input mdInput placeholder="mob_no" name="mob_no" type="tel" minlength="10" maxlength="10" [(ngModel)]="model.mob_no" formControlName="mob_no">
+            <md-icon mdSuffix>mode_edit</md-icon>
+            <md-error *ngIf="!form.get('mob_no').valid">
+              Mobile Number  Name <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+        </tr></table>
+        <!-- emergency conctact person current field -->
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="emergency_cont_person" name="emergency_cont_person" [(ngModel)]="model.emergency_cont_person" formControlName="emergency_cont_person">
+            <md-error *ngIf="!form.get('emergency_cont_person').valid">
+              emergency_cont_person Name<strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <span mdPrefix>+91 &nbsp;</span>
+            <input mdInput placeholder="emergency_cont_no" type="tel" minlength="10" maxlength="10" name="emergency_cont_no" [(ngModel)]="model.emergency_cont_no" formControlName="emergency_cont_no">
+            <md-error *ngIf="!form.get('emergency_cont_no').valid">
+              Emergency contact number  <strong>required</strong>
+            </md-error>
+            <md-icon mdSuffix>mode_edit</md-icon>
+          </md-input-container></td>
+
+        </tr></table>
+        <!-- address current field -->
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="cur_address" name="cur_address" [(ngModel)]="model.cur_address" formControlName="cur_address">
+            <md-error *ngIf="!form.get('cur_address').valid">
+              current address <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="cur_city" name="cur_city" [(ngModel)]="model.cur_city" formControlName="cur_city">
+            <md-error *ngIf="!form.get('cur_city').valid">
+              current city <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="cur_pinCode" name="cur_pincode" [(ngModel)]="model.cur_pincode" formControlName="cur_pincode">
+            <md-error *ngIf="!form.get('cur_pincode').valid">
+              current pinCode <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+
+        </tr></table>
+        <!-- addres permanent field -->
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="per_address" name="per_address" [(ngModel)]="model.per_address" formControlName="per_address">
+            <md-error *ngIf="!form.get('per_address').valid">
+              per_address <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="per_city" name="per_city" [(ngModel)]="model.per_city" formControlName="per_city">
+            <md-error *ngIf="!form.get('per_city').valid">
+              per_city <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="per_pinCode" name="per_pincode" [(ngModel)]="model.per_pincode" formControlName="per_pincode">
+            <md-error *ngIf="!form.get('per_pincode').valid">
+              per_pinCode <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+        </tr></table>
+        <!-- device detils field -->
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="laptop no" name="laptop_no" [(ngModel)]="model.laptop_no" formControlName="laptop_no">
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="mouse no" name="mouse_no" [(ngModel)]="model.mouse_no" formControlName="mouse_no">
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="keyboard no" name="keyboard_no" [(ngModel)]="model.keyboard_no" formControlName="keyboard_no">
+          </md-input-container></td>
+        </tr></table>
+        <!-- previous company field -->
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="Company Name" name="company_name" [(ngModel)]="model.company_name" formControlName="company_name">
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+          <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" formControlName="leaving_date" >
+        </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="C.T.C" name="CTC" [(ngModel)]="model.CTC" formControlName="CTC">
+        </md-input-container></td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+        <span mdPrefix>+91 &nbsp;</span>
+        <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10"[(ngModel)]="model.HR_no" formControlName="HR_no" >
+        <md-icon mdSuffix>mode_edit</md-icon>
+        <!-- <md-error *ngIf="hr_noFormControl.hasError('pattern') ">
+        contact number should  <strong>well form(10 digits require)</strong>
+      </md-error> -->
+      </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+        <span mdPrefix>+91 &nbsp;</span>
+        <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" [(ngModel)]="model.TL_no" formControlName="TL_no">
+        <md-icon mdSuffix>mode_edit</md-icon>
+        <!-- <md-error *ngIf="tl_noFormControl.hasError('pattern') ">
+        contact number should  <strong>well form(10 digits require)</strong>
+      </md-error> -->
+      </md-input-container></td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+      <div class="md-radio-group">
+        <label for="user_role">Employee Role</label>
+        <md-radio-group class="example-radio-group" name="employee_role" [(ngModel)]="model.employee_role" formControlName="employee_role">
+            <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
+            {{season}}
+            </md-radio-button>
+        </md-radio-group>
+        <div class="example-selected-value">Employee Role is: {{model.emp_role}}</div>
+      </div>
+      <div class="md-radio-group">
+        <label for="Status">Employee Status</label>
+        <md-radio-group class="example-radio-group" name="status" [(ngModel)]="model.status" formControlName="status">
+            <md-radio-button class="example-radio-button" *ngFor="let status of status" [value]="status">
+            {{status}}
+            </md-radio-button>
+        </md-radio-group>
+        <div class="example-selected-value">Employee Status is : {{model.status}}</div>
+      </div>
+      </tr></table>
+      <button md-raised-button color="primary" type="submit" > Update </button>
+      </form>
+
+    </md-card-content>
+    <md-card-actions>
+      <!-- <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
+      <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button> -->
+      <!-- <button md-button>SHARE</button> -->
+    </md-card-actions>
+  </md-card>
+</div>
+<div md-dialog-actions>
+  <button md-button md-dialog-close="Option 1">Cancel</button>
+  <button md-button md-dialog-close="Option 2">save</button>
+</div>

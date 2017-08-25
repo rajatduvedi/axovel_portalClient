@@ -1,33 +1,30 @@
 
 <md-card class="example-card">
   <md-card-header>
-    <!-- <div md-card-avatar class="example-header-image"></div> -->
     <md-card-title><h1>ADD Empolyee</h1></md-card-title>
     <md-card-subtitle><h3>add basic details</h3></md-card-subtitle>
   </md-card-header>
-
   <md-card-content>
     <form class="formgroup" name="myform" (ngSubmit)="onSubmit()" #f="ngForm">
-
       <table class="example-full-width" cellspacing="0"><tr>
-        <td><md-input-container class="example-full-width">
+      <td><md-input-container class="example-full-width">
           <input mdInput placeholder="First name" name="first_name"  [(ngModel)]="model.first_name" [formControl]="fnameFormControl" required>
           <md-error *ngIf="fnameFormControl.hasError('required') ">
-        first  Name <strong>required</strong>
-        </md-error>
-        <md-error *ngIf="fnameFormControl.hasError('pattern') ">
-      alphabet allow firts letter <strong>required</strong>
-      </md-error>
-        </md-input-container></td>
-        <td><md-input-container class="example-full-width">
+            first  Name <strong>required</strong>
+          </md-error>
+          <md-error *ngIf="fnameFormControl.hasError('pattern') ">
+            alphabet allow firts letter <strong>required</strong>
+          </md-error>
+      </md-input-container></td>
+      <td><md-input-container class="example-full-width">
           <input mdInput placeholder=" Last Name" name="last_name" [(ngModel)]="model.last_name" [formControl]="lnameFormControl" >
           <md-error *ngIf="lnameFormControl.hasError('required') ">
-        last  Name <strong>required</strong>
-        </md-error>
-        <md-error *ngIf="lnameFormControl.hasError('pattern') ">
-      alphabet allow firts letter  <strong>required</strong>
-      </md-error>
-        </md-input-container></td>
+              last  Name <strong>required</strong>
+          </md-error>
+          <md-error *ngIf="lnameFormControl.hasError('pattern') ">
+              alphabet allow firts letter  <strong>required</strong>
+          </md-error>
+      </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
       <!-- <md-input-container>
@@ -35,67 +32,65 @@
       <button mdSuffix [mdDatepickerToggle]="picker"></button>
       </md-input-container>
       <md-datepicker #picker></md-datepicker> -->
-    <td>  <md-input-container class="example-full-width">
-        <input mdInput placeholder=" Join Date" name="join_date" type="date" [(ngModel)]="model.join_date" >
+      <td><md-input-container class="example-full-width">
+          <input mdInput placeholder=" Join Date" name="join_date" type="date" [(ngModel)]="model.join_date" >
       </md-input-container></td>
-    <td>  <md-input-container class="example-full-width">
-        <input mdInput placeholder=" service end" name="service_cont_end" type="date" [(ngModel)]="model.service_cont_end" >
+      <td><md-input-container class="example-full-width">
+          <input mdInput placeholder=" service end" name="service_cont_end" type="date" [(ngModel)]="model.service_cont_end" >
       </md-input-container></td>
     </tr></table>
     <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-input-container class="example-full-width">
-      <span mdPrefix>+91 &nbsp;</span>
-      <input type="tel" mdInput placeholder="Contact Number" maxlength="10" name="mob_no" [(ngModel)]="model.mob_no"[formControl]="mob_noFormControl" >
-      <md-icon mdSuffix>mode_edit</md-icon>
-      <md-error *ngIf="mob_noFormControl.hasError('required') ">
-      contact number is <strong>required</strong>
-    </md-error>
+    <td><md-input-container class="example-full-width">
+        <span mdPrefix>+91 &nbsp;</span>
+        <input type="tel" mdInput placeholder="Contact Number" maxlength="10" name="mob_no" [(ngModel)]="model.mob_no"[formControl]="mob_noFormControl" >
+        <md-icon mdSuffix>mode_edit</md-icon>
+        <md-error *ngIf="mob_noFormControl.hasError('required') ">
+          contact number is <strong>required</strong>
+        </md-error>
     <md-error *ngIf="mob_noFormControl.hasError('pattern') ">
-    contact number should  <strong>well form(10 digits require)</strong>
-  </md-error>
+        contact number should  <strong>well form(10 digits require)</strong>
+    </md-error>
     </md-input-container></td>
-
     </tr></table>
     <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-input-container class="example-full-width">
+    <td><md-input-container class="example-full-width">
         <input mdInput placeholder="Emg Contact Person" name="emergency_cont_person" [(ngModel)]="model.emergency_cont_person" [formControl]="conpernameFormControl">
         <md-error *ngIf="conpernameFormControl.hasError('required') ">
-        Name of contact person <strong>required</strong>
+            Name of contact person <strong>required</strong>
       </md-error>
-      </md-input-container></td>
-      <td><md-input-container class="example-full-width">
-      <span mdPrefix>+91 &nbsp;</span>
-      <input type="tel" mdInput placeholder="Contact Number" maxlength="10" name="emergency_cont_no" [(ngModel)]="model.emergency_cont_no"[formControl]="conpermobFormControl" >
-      <md-icon mdSuffix>mode_edit</md-icon>
-      <md-error *ngIf="conpermobFormControl.hasError('required') ">
-      contact number of contact person <strong>required</strong>
-    </md-error>
-    <md-error *ngIf="conpermobFormControl.hasError('pattern') ">
-    contact number should  <strong>well form(10 digits require)</strong>
-  </md-error>
     </md-input-container></td>
-
+    <td><md-input-container class="example-full-width">
+        <span mdPrefix>+91 &nbsp;</span>
+        <input type="tel" mdInput placeholder="Contact Number" maxlength="10" name="emergency_cont_no" [(ngModel)]="model.emergency_cont_no"[formControl]="conpermobFormControl" >
+        <md-icon mdSuffix>mode_edit</md-icon>
+        <md-error *ngIf="conpermobFormControl.hasError('required') ">
+          contact number of contact person <strong>required</strong>
+        </md-error>
+        <md-error *ngIf="conpermobFormControl.hasError('pattern') ">
+          contact number should  <strong>well form(10 digits require)</strong>
+        </md-error>
+    </md-input-container></td>
     </tr></table>
     <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-input-container class="example-full-width">
+    <td><md-input-container class="example-full-width">
         <input mdInput placeholder="User Name" name="username" [(ngModel)]="model.username" [formControl]="usernameFormControl" (blur)="onBlurMethodUser(model.username)" >
         <md-error *ngIf="usernameFormControl.hasError('required') ">
         Name <strong>required</strong>
-      </md-error>
-      <label class="email-check" *ngIf="checkUserErrorMsg">
-      <md-error >
-      <strong>{{checkUserErrorMsg}}</strong>
     </md-error>
-  </label>
-      </md-input-container></td>
+    <label class="email-check" *ngIf="checkUserErrorMsg">
+        <md-error >
+          <strong>{{checkUserErrorMsg}}</strong>
+        </md-error>
+    </label>
+    </md-input-container></td>
     </tr></table>
     <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-input-container class="example-full-width">
+    <td><md-input-container class="example-full-width">
         <input mdInput placeholder="User Email" name="email" type="email" [(ngModel)]="model.email" [formControl]="emailFormControl" (blur)="onBlurMethodEmail(model.email)">
         <md-error *ngIf="emailFormControl.hasError('pattern')">
-         <strong> email should be mail type <h4>ex. abc@axovel.com </h4></strong>
+          <strong> email should be mail type <h4>ex. abc@axovel.com </h4></strong>
         <!-- <p *ngIf="passwordFormControl.hasError(minLength)">Password must be 8 characters long, we need another {{passwordFormControl.minlength.requiredLength - passwordFormControl.minlength.actualLength}} characters </p> -->
-      </md-error>
+        </md-error>
         <md-error *ngIf="emailFormControl.hasError('required')">
         email <strong>required</strong>
         <!-- <p *ngIf="passwordFormControl.hasError(minLength)">Password must be 8 characters long, we need another {{passwordFormControl.minlength.requiredLength - passwordFormControl.minlength.actualLength}} characters </p> -->
@@ -123,18 +118,18 @@
     <div class="md-radio-group">
       <label for="user_role">Employee Role</label>
       <md-radio-group class="example-radio-group" name="emp_role" [(ngModel)]="model.emp_role">
-      <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
-      {{season}}
-      </md-radio-button>
+          <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
+          {{season}}
+          </md-radio-button>
       </md-radio-group>
       <div class="example-selected-value">Employee Role is: {{model.emp_role}}</div>
     </div>
     <div class="md-radio-group">
       <label for="Status">Employee Status</label>
       <md-radio-group class="example-radio-group" name="status" [(ngModel)]="model.status">
-      <md-radio-button class="example-radio-button" *ngFor="let status of status" [value]="status">
-      {{status}}
-      </md-radio-button>
+          <md-radio-button class="example-radio-button" *ngFor="let status of status" [value]="status">
+          {{status}}
+          </md-radio-button>
       </md-radio-group>
       <div class="example-selected-value">Employee Status is : {{model.status}}</div>
     </div>
@@ -143,7 +138,6 @@
     <button md-raised-button color="primary" type="submit" >Save and Countinue </button>
     </form>
   </md-card-content>
-
   <md-card-actions>
     <!-- <button md-raised-button color="primary" (click)="gotonextStep()">Back</button> -->
 

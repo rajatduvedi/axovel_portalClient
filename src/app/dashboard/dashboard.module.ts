@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 // import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashBoardRoutingModule } from './dashboard-routing.module';
 import { DashBoardComponent } from './dash-board.component';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HrComponent } from './hr/hr.component';
-import {TableComponent} from './table/table.component';
+import {TableComponent , DialogResultEditDialog} from './table/table.component';
 import { CdkTableModule } from '@angular/cdk';
 // import { EmployeeComponent } from './employee/employee.component';
 // import{EmployeeComponent }from '../employee/employee.Component';
@@ -23,7 +23,9 @@ import {MdSidenavModule,
         MdToolbarModule,
         MdMenuModule,
         MdCardModule,
-        MdListModule
+        MdListModule,
+        MdDialogModule,
+        MdRadioModule
         } from '@angular/material';
 
 @NgModule({
@@ -32,16 +34,19 @@ import {MdSidenavModule,
         // NgbDropdownModule.forRoot(),
         DashBoardRoutingModule,
         MdSidenavModule,
-                MdTableModule,
-                MdInputModule,
-                MdButtonModule,
-                MdSelectModule,
-                MdIconModule,
-                MdToolbarModule,
-                MdMenuModule,
-                MdCardModule,
-                // CdkTableModule,
-                MdListModule
+        MdTableModule,
+        MdInputModule,
+        MdButtonModule,
+        MdSelectModule,
+        MdIconModule,
+        MdToolbarModule,
+        MdMenuModule,
+        MdCardModule,
+        FormsModule,ReactiveFormsModule,
+        // CdkTableModule,
+        MdListModule,
+        MdDialogModule,
+        MdRadioModule
                 // RouterModule.forRoot([
                 //   { path: 'emp',component:EmployeeComponent },
                 //   // {path:'table',component:TableComponent},
@@ -56,12 +61,14 @@ import {MdSidenavModule,
         HeaderComponent,
         SidebarComponent,
         HrComponent,
-        TableComponent
+        TableComponent,
+        DialogResultEditDialog
         // EmployeeComponent
 
     ],
     providers: [
         // AdminAuthGuard
-    ]
+    ],
+    entryComponents:[DialogResultEditDialog]
 })
 export class DashBoardModule { }

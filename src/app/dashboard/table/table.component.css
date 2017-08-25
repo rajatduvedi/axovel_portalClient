@@ -9,3 +9,7 @@ td, th {
     text-align: left;
     padding: 8px;
 }
+.mat-dialog-container{
+  width:1000px !important;
+  background: red;
+}
