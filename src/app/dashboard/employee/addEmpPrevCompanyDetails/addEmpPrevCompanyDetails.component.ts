@@ -21,7 +21,15 @@ export class AddEmpPrevCompanyDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
+      if(localStorage.getItem('empDetails')){
         this.model = JSON.parse(localStorage.getItem('empDetails'));
+      }
+      else {
+        this.router.navigate(['dashboard/add']);
+      }
+      if(!this.model.per_address && this.model.username){
+        this.router.navigate(['dashboard/add-step2']);
+      }
     }
     hr_noFormControl = new FormControl('', [
         Validators.required,

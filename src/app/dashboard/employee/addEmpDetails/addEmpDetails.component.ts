@@ -27,6 +27,7 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
   public check = 0;
   public checkEmailErrorMsg:any;
   public checkUserErrorMsg:any;
+  returnUrl:string;
   Role= [
     'Permanent',
     'Trainee',
@@ -36,12 +37,14 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
     'Active',
     'Not Active',
   ]
-  constructor( private router: Router,private cdr: ChangeDetectorRef,private empAddService :EmpAddService ) {
+  constructor( private router: Router,private route: ActivatedRoute,private cdr: ChangeDetectorRef,private empAddService :EmpAddService ) {
     this.errors.text=1;
 }
   ngOnInit() {
+    if(localStorage.getItem('empDetails')){
     this.model = JSON.parse(localStorage.getItem('empDetails'));
     setTimeout(() =>this.model );
+  }
       // console.log(this.emailFormControl.touched);
 }
   ngAfterViewChecked(){

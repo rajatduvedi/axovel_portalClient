@@ -15,14 +15,14 @@
         <!-- basic details -->
         <table class="example-full-width" cellspacing="0"><tr>
           <td><md-input-container class="example-full-width">
-            <input mdInput placeholder="first_name" name="emp_fname" [(ngModel)]="model.emp_fname" formControlName="emp_fname">
-            <md-error *ngIf="!form.get('emp_fname').valid">
+            <input mdInput placeholder="first_name" name="first_name" [(ngModel)]="model.first_name" formControlName="first_name">
+            <md-error *ngIf="!form.get('first_name').valid">
               first  Name <strong>required</strong>
             </md-error>
           </md-input-container></td>
           <td><md-input-container class="example-full-width">
-            <input mdInput placeholder="last_name" name="emp_lname" [(ngModel)]="model.emp_lname" formControlName="emp_lname">
-            <md-error *ngIf="!form.get('emp_lname').valid">
+            <input mdInput placeholder="last_name" name="last_name" [(ngModel)]="model.last_name" formControlName="last_name">
+            <md-error *ngIf="!form.get('last_name').valid">
               Last  Name <strong>required</strong>
             </md-error>
           </md-input-container></td>
@@ -117,7 +117,7 @@
           <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" formControlName="leaving_date" >
         </md-input-container></td>
         <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="C.T.C" name="CTC" [(ngModel)]="model.CTC" formControlName="CTC">
+          <input mdInput placeholder="C.T.C" name="CTC" [(ngModel)]="model.ctc" formControlName="ctc">
         </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
@@ -141,7 +141,7 @@
       <table class="example-full-width" cellspacing="0"><tr>
       <div class="md-radio-group">
         <label for="user_role">Employee Role</label>
-        <md-radio-group class="example-radio-group" name="employee_role" [(ngModel)]="model.employee_role" formControlName="employee_role">
+        <md-radio-group class="example-radio-group" name="emp_role" [(ngModel)]="model.emp_role" formControlName="emp_role">
             <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
             {{season}}
             </md-radio-button>
@@ -170,6 +170,6 @@
   </md-card>
 </div>
 <div md-dialog-actions>
-  <button md-button md-dialog-close="Option 1">Cancel</button>
-  <button md-button md-dialog-close="Option 2">save</button>
+  <button md-button md-dialog-close="Cancel">Cancel</button>
+  <!-- <button md-button md-dialog-close="Option 2">save</button> -->
 </div>

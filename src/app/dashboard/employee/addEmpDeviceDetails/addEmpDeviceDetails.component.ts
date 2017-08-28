@@ -26,7 +26,15 @@ export class AddEmpDeviceDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.model = JSON.parse(localStorage.getItem('empDetails'));
+      if(localStorage.getItem('empDetails')){
+        this.model = JSON.parse(localStorage.getItem('empDetails'));
+      }
+      else {
+        this.router.navigate(['dashboard/add']);
+      }
+      if(!this.model.per_address && this.model.username){
+        this.router.navigate(['dashboard/add-step2']);
+      }
       this.form = new FormGroup({
         'laptop_no' : new FormControl('not allocated',[
                     Validators.required]),

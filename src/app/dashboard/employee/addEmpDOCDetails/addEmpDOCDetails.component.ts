@@ -23,6 +23,7 @@ export class AddEmpDOCDetailsComponent implements OnInit {
     private _files: File[];
     invoiceForm: FormGroup;
     errors:any = [];
+    public checkMsg:any;
     checkAddErrorMsg:any;
 showImage: boolean = false;
     public model: any={
@@ -40,7 +41,15 @@ constructor( private router: Router,private empAddService :EmpAddService , priva
 }
 
 ngOnInit() {
+  if(localStorage.getItem('empDetails')){
     this.model = JSON.parse(localStorage.getItem('empDetails'));
+  }
+  else {
+    this.router.navigate(['dashboard/add']);
+  }
+  if(!this.model.per_address && this.model.username){
+    this.router.navigate(['dashboard/add-step2']);
+  }
     this.invoiceForm = this._fb.group({
       itemRows: this._fb.array([this.initItemRows()]) // here
     });
@@ -89,7 +98,12 @@ gotonextStep(){
       localStorage.setItem('empDetails', JSON.stringify(this.model));
       this.model = JSON.parse(localStorage.getItem('empDetails'));
       this.empAddService.empAddDetails(this.model).subscribe(data=>{
-        console.log(data);
+        // console.log(data);
+        if(data){
+          // localStorage.removeItem('empDetails');
+        this.checkMsg=data.message;
+        console.log(this.checkMsg);
+      }
       }, error => {
         // console.log(error);
       }

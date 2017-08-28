@@ -14,13 +14,19 @@ export class AddEmpAddressComponent implements OnInit {
     public model: any={};
     checked = 0;
     errorsubmit=0;
-    constructor( private router: Router) {
+    returnUrl:string;
+    constructor( private router: Router , private route: ActivatedRoute,) {
     }
 
     ngOnInit(
 
     ) {
+        if(! localStorage.getItem('empDetails')){
+            this.router.navigate(['dashboard/add']);
+        }
+        else{
         this.model = JSON.parse(localStorage.getItem('empDetails'));
+      }
     }
     peraddFormControl = new FormControl('', [
         Validators.required]);

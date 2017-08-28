@@ -9,7 +9,8 @@ import { EmployeeDetails } from '../employeeDetails';
 export class DataService{
   private listUsersUrl= 'http://192.241.153.62:1223/api/listEmp';
   private DataUserUrl= 'http://192.241.153.62:1223/api/getEmpDetail';
-  private updatedataurl= 'http://192.241.153.62:1223/api/getEmpDetail';
+  private updatedataurl= 'http://192.241.153.62:1223/api/editEmpDetail';
+  private deletedataurl = 'http://192.241.153.62:1223/api/deleteEmp';
   private options: any;
   constructor(
   private route: ActivatedRoute,
@@ -51,11 +52,29 @@ export class DataService{
         body += entry + '=' + encodeURIComponent(item[entry]) + '&';
     }
     body = body.substring(0, body.length-1);
+    console.log("body");
     console.log(body);
     let headers = new Headers();
   headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http.post(this.updatedataurl, body, {headers: headers})
+    .map((res: Response) => {
+        return res.json();
+    });
+  }
+  deleteUserRow(item:any){
+    let body = '';
+    console.log(item)
+    for(let entry in item) {
+        body += entry + '=' + encodeURIComponent(item[entry]) + '&';
+    }
+    body = body.substring(0, body.length-1);
+    console.log("body");
+    console.log(body);
+    let headers = new Headers();
+  headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.post(this.deletedataurl, body, {headers: headers})
     .map((res: Response) => {
         return res.json();
     });

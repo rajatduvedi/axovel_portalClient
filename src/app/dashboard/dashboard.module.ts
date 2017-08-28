@@ -9,7 +9,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HrComponent } from './hr/hr.component';
-import {TableComponent , DialogResultEditDialog} from './table/table.component';
+import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResultUpdateUserDialog} from './table/table.component';
 import { CdkTableModule } from '@angular/cdk';
 // import { EmployeeComponent } from './employee/employee.component';
 // import{EmployeeComponent }from '../employee/employee.Component';
@@ -62,13 +62,15 @@ import {MdSidenavModule,
         SidebarComponent,
         HrComponent,
         TableComponent,
-        DialogResultEditDialog
+        DialogResultEditDialog,
+        DialogResultUpdateUserDialog,
+        DialogConfirmDialog
         // EmployeeComponent
 
     ],
     providers: [
         // AdminAuthGuard
     ],
-    entryComponents:[DialogResultEditDialog]
+    entryComponents:[DialogResultEditDialog,DialogResultUpdateUserDialog,DialogConfirmDialog]
 })
 export class DashBoardModule { }

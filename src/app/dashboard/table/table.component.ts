@@ -31,15 +31,48 @@ getUsersList() {
     console.log(err);
   });
 }
-editDialogbox(id:any){
+editUserRow(id:any){
   console.log(id);
   if(id){
-    let dialogRef = this.dialog.open(DialogResultEditDialog);
+    let dialogRef = this.dialog.open(DialogResultEditDialog,{
+      // height: '400px',
+      width: '1200px',
+      // background:#9C27B0,
+    });
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
+      console.log(this.selectedOption);
     });
     dialogRef.componentInstance.user_id = id;
     }
+}
+deleteUserRow(id:any){
+// var div=document.getElementById("demo");
+// div.style.display="none";
+// confirmation box
+  let dialogRef=  this.dialog.open(DialogConfirmDialog,{
+  width: '400px',
+});
+dialogRef.afterClosed().subscribe(result => {
+  console.log(result)
+    if(result='yes'){
+
+      this.dataService.deleteUserRow({user_id: JSON.parse(localStorage.getItem('currentUser')).id ,
+                                      emp_user_id:id}).subscribe(result => {
+        if(result){
+        let dialogRef=  this.dialog.open(DialogResultUpdateUserDialog,{
+        width: '400px',
+      });
+      dialogRef.componentInstance.resultMsg = 'delete';
+    }
+
+      }, err => {
+        console.log(err);
+      });
+
+    }
+});
+
 }
 }
 
@@ -65,7 +98,7 @@ export class DialogResultEditDialog {
     'Active',
     'Not Active',
   ]
-  constructor(public dialogRef: MdDialogRef<DialogResultEditDialog> , private dataService: DataService) {}
+  constructor(public dialog: MdDialog,public dialogRef: MdDialogRef<DialogResultEditDialog> , private dataService: DataService) {}
 
   ngOnInit() {
     console.log("this.model");
@@ -75,10 +108,10 @@ export class DialogResultEditDialog {
     // console.log(this.user_id);
     // this.model = JSON.parse(localStorage.getItem('empDetails'));
     this.form = new FormGroup({
-      'emp_fname':new FormControl('',[
+      'first_name':new FormControl('',[
           Validators.required,
       ]),
-      'emp_lname':new FormControl('',[
+      'last_name':new FormControl('',[
           Validators.required,
       ]),
       'mob_no':new FormControl('',[
@@ -93,7 +126,7 @@ export class DialogResultEditDialog {
           Validators.required,
       ]),
       'status':new FormControl(''),
-      'employee_role':new FormControl(''),
+      'emp_role':new FormControl(''),
       'cur_address':new FormControl('',[
           Validators.required,
       ]),
@@ -112,22 +145,13 @@ export class DialogResultEditDialog {
       'per_pincode':new FormControl('',[
           Validators.required,
       ]),
-      // 'join_date':new FormControl(''),
-      // 'service_cont_end':new FormControl(''),
-      // 'emergency_cont_person':new FormControl(''),
-      // 'emergency_cont_no':new FormControl(''),
-      // 'status':new FormControl(''),
-      // 'emp_role':new FormControl(''),
-      // 'cur_address':new FormControl(''),
-      // 'cur_city':new FormControl(''),
-      // 'cur_pinCode':new FormControl(''),
       'laptop_no' : new FormControl('not allocated',[
                   Validators.required]),
       'mouse_no' : new FormControl('not allocated'),
       'keyboard_no' : new FormControl('not allocated'),
       'company_name':new FormControl(''),
       'leaving_date':new FormControl(''),
-      'CTC':new FormControl(''),
+      'ctc':new FormControl(''),
       'TL_no':new FormControl(''),
       'HR_no':new FormControl(''),
 
@@ -138,9 +162,46 @@ export class DialogResultEditDialog {
     this.dataService.UserData({emp_user_id: id}).subscribe(result => {
       this.user = result.data;
       if(this.user){
-        this.model = this.user;
-        console.log(this.model.userId);
-        if(this.model.status ==true){
+        // console.log(this.user.leaving_date);
+        this.model.first_name = this.user.emp_fname;
+        this.model.last_name  =this.user.emp_lname;
+        this.model.mob_no   =this.user.mob_no;
+        this.model.emergency_cont_person =this.user.emergency_cont_person;
+        this.model.emergency_cont_no  =this.user.emergency_cont_no;
+        this.model.status  =this.user.status;
+        this.model.emp_role  =this.user.employee_role;
+        this.model.join_date= this.user.join_date;
+        this.model.service_cont_end=this.user.service_cont_end;
+        this.model.email=this.user.email;
+        this.model.username=this.user.username;
+        this.model.password=this.user.password;
+        this.model.cur_address  =this.user.cur_address;
+        this.model.cur_city  =this.user.cur_city;
+        this.model.cur_pincode  =this.user.cur_pincode;
+        this.model.per_address  =this.user.per_address;
+        this.model.per_city   =this.user.per_city;
+        this.model.per_pincode =this.user.per_pincode;
+        this.model.laptop_no  =this.user.laptop_no;
+        this.model.mouse_no   =this.user.mouse_no;
+        this.model.keyboard_no  =this.user.keyboard_no;
+        if(this.user.company_name){
+        this.model.company_name=this.user.company_name;
+      }
+        if(this.user.leaving_date){
+        this.model.leaving_date=this.user.leaving_date;
+      }
+      if(this.user.CTC){
+        this.model.ctc=this.user.CTC;
+      }
+      if(this.user.TL_no){
+        this.model.TL_no=this.user.TL_no;
+      }
+      if(this.user.HR_no){
+        this.model.HR_no=this.user.HR_no;
+      }
+        // delete this.model.doc;
+        // console.log(this.model[doc]);
+        if(this.model.status == true){
             this.model.status ='Active';
         }
         else{
@@ -175,9 +236,20 @@ export class DialogResultEditDialog {
     });
   }
   onSubmit(){
-      if(this.model.emp_fname && this.model.emp_lname && this.model.mob_no && this.model.emergency_cont_person && this.model.emergency_cont_no  ){
-          console.log(this.user_id);
-          console.log("this.model.userId");
+    console.log(this.model);
+    if(!this.model.leaving_date){
+      delete this.model.leaving_date;
+    }
+    if(!this.model.HR_no){
+      delete this.model.HR_no;
+    }
+    if(!this.model.TL_no){
+      delete this.model.TL_no;
+    }
+    console.log(this.model);
+      if(this.model.first_name && this.model.last_name && this.model.mob_no && this.model.emergency_cont_person && this.model.emergency_cont_no  ){
+          // console.log(this.user_id);
+          // console.log("this.model.userId")
           this.model.emp_user_id=this.user_id
           if(this.model.status =='Active'){
               this.model.status =true;
@@ -186,12 +258,36 @@ export class DialogResultEditDialog {
               this.model.status=false;
           }
           console.log(this.model);
-        this.dataService.UpdateData(this.model).subscribe(result => {
-          this.updateuser = result.data;
-          console.log(this.updateuser);
+          this.dataService.UpdateData(this.model).subscribe(result => {
+          this.updateuser = result.message;
+           let dialogRef= this.dialog.open(DialogResultUpdateUserDialog,{
+            // height: '400px',
+            width: '400px',
+            // background:#9C27B0,
+          });
+          dialogRef.afterClosed().subscribe(result => {
+          });
+          dialogRef.componentInstance.resultMsg = this.updateuser;
         }, err => {
-          console.log(err);
+          console.log(err._body);
+
         });
     }
   }
+}
+@Component({
+  selector: 'dialog-Update-message-dialog',
+  templateUrl: 'dialog-Update-message-dialog.html',
+})
+export class DialogResultUpdateUserDialog {
+  resultMsg:any;
+  constructor(public dialog: MdDialog,public dialogRef: MdDialogRef<DialogResultEditDialog>){}
+}
+@Component({
+  selector: 'dialog-confirm-dialog',
+  templateUrl: 'dialog-confirm-dialog.html',
+})
+export class DialogConfirmDialog {
+  resultMsg:any;
+  constructor(){}
 }
