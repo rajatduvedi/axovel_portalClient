@@ -100,7 +100,7 @@ gotonextStep(){
       this.empAddService.empAddDetails(this.model).subscribe(data=>{
         // console.log(data);
         if(data){
-          // localStorage.removeItem('empDetails');
+          localStorage.removeItem('empDetails');
         this.checkMsg=data.message;
         console.log(this.checkMsg);
       }

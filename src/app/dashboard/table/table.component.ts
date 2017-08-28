@@ -63,6 +63,12 @@ dialogRef.afterClosed().subscribe(result => {
         let dialogRef=  this.dialog.open(DialogResultUpdateUserDialog,{
         width: '400px',
       });
+      this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
+        this.users = result.data;
+        console.log(this.users);
+      }, err => {
+        console.log(err);
+      });
       dialogRef.componentInstance.resultMsg = 'delete';
     }
 
