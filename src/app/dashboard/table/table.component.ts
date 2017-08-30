@@ -3,6 +3,7 @@ import { DataService } from '../../service/data.service';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {FormControl, Validators , NgForm , FormGroup} from '@angular/forms';
 import{EmployeeDetails} from '../../employeeDetails';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -26,22 +27,28 @@ export class TableComponent {
 getUsersList() {
   this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
     this.users = result.data;
-    console.log(this.users);
+    // console.log(this.users);
   }, err => {
     console.log(err);
   });
 }
 editUserRow(id:any){
-  console.log(id);
+  // console.log(id);
   if(id){
     let dialogRef = this.dialog.open(DialogResultEditDialog,{
       // height: '400px',
-      width: '1200px',
+      width: '1080px',
       // background:#9C27B0,
     });
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
-      console.log(this.selectedOption);
+      this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
+        this.users = result.data;
+        // console.log(this.users);
+      }, err => {
+        console.log(err);
+      });
+      // console.log(this.selectedOption);
     });
     dialogRef.componentInstance.user_id = id;
     }
@@ -53,31 +60,36 @@ deleteUserRow(id:any){
   let dialogRef=  this.dialog.open(DialogConfirmDialog,{
   width: '400px',
 });
-dialogRef.afterClosed().subscribe(result => {
-  console.log(result)
-    if(result='yes'){
+      dialogRef.afterClosed().subscribe(result => {
+        // console.log(result);
+          if(result == 1){
 
-      this.dataService.deleteUserRow({user_id: JSON.parse(localStorage.getItem('currentUser')).id ,
-                                      emp_user_id:id}).subscribe(result => {
-        if(result){
-        let dialogRef=  this.dialog.open(DialogResultUpdateUserDialog,{
-        width: '400px',
-      });
-      this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
-        this.users = result.data;
-        console.log(this.users);
-      }, err => {
-        console.log(err);
-      });
-      dialogRef.componentInstance.resultMsg = 'delete';
-    }
+            this.dataService.deleteUserRow({user_id: JSON.parse(localStorage.getItem('currentUser')).id ,
+                                            emp_user_id:id}).subscribe(result => {
+              if(result){
+              let dialogRef=  this.dialog.open(DialogResultUpdateUserDialog,{
+              width: '400px',
+            });
+            this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
+              this.users = result.data;
+              // console.log(this.users);
+            }, err => {
+              console.log(err);
+            });
+            dialogRef.componentInstance.resultMsg = 'delete';
+          }
 
-      }, err => {
-        console.log(err);
-      });
+            }, err => {
+              console.log(err);
+            });
 
-    }
-});
+
+          }
+          else if(result == 2){
+            // console.log(result);
+            // alert("no")
+          }
+      });
 
 }
 }
@@ -104,11 +116,11 @@ export class DialogResultEditDialog {
     'Active',
     'Not Active',
   ]
-  constructor(public dialog: MdDialog,public dialogRef: MdDialogRef<DialogResultEditDialog> , private dataService: DataService) {}
+  constructor(public dialog: MdDialog,private domSanitizer: DomSanitizer,public dialogRef: MdDialogRef<DialogResultEditDialog> , private dataService: DataService) {}
 
   ngOnInit() {
-    console.log("this.model");
-    console.log(this.model);
+    // console.log("this.model");
+    // console.log(this.model);
     this.getUserdata(this.user_id);
     // console.log("this.user_id");
     // console.log(this.user_id);
@@ -164,7 +176,7 @@ export class DialogResultEditDialog {
     });
   }
   getUserdata(id:any){
-    console.log(id);
+    // console.log(id);
     this.dataService.UserData({emp_user_id: id}).subscribe(result => {
       this.user = result.data;
       if(this.user){
@@ -190,6 +202,9 @@ export class DialogResultEditDialog {
         this.model.laptop_no  =this.user.laptop_no;
         this.model.mouse_no   =this.user.mouse_no;
         this.model.keyboard_no  =this.user.keyboard_no;
+        this.model.profile_pic = this.user.profile_pic;
+        // this.model.profile_pic = this.user.profile_pic.substring(this.user.profile_pic.indexOf(";base64,")+";base64".length+1);
+        console.log(this.model.profile_pic);
         if(this.user.company_name){
         this.model.company_name=this.user.company_name;
       }
@@ -236,13 +251,13 @@ export class DialogResultEditDialog {
       // this.model.HR_no=this.user.HR_no;
 
     }
-      console.log(this.user);
+      // console.log(this.user);
     }, err => {
       console.log(err);
     });
   }
   onSubmit(){
-    console.log(this.model);
+    // console.log(this.model);
     if(!this.model.leaving_date){
       delete this.model.leaving_date;
     }
@@ -252,7 +267,7 @@ export class DialogResultEditDialog {
     if(!this.model.TL_no){
       delete this.model.TL_no;
     }
-    console.log(this.model);
+    // console.log(this.model);
       if(this.model.first_name && this.model.last_name && this.model.mob_no && this.model.emergency_cont_person && this.model.emergency_cont_no  ){
           // console.log(this.user_id);
           // console.log("this.model.userId")
@@ -263,7 +278,7 @@ export class DialogResultEditDialog {
           else{
               this.model.status=false;
           }
-          console.log(this.model);
+          // console.log(this.model);
           this.dataService.UpdateData(this.model).subscribe(result => {
           this.updateuser = result.message;
            let dialogRef= this.dialog.open(DialogResultUpdateUserDialog,{

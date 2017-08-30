@@ -9,6 +9,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HrComponent } from './hr/hr.component';
+import{ DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResultUpdateUserDialog} from './table/table.component';
 import { CdkTableModule } from '@angular/cdk';
 // import { EmployeeComponent } from './employee/employee.component';
@@ -25,7 +26,8 @@ import {MdSidenavModule,
         MdCardModule,
         MdListModule,
         MdDialogModule,
-        MdRadioModule
+        MdRadioModule,
+        MdAutocompleteModule
         } from '@angular/material';
 
 @NgModule({
@@ -46,7 +48,8 @@ import {MdSidenavModule,
         // CdkTableModule,
         MdListModule,
         MdDialogModule,
-        MdRadioModule
+        MdRadioModule,
+        MdAutocompleteModule
                 // RouterModule.forRoot([
                 //   { path: 'emp',component:EmployeeComponent },
                 //   // {path:'table',component:TableComponent},
@@ -61,6 +64,7 @@ import {MdSidenavModule,
         HeaderComponent,
         SidebarComponent,
         HrComponent,
+        DashboardContentComponent,
         TableComponent,
         DialogResultEditDialog,
         DialogResultUpdateUserDialog,

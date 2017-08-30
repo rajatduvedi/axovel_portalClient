@@ -13,3 +13,10 @@ td, th {
   width:1000px !important;
   background: red;
 }
+thead{
+  background: #3F51B5;
+  /*height: 11px;*/
+}
+tbody{
+  color: white;
+}

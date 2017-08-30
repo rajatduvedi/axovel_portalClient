@@ -14,6 +14,7 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <!-- basic details -->
         <table class="example-full-width" cellspacing="0"><tr>
+          <img *ngIf="1" [src]="this.model.profile_pic" />
           <td><md-input-container class="example-full-width">
             <input mdInput placeholder="first_name" name="first_name" [(ngModel)]="model.first_name" formControlName="first_name">
             <md-error *ngIf="!form.get('first_name').valid">

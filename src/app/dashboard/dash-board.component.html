@@ -8,7 +8,7 @@
       <div class="nav">
           <div class="items">
 
-             <a md-raised-button routerLink="/dashboard" color="primary"><md-icon>dashboard</md-icon>&nbsp;&nbsp;Dashboard</a>
+             <a md-raised-button routerLink="/dashboard/#" color="primary"><md-icon>dashboard</md-icon>&nbsp;&nbsp;Dashboard</a>
           </div>
           <!-- <div class="items"> -->
             <!-- <md-icon>supervisor_account</md-icon>&nbsp;&nbsp;
@@ -122,16 +122,26 @@
   <!-- <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidenav.toggle()">
     <md-icon>menu</md-icon>
   </button> -->
-  <div class="toggle">
+  <!-- <div class="toggle">
     <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidenav.toggle()">
       <md-icon>menu</md-icon>
     </button>
-</div>
-  <app-header></app-header>
-  <div class="example-scrolling-content">
-    <router-outlet></router-outlet>
-    <!-- <app-table></app-table> -->
+</div> -->
+<!-- <table class="example-full-width" cellspacing="0"><tr> -->
+  <!-- <div class="toggle"> -->
+    <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button>
+<!-- </div> -->
 
+  <app-header></app-header>
+  <!-- </tr></table> -->
+  <div class="example-scrolling-content">
+    <div class="dashboard-content">
+
+    <router-outlet></router-outlet>
+    <!-- <app-dash></app-dash> -->
+</div>
 
     <!-- Lorem ipsum dolor sit amet, pede a libero aenean phasellus, lectus metus sint ut risus, fusce
     vel in pellentesque. Nisl rutrum etiam morbi consectetuer tempor magna, aenean nullam nunc id, -->

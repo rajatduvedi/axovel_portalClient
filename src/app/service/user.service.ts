@@ -18,7 +18,7 @@ export class UserService{
             body += entry + '=' + encodeURIComponent(item[entry]) + '&';
         }
         body = body.substring(0, body.length-1);
-        console.log(body);
+        // console.log(body);
         let headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -33,7 +33,7 @@ export class UserService{
           body += entry + '=' + encodeURIComponent(item[entry]) + '&';
       }
       body = body.substring(0, body.length-1);
-      console.log(body);
+      // console.log(body);
       let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -52,7 +52,7 @@ export class UserService{
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
-      
+
     }
     sendDataNextStep(item:any){
         // console.log("hello");

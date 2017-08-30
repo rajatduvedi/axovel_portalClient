@@ -6,7 +6,7 @@
 
     </md-card-title>
     <md-card-subtitle><h3>add previous-company details</h3>
-      <button md-raised-button color="primary" (click)="skipnextStep()">Skip</button>
+
     </md-card-subtitle>
 
   </md-card-header>
@@ -68,6 +68,7 @@ pincode  is <strong> digit form</strong>
   <md-card-actions>
     <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
     <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button>
+      <button md-raised-button color="primary" (click)="skipnextStep()" id="skip">Skip</button>
     <!-- <button md-button>SHARE</button> -->
   </md-card-actions>
 </md-card>

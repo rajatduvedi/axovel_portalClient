@@ -1,12 +1,13 @@
 .primary{
-  /*background-color: black;*/
+  background-color: #9C27B0;
+  margin-top: -40px;
 }
 .primary span{
   /*color : white;*/
 }
 .header-content{
   display:inline;
-  margin-left: 56%;
+  margin-left: 50%;
   /*float:left;*/
 }
 .example-header-image {
@@ -16,5 +17,15 @@
 .mat-card-avatar{
   width:50px;
   height:50px;
-  margin-left:14px;
+  border-radius: 50%;
+  /*margin-left:14px;*/
+}
+.userRole{
+  margin-left:5%;
+}
+/*#cdk-overlay-1{
+  background-color: red;
+}*/
+.mat-menu-content ng-trigger ng-trigger-fadeInItems{
+    background-color: red;
 }

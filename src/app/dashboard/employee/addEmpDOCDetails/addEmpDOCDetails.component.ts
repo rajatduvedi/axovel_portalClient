@@ -43,6 +43,7 @@ constructor( private router: Router,private empAddService :EmpAddService , priva
 ngOnInit() {
   if(localStorage.getItem('empDetails')){
     this.model = JSON.parse(localStorage.getItem('empDetails'));
+    // delete this.model.doc_name;
   }
   else {
     this.router.navigate(['dashboard/add']);
@@ -85,29 +86,57 @@ deleteRow(index: number) {
     // remove the chosen row
     control.removeAt(index);
     this.arraydoc.splice(index,1);
+    this.arraydataName.splice(index,1);
 }
 gotonextStep(){
+    var i=0;
+    // console.log(this.arraydoc.length);
+    // console.log(this.arraydataName.length);
+    // if(this.arraydataName.length == this.arraydoc.length - 1){
     for( let data of this.itemRows.value)
     {
+      // console.log(i);
+      // console.log(this.arraydoc[i]);
+      // console.log(data.itemname);
+      if(data.itemname && this.arraydoc[i]){
+        if(this.arraydataName[i]){
+          this.arraydataName[i] = data.itemname;
+        }else{
       this.arraydataName.push(data.itemname);
-      this.arraydata.push(data.item);
+      this.checkMsg=0;
     }
-      // console.log(this.arraydata);
+    }
+    else{
+      // message show to please fill document of 3 row
+      this.checkMsg="fill all labels and related document field"
+    }
+        i++;
+      // this.arraydata.push(data.item);
+    }
+  // }
+  // else{
+  //   this.arraydataName
+  // }
+      // console.log(this.arraydoc.length);
+      // console.log(this.arraydataName.length);
+      if(this.arraydataName.length == this.arraydoc.length){
       this.model.doc_name = this.arraydataName;//label name
       this.model.doc=this.arraydoc;//docunt
       localStorage.setItem('empDetails', JSON.stringify(this.model));
       this.model = JSON.parse(localStorage.getItem('empDetails'));
+      console.log(this.model);
       this.empAddService.empAddDetails(this.model).subscribe(data=>{
         // console.log(data);
         if(data){
-          localStorage.removeItem('empDetails');
+          // localStorage.removeItem('empDetails');
         this.checkMsg=data.message;
-        console.log(this.checkMsg);
+        // console.log(this.checkMsg);
       }
       }, error => {
         // console.log(error);
       }
     );
+  }
 }
 gotoprevStep(){
     this.router.navigate(['dashboard/add-step4']);
@@ -130,14 +159,14 @@ readThis(inputValue: any ) : void {
     var myReader:FileReader = new FileReader();
     // console.log(data);
     if(file.type=='image/jpeg' || file.type=='image/png'){
-    this.model.image = 'data:' + file.type + ';base64,';//file name
+    this.model.profile_pic = 'data:' + file.type + ';base64,';//file name
   }
     myReader.onloadend = this._handleReaderLoaded.bind(this);
     myReader.readAsBinaryString(file);
 }
 readdocThis(inputValue: any, index:any) : void {  //file upload
     var file:File = inputValue.files[0];
-    // console.log(file.type);
+    console.log(inputValue.files[0]);
     var myReader:FileReader = new FileReader();
     if(file.type=='application/pdf'){
       this.doc = file.name+'data:' + file.type + ';base64,';
@@ -149,14 +178,18 @@ readdocThis(inputValue: any, index:any) : void {  //file upload
 }
 _handleReaderLoaded(readerEvt) {
       var binaryString = readerEvt.target.result;
-      this.model.image = this.model.image + btoa(binaryString);
+      this.model.profile_pic = this.model.profile_pic + btoa(binaryString);
+      console.log(this.model.profile_pic);
       this.doc = this.doc + btoa(binaryString);
       if(!this.arraydoc[this.index]){
         this.arraydoc.push(this.doc);
       }
-      else{
+      else {
         this.arraydoc[this.index]=this.doc;
       }
+      // else if{
+      //
+      // }
       this.showImage = true;
 }
 }

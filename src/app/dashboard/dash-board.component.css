@@ -23,9 +23,9 @@
 
 .example-sidenav-fab-container md-sidenav {
   /*max-width: 200px;*/
-  width:250px;
+  width:15%;
   /*position: fixed;*/
-  /*background-color: black;*/
+  background-color: #9C27B0;
 }
 .nav .items{
   /*height:30px;*/
@@ -43,17 +43,31 @@
 .nav .items a{
 
 
-    width: 189px;
-    height: 56px;
+    width: 85%;
+    /*height: 56px;*/
     padding: 9px;
+    background-color: #303030
   }
   .toggle{
-    background-color: black;
+    /*background-color: black;*/
   }
   .sidebarheader{
     width:100%;
     height:100px;
   }
+  .dashboard-content{
+    height: 100px;
+  }
+  .example-fab {
+    background-color: #9C27B0;
+    top:15px;
+  }
+.dashboard-content{
+  background-color: #303030;
+  /*width:auto;*/
+  height:800px;
+
+}
 /*.example-sidenav-fab-container .mat-sidenav-content,
 .example-sidenav-fab-container md-sidenav {
   display: flex;

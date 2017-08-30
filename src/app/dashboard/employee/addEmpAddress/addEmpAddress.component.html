@@ -3,14 +3,14 @@
   <md-card-header>
     <!-- <div md-card-avatar class="example-header-image"></div> -->
     <md-card-title><h1>ADD Empolyee</h1></md-card-title>
-    <md-card-subtitle><h3>add address STEP2</h3></md-card-subtitle>
+    <md-card-subtitle><h3>Add address STEP2</h3></md-card-subtitle>
   </md-card-header>
   <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
   <md-card-content>
-    <md-error *ngIf="errorsubmit">
+    <!-- <md-error *ngIf="errorsubmit">
    * field is <strong>required</strong> please fill details
-  </md-error>
-    <form class="formgroup" name="myform">
+  </md-error> -->
+    <form class="formgroup" name="myform" (ngSubmit)="gotonextStep()" #f="ngForm">
   <h3>  <span>Current address :</span></h3>
   <p>
   <md-input-container class="example-full-width">
@@ -22,11 +22,35 @@
 </p>
 <table class="example-full-width" cellspacing="0"><tr>
   <td><md-input-container class="example-full-width">
+    <input mdInput placeholder="current country" name="cur_country" [(ngModel)]="model.cur_country" [formControl]="curaddcountryFormControl">
+    <md-error *ngIf="curaddcountryFormControl.hasError('required') ">
+  country field is <strong>required</strong>
+  </md-error>
+  </md-input-container></td>
+  <td><md-input-container class="example-full-width">
     <input mdInput placeholder="current City" name="cur_city" [(ngModel)]="model.cur_city" [formControl]="curaddcityFormControl">
     <md-error *ngIf="curaddcityFormControl.hasError('required') ">
   city field is <strong>required</strong>
   </md-error>
   </md-input-container></td>
+  <!-- <td><md-input-container>
+    <input mdInput placeholder="Country" [mdAutocomplete]="auto" [formControl]="CountryCtrl">
+  </md-input-container>
+
+  <md-autocomplete #auto="mdAutocomplete">
+    <md-option *ngFor="let country of filteredCountry | async" [value]="country">
+      {{ country }}
+    </md-option>
+  </md-autocomplete></td>
+  <td><md-input-container>
+    <input mdInput placeholder="State" [mdAutocomplete]="auto" [formControl]="StateCtrl">
+  </md-input-container>
+
+  <md-autocomplete #auto="mdAutocomplete">
+    <md-option *ngFor="let state of filteredStates | async" [value]="state">
+      {{ state }}
+    </md-option>
+  </md-autocomplete></td> -->
   <td><md-input-container class="example-full-width">
     <input mdInput #postalCodeC maxlength="6" placeholder=" current Pin Code" name="cur_pincode" [(ngModel)]="model.cur_pincode" [formControl]="curaddpinFormControl">
     <md-hint align="end">{{postalCodeC.value.length}} / 6</md-hint>
@@ -50,11 +74,26 @@ address field is <strong>required</strong>
 </p>
 <table class="example-full-width" cellspacing="0"><tr>
 <td><md-input-container class="example-full-width">
+  <input mdInput placeholder="Permanent country" name="per_country" [(ngModel)]="model.per_country" [formControl]="peraddcountryFormControl">
+  <md-error *ngIf="peraddcountryFormControl.hasError('required') ">
+country field is <strong>required</strong>
+</md-error>
+</md-input-container></td>
+<td><md-input-container class="example-full-width">
   <input mdInput placeholder="Permanent City" name="per_city" [(ngModel)]="model.per_city" [formControl]="peraddcityFormControl">
   <md-error *ngIf="peraddcityFormControl.hasError('required') ">
 city field is <strong>required</strong>
 </md-error>
 </md-input-container></td>
+<!-- <td><md-input-container>
+  <input mdInput placeholder="State" [mdAutocomplete]="auto" [formControl]="StateCtrl">
+</md-input-container>
+
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let state of filteredStates | async" [value]="state">
+    {{ state }}
+  </md-option>
+</md-autocomplete></td> -->
 <td><md-input-container class="example-full-width">
   <input mdInput #postalCodeP maxlength="6" placeholder=" Permanent Pin Code" name="per_pincode" [(ngModel)]="model.per_pincode" [formControl]="peraddpinFormControl">
   <md-hint align="end">{{postalCodeP.value.length}} / 6</md-hint>
@@ -66,12 +105,13 @@ pincode  is <strong> digit form</strong>
 </md-error>
 </md-input-container></td>
 </tr></table>
+
+  <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
+  <button md-raised-button color="primary" type="submit">Save and Countinue </button>
 </form>
   </md-card-content>
 
   <md-card-actions>
-    <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
-    <button md-raised-button color="primary" (click)="gotonextStep()">Save and Countinue </button>
 
     <!-- <button md-button>SHARE</button> -->
   </md-card-actions>

@@ -5,7 +5,7 @@
 
     <tr>
     <th><h3>id</h3></th>
-    <th colspan="2"><h3>Name</h3></th>
+    <th><h3>Name</h3></th>
     <!-- <th><h3>User Name</h3></th> -->
     <th><h3>Email</h3></th>
     <!-- <th><h3>Address</h3></th> -->
@@ -18,8 +18,8 @@
   <tbody>
     <tr *ngFor="let item of users, let i = index">
       <td>{{i+1}}</td>
-      <td>{{item.emp_fname}}</td>
-      <td>{{item.emp_lname}}</td>
+      <td>{{item.emp_fname}} 
+      {{item.emp_lname}}</td>
       <td>{{item.email}}</td>
       <td>{{item.mob_no}}</td>
       <td><button md-raised-button color="primary" (click)="editUserRow(item.userId)">Edit</button> </td>

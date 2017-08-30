@@ -27,6 +27,7 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
   public check = 0;
   public checkEmailErrorMsg:any;
   public checkUserErrorMsg:any;
+  public confirmPassword:any;
   returnUrl:string;
   Role= [
     'Permanent',
@@ -67,11 +68,16 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
       Validators.required,
       Validators.pattern(NAME_REGEX)]);
   conpernameFormControl= new FormControl('', [
-      Validators.required]);
+      Validators.required,
+      Validators.pattern(NAME_REGEX)]);
+
   conpermobFormControl= new FormControl('', [
       Validators.required,
       Validators.pattern(M0B_REGEX)]);
   passwordFormControl= new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)]);
+  ConfirmPasswordFormControl= new FormControl('', [
       Validators.required,
       Validators.minLength(6)]);
   mob_noFormControl = new FormControl('', [
@@ -96,7 +102,7 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
 }
   onBlurMethodUser(userValue:string){
     if(userValue){
-      // console.log(userValue);
+      console.log(userValue);
         this.empAddService.userCheck({username:userValue}).subscribe(data=>{
           // console.log(data);
         this.checkUserErrorMsg=0;
@@ -110,6 +116,26 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
         this.checkUserErrorMsg=0;
     }
   }
+  passwordInput(item:any){
+    // console.log(item);
+    // console.log(this.model.password);
+    if(this.model.password == item){
+      console.log("true");
+      // document.getElementById("confirmPassword").style.backgroundColor="green";
+      this.confirmPassword = 1;
+    }
+    else{
+      console.log("false");
+      // document.getElementById("confirmPassword").style.backgroundColor="red";
+      this.confirmPassword = 0;
+    }
+  }
+  onblurPassword(item:any){
+    // console.log(item);
+    if(this.confirmPassword){
+    document.getElementById("confirm").style.display='none';
+  }
+  }
   onSubmit(){
       if(this.model.first_name && this.model.last_name && this.model.mob_no && this.model.emergency_cont_person && this.model.emergency_cont_no && this.model.username && this.model.email && this.model.password ){
           if(this.model.status =='Active'){
@@ -118,6 +144,7 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
           else{
               this.model.status=false;
           }
+        this.model.first_name= this.model.first_name.charAt(0).toUpperCase() + this.model.first_name.slice(1);
           localStorage.setItem('empDetails', JSON.stringify(this.model));
           this.router.navigate(['dashboard/add-step2']);
     }

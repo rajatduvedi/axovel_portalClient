@@ -52,8 +52,8 @@ export class DataService{
         body += entry + '=' + encodeURIComponent(item[entry]) + '&';
     }
     body = body.substring(0, body.length-1);
-    console.log("body");
-    console.log(body);
+    // console.log("body");
+    // console.log(body);
     let headers = new Headers();
   headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -64,7 +64,7 @@ export class DataService{
   }
   deleteUserRow(item:any){
     let body = '';
-    console.log(item)
+    // console.log(item)
     for(let entry in item) {
         body += entry + '=' + encodeURIComponent(item[entry]) + '&';
     }

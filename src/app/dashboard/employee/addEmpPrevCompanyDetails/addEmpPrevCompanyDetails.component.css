@@ -1,5 +1,5 @@
 .example-card {
-  width: 50%;
+  width: 70%;
   /*text-align: center;*/
   /*float: center;*/
   margin:0px auto;
@@ -11,4 +11,7 @@
 
 .example-full-width {
   width: 100%;
+}
+#skip{
+  float:right;
 }

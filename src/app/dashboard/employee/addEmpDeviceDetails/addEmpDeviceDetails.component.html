@@ -4,7 +4,7 @@
     <!-- <div md-card-avatar class="example-header-image"></div> -->
     <md-card-title><h1>ADD Empolyee</h1></md-card-title>
     <md-card-subtitle><h3>add Devices details</h3>
-      <button md-raised-button color="primary" (click)="skipnextStep()">Skip</button>
+
     </md-card-subtitle>
   </md-card-header>
   <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
@@ -35,6 +35,7 @@
   <md-card-actions>
     <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
     <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button>
+    <button md-raised-button color="primary" (click)="skipnextStep()" id="skip">Skip</button>
     <!-- <button md-button>SHARE</button> -->
   </md-card-actions>
 </md-card>

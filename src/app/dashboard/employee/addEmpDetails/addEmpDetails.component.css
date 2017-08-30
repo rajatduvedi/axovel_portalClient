@@ -1,5 +1,5 @@
 .example-card {
-  width: 60%;
+  width: 80%;
   /*text-align: center;*/
   /*float: center;*/
   margin:0px auto;
@@ -14,18 +14,28 @@
   margin-top:10px;
 }
 .example-radio-group {
-  display: inline-flex;
-  flex-direction: column;
+  /*display: inline-flex;*/
+  /*flex-direction: column;*/
 }
 
 .example-radio-button {
   margin: 5px;
 }
 .email-check{
-  float:right;
-  
-}
+  /*float:right;*/
 
+}
+.password-check{
+  /*float:right;*/
+
+}
+#confirm{
+  color:green! important;
+
+}
 .example-selected-value {
   margin: 15px 0;
+}
+#errorConfirm{
+  color:red;
 }

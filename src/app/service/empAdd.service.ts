@@ -18,7 +18,11 @@ export class EmpAddService{
     this.options = new RequestOptions({ headers: headers });
   }
   empAddDetails(item:any) {
-    // console.log( item.doc[0]);
+    console.log( "item.profile_pic");
+
+    console.log( item.profile_pic);
+    // delete item.image;
+    console.log( item);
         let body = '';
 
         for(let entry in item) {
@@ -32,8 +36,8 @@ export class EmpAddService{
           }
         }
         body = body.substring(0, body.length-1);
-        console.log("service file");
-        console.log(body);
+        // console.log("service file");
+        // console.log(body);
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.dataurl, body, {headers: headers})

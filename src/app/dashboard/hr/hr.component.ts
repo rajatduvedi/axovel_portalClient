@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-hr',
+    moduleId:module.id,
+  // selector: 'app-hr',
   templateUrl: './hr.component.html',
   styleUrls: ['./hr.component.css']
 })
