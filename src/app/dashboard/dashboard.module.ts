@@ -11,7 +11,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HrComponent } from './hr/hr.component';
 import{ DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResultUpdateUserDialog} from './table/table.component';
-import { CdkTableModule } from '@angular/cdk';
+// import { CdkTableModule } from '@angular/cdk';
 // import { EmployeeComponent } from './employee/employee.component';
 // import{EmployeeComponent }from '../employee/employee.Component';
 // import { AdminAuthGuard } from './shared/guard/auth.guard';
