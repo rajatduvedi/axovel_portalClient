@@ -89,6 +89,7 @@ deleteRow(index: number) {
     this.arraydataName.splice(index,1);
 }
 gotonextStep(){
+    // console.log(this.model);
     var i=0;
     // console.log(this.arraydoc.length);
     // console.log(this.arraydataName.length);
@@ -122,9 +123,9 @@ gotonextStep(){
       if(this.arraydataName.length == this.arraydoc.length){
       this.model.doc_name = this.arraydataName;//label name
       this.model.doc=this.arraydoc;//docunt
-      localStorage.setItem('empDetails', JSON.stringify(this.model));
-      this.model = JSON.parse(localStorage.getItem('empDetails'));
-      console.log(this.model);
+      // localStorage.setItem('empDetails', JSON.stringify(this.model));
+      // this.model = JSON.parse(localStorage.getItem('empDetails'));
+
       this.empAddService.empAddDetails(this.model).subscribe(data=>{
         // console.log(data);
         if(data){
@@ -145,7 +146,7 @@ previewImage($event) {
     this._files = $event.srcElement.files;
     this.onFileSelect.emit(this._files);
 }
-changeListener($event) : void {
+changeListener($event) : void {             //image
     this.readThis($event.target);
     // console.log($event.target);
 }
@@ -153,7 +154,7 @@ changeList($event,index:any):void{
     this.readdocThis($event.target,index);
 }
 
-readThis(inputValue: any ) : void {
+readThis(inputValue: any ) : void {           //image
     var file:File = inputValue.files[0];
     // console.log(file.type);
     var myReader:FileReader = new FileReader();
@@ -161,12 +162,12 @@ readThis(inputValue: any ) : void {
     if(file.type=='image/jpeg' || file.type=='image/png'){
     this.model.profile_pic = 'data:' + file.type + ';base64,';//file name
   }
-    myReader.onloadend = this._handleReaderLoaded.bind(this);
+    myReader.onloadend = this._handleReaderImageLoaded.bind(this);
     myReader.readAsBinaryString(file);
 }
 readdocThis(inputValue: any, index:any) : void {  //file upload
     var file:File = inputValue.files[0];
-    console.log(inputValue.files[0]);
+    // console.log(inputValue.files[0]);
     var myReader:FileReader = new FileReader();
     if(file.type=='application/pdf'){
       this.doc = file.name+'data:' + file.type + ';base64,';
@@ -178,8 +179,7 @@ readdocThis(inputValue: any, index:any) : void {  //file upload
 }
 _handleReaderLoaded(readerEvt) {
       var binaryString = readerEvt.target.result;
-      this.model.profile_pic = this.model.profile_pic + btoa(binaryString);
-      console.log(this.model.profile_pic);
+
       this.doc = this.doc + btoa(binaryString);
       if(!this.arraydoc[this.index]){
         this.arraydoc.push(this.doc);
@@ -187,9 +187,15 @@ _handleReaderLoaded(readerEvt) {
       else {
         this.arraydoc[this.index]=this.doc;
       }
-      // else if{
-      //
-      // }
+      this.showImage = true;
+
+}
+_handleReaderImageLoaded(readerEvt) {
+      var binaryString = readerEvt.target.result;
+      this.model.profile_pic = this.model.profile_pic + btoa(binaryString);
+      // console.log(this.model.profile_pic);
+        // console.log(this.model);
+
       this.showImage = true;
 }
 }

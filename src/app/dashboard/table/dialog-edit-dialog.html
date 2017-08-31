@@ -14,7 +14,15 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <!-- basic details -->
         <table class="example-full-width" cellspacing="0"><tr>
-          <img *ngIf="1" [src]="this.model.profile_pic" />
+          <div class="image">
+          <img *ngIf="1" [src]="this.model.profile_pic" height="100px" width="130px"/>
+          <div id="changePhoto"> Update photo
+              <input type="file" #file (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" style="display:none" required>
+            <md-icon #upload (click)="file.click()">add_a_photo</md-icon> </div>
+        </div>
+        <md-error *ngIf="errorMsg">
+          *{{errorMsg}}
+        </md-error>
           <td><md-input-container class="example-full-width">
             <input mdInput placeholder="first_name" name="first_name" [(ngModel)]="model.first_name" formControlName="first_name">
             <md-error *ngIf="!form.get('first_name').valid">
@@ -69,6 +77,12 @@
             </md-error>
           </md-input-container></td>
           <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="cur_country" name="cur_country" [(ngModel)]="model.cur_country" formControlName="cur_country">
+            <md-error *ngIf="!form.get('cur_country').valid">
+              per_country <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
             <input mdInput placeholder="cur_pinCode" name="cur_pincode" [(ngModel)]="model.cur_pincode" formControlName="cur_pincode">
             <md-error *ngIf="!form.get('cur_pincode').valid">
               current pinCode <strong>required</strong>
@@ -88,6 +102,12 @@
             <input mdInput placeholder="per_city" name="per_city" [(ngModel)]="model.per_city" formControlName="per_city">
             <md-error *ngIf="!form.get('per_city').valid">
               per_city <strong>required</strong>
+            </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="per_country" name="per_country" [(ngModel)]="model.per_country" formControlName="per_country">
+            <md-error *ngIf="!form.get('per_country').valid">
+              per_country <strong>required</strong>
             </md-error>
           </md-input-container></td>
           <td><md-input-container class="example-full-width">

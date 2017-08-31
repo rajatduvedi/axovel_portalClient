@@ -14,8 +14,9 @@ td, th {
   background: red;
 }
 thead{
-  background: #3F51B5;
+  background: #303030;
   /*height: 11px;*/
+  color:white;
 }
 tbody{
   color: white;

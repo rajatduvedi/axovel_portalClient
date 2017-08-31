@@ -18,11 +18,11 @@ export class EmpAddService{
     this.options = new RequestOptions({ headers: headers });
   }
   empAddDetails(item:any) {
-    console.log( "item.profile_pic");
+    // console.log( "item.profile_pic");
 
-    console.log( item.profile_pic);
+    // console.log( item.profile_pic);
     // delete item.image;
-    console.log( item);
+    // console.log( item);
         let body = '';
 
         for(let entry in item) {

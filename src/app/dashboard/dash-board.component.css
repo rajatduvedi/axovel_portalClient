@@ -25,7 +25,7 @@
   /*max-width: 200px;*/
   width:15%;
   /*position: fixed;*/
-  background-color: #9C27B0;
+  background-color: #E91E63;
 }
 .nav .items{
   /*height:30px;*/
@@ -59,7 +59,7 @@
     height: 100px;
   }
   .example-fab {
-    background-color: #9C27B0;
+    background-color: #E91E63;
     top:15px;
   }
 .dashboard-content{

@@ -38,6 +38,7 @@ editUserRow(id:any){
     let dialogRef = this.dialog.open(DialogResultEditDialog,{
       // height: '400px',
       width: '1080px',
+      // height:'1234px'
       // background:#9C27B0,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -107,6 +108,7 @@ export class DialogResultEditDialog {
   public user_id:any;
   user: any = [];
   updateuser:any=[];
+  public errorMsg:any=0;
   Role= [
     'Permanent',
     'Trainee',
@@ -172,6 +174,9 @@ export class DialogResultEditDialog {
       'ctc':new FormControl(''),
       'TL_no':new FormControl(''),
       'HR_no':new FormControl(''),
+      'cur_country': new FormControl(''),
+      'per_country': new FormControl(''),
+
 
     });
   }
@@ -203,8 +208,10 @@ export class DialogResultEditDialog {
         this.model.mouse_no   =this.user.mouse_no;
         this.model.keyboard_no  =this.user.keyboard_no;
         this.model.profile_pic = this.user.profile_pic;
+        this.model.cur_country = this.user.cur_country;
+        this.model.per_country = this.user.per_country;
         // this.model.profile_pic = this.user.profile_pic.substring(this.user.profile_pic.indexOf(";base64,")+";base64".length+1);
-        console.log(this.model.profile_pic);
+        // console.log(this.model.profile_pic);
         if(this.user.company_name){
         this.model.company_name=this.user.company_name;
       }
@@ -255,6 +262,38 @@ export class DialogResultEditDialog {
     }, err => {
       console.log(err);
     });
+  }
+  changeListener($event) : void {             //image
+      this.readThis($event.target);
+      // console.log($event.target);
+  }
+  readThis(inputValue: any ) : void {           //image
+      var file:File = inputValue.files[0];
+      // console.log(file.size);
+      if(file.size<= 71680){
+      var myReader:FileReader = new FileReader();
+      // console.log(data);
+      if(file.type=='image/jpeg' || file.type=='image/png'){
+      this.model.profile_pic = 'data:' + file.type + ';base64,';//file name
+      this.errorMsg = 0;
+    }
+    else{
+      this.errorMsg="image type should be png and jpg type";
+    }
+      myReader.onloadend = this._handleReaderImageLoaded.bind(this);
+      myReader.readAsBinaryString(file);
+    }
+    else{
+      this.errorMsg = "image size is less than 70 KB"
+    }
+  }
+  _handleReaderImageLoaded(readerEvt) {
+        var binaryString = readerEvt.target.result;
+        this.model.profile_pic = this.model.profile_pic + btoa(binaryString);
+        // console.log(this.model.profile_pic);
+          // console.log(this.model);
+
+        // this.showImage = true;
   }
   onSubmit(){
     // console.log(this.model);

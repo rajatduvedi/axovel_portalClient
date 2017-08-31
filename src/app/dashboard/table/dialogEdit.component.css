@@ -45,3 +45,20 @@
 .example-selected-value {
   margin: 15px 0;
 }
+.image{
+  background-color: #EBEBEB;
+  /*border-color: black;*/
+  border-style: solid;
+border-width: 1px;
+width: 80%
+/*height: 123px;*/
+
+}
+#changePhoto{
+  display:none;
+}
+.image:hover #changePhoto{
+  background: #303030;
+  display: block;
+  color:white;
+}
