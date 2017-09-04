@@ -14,7 +14,7 @@ import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResult
 // import { CdkTableModule } from '@angular/cdk';
 // import { EmployeeComponent } from './employee/employee.component';
 // import{EmployeeComponent }from '../employee/employee.Component';
-// import { AdminAuthGuard } from './shared/guard/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 import {MdSidenavModule,
         MdTableModule,
         MdInputModule,
@@ -73,7 +73,7 @@ import {MdSidenavModule,
 
     ],
     providers: [
-        // AdminAuthGuard
+        AuthGuard
     ],
     entryComponents:[DialogResultEditDialog,DialogResultUpdateUserDialog,DialogConfirmDialog]
 })

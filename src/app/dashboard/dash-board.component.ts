@@ -53,20 +53,20 @@ export class DashBoardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.router.url);
-    if(this.router.url == '/dashboard'){
-      // alert("hello");
-      this.router.navigate(['dashboard/#']);
-    }
-    // console.log(window.location.href)
-    this.user= JSON.parse(localStorage.getItem('currentUser'));
-    // console.log(this.user);
-    if(this.user){
-      this.router.navigate(['dashboard/#'])
-    }
-    else{
-      this.router.navigate(['login'])
-    }
+    // console.log(this.router.url);
+    // if(this.router.url == '/dashboard'){
+    //   // alert("hello");
+    //   this.router.navigate(['dashboard/#']);
+    // }
+    // // console.log(window.location.href)
+    // this.user= JSON.parse(localStorage.getItem('currentUser'));
+    // // console.log(this.user);
+    // if(localStorage.getItem('currentUser')){
+    //   this.router.navigate(['dashboard/#'])
+    // }
+    // else{
+    //   this.router.navigate(['login'])
+    // }
     // console.log(this.user.id);
 
     if(this.user.role == 'admin'){

@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import{UserLoginComponent} from './user-login/user-login.component';
 
 // import { DashBoardComponent } from './dashboard/dashboard.component';
-// import { AuthGuard } from './_guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 // import { ConfirmationRedirectComponent } from './confirmation-redirect/confirmation-redirect.component';
 
 const appRoutes: Routes = [
@@ -14,7 +14,7 @@ const appRoutes: Routes = [
 	// },
 
   // { path: 'emp', loadChildren: './employee/employee.module#EmployeesModule'},
-  { path: 'dashboard',loadChildren: './dashboard/dashboard.module#DashBoardModule'},
+  { path: 'dashboard',loadChildren: './dashboard/dashboard.module#DashBoardModule', canActivate: [AuthGuard]},
   { path: 'login',component:UserLoginComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '', pathMatch: 'full' }
@@ -22,6 +22,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    // providers: [AuthGuard]
 })
 export class AppRoutingModule { }

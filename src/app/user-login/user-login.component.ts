@@ -22,11 +22,11 @@ export class UserLoginComponent implements OnInit {
  } ;
 
   constructor(private userservice: UserService,private checkuser:User, private router: Router , private routes : ActivatedRoute){
-    this.id = this.routes.snapshot.params['id'];
-    if(this.id=='x'){
-      this.checkregmsg= 1;
-    }
-    console.log(this.id);
+    // this.id = this.routes.snapshot.params['id'];
+    // if(this.id=='x'){
+    //   this.checkregmsg= 1;
+    // }
+    // console.log(this.id);
      }
      ngOnInit() {
        if(localStorage.getItem('currentUser')){

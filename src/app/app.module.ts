@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app.routing';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent }   from './app.component';
+import { AuthGuard } from './guards/auth.guard';
+
 // import { DashBoardComponent } from './dashboard/dash-board.component';
 // import{LoginComponent} from './login/login.component';
 
@@ -80,7 +82,7 @@ ReactiveFormsModule,
                     // RegisterComponent,
                     // LoginComponent,
       ],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthGuard],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
