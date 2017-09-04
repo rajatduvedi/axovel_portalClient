@@ -184,6 +184,8 @@ export class DialogResultEditDialog {
     // console.log(id);
     this.dataService.UserData({emp_user_id: id}).subscribe(result => {
       this.user = result.data;
+      // console.log(this.user.profile_pic);
+      console.log(this.user);
       if(this.user){
         // console.log(this.user.leaving_date);
         this.model.first_name = this.user.emp_fname;

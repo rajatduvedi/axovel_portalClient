@@ -25,7 +25,7 @@
   /*max-width: 200px;*/
   width:15%;
   /*position: fixed;*/
-  background-color: #E91E63;
+  background-color: #673AB7
 }
 .nav .items{
   margin-left: 10%;
@@ -39,15 +39,15 @@
     width: 85%;
     /*height: 56px;*/
     padding: 9px;
-    background-color: #303030
+    background-color: #673AB7
   }
   .mini-nav .items a{
       padding: 9px;
-      background-color: #E91E63;
-      color:#303030;
+      background-color: #673AB7
+      /*color:#303030;*/
     }
     .mini-items{
-      background-color:#E91E63
+      background-color:#673AB7
     }
   .toggle{
     /*background-color: black;*/
@@ -57,14 +57,14 @@
     height:100px;
   }
   .example-fab {
-    background-color: #E91E63;
+    background-color:#673AB7;
     top:15px;
   }
 .dashboard-content{
   /*width:30%;*/
   background-color: #303030;
   /*width:auto;*/
-  /*height:800px;*/
+  height:800px;
 
 }
 .mini-side-bar{

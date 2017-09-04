@@ -22,7 +22,7 @@ export class EmpAddService{
 
     // console.log( item.profile_pic);
     // delete item.image;
-    // console.log( item);
+    console.log( item);
         let body = '';
 
         for(let entry in item) {
