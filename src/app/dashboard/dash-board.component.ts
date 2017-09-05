@@ -69,6 +69,8 @@ export class DashBoardComponent implements OnInit {
     // }
     // console.log(this.user.id);
 
+    this.user= JSON.parse(localStorage.getItem('currentUser'));
+
     if(this.user.role == 'admin'){
         this.role.admin=1;
         this.role.hr=1;

@@ -41,9 +41,9 @@ export class UserLoginComponent implements OnInit {
    userLogin() {
      this.userservice.login(this.model).subscribe(data =>
         {
-          if(data.status){
+          if(data.data){
             localStorage.setItem('currentUser', JSON.stringify(data.data));
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['/dashboard']);
           }
         }, error => {
               console.log(error)
