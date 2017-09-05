@@ -30,7 +30,7 @@ export class UserLoginComponent implements OnInit {
      }
      ngOnInit() {
        if(localStorage.getItem('currentUser')){
-         this.router.navigate(['dashboard']);
+         this.router.navigate(['dashboard/#']);
        }
      }
 
@@ -43,7 +43,7 @@ export class UserLoginComponent implements OnInit {
         {
           if(data.data){
             localStorage.setItem('currentUser', JSON.stringify(data.data));
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/dashboard/#']);
           }
         }, error => {
               console.log(error)

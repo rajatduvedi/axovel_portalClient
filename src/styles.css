@@ -4,3 +4,8 @@
   color: white;
   background:#303030;
 }
+/*:host(#contentSideNav) {
+  border-width: 3px;
+  width:10px;
+  margin-left: 12px;
+}*/

@@ -1,5 +1,5 @@
-import { Component, OnInit ,  ViewChild,
-trigger, state, style, transition, animate} from '@angular/core';
+import { Component, OnInit ,  ViewChild,Input,
+trigger, state, style, transition, animate , ElementRef} from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import {MdSidenav} from '@angular/material';
 
@@ -9,37 +9,35 @@ import {MdSidenav} from '@angular/material';
   styleUrls: ['./dash-board.component.css'],
   animations: [
     trigger('contentOffset', [
-        state('add', style({
-            // 'margin-left': '20px',
-            // 'background':'red'
+        state('open', style({ // sidenav open
+          // 'transform': 'translate3d(0px, 0px, 0px)',
+          // 'visibility': 'visible',
             'transition':'transform .100s cubic-bezier(.25,.8,.25,1)'
         })),
-        state('remove', style({
-            // 'margin-left': '0',
-            'width':'90px',
+        state('close', style({ //sidenav closed
+            'width':'78px',
             'visibility':'visible',
-            'transform':'translate3d(-26%,0,0)',
-            // 'background':'blue'
+            'transform':'translate3d(0,0,0)',
         })),
-        transition('remove => add', animate('1ms ease'))
+        transition('remove <=> add', animate('1ms ease'))
     ]),
     trigger('contentinerSet', [
-        state('addOpen', style({
-            'margin-left': '65px',
-            // 'background':'red'
+        state('open', style({
+            'margin-left': '0px',
         })),
-        state('removeClose', style({
-            // 'margin-left': '0px',
-            // 'transform':'translate3d(0px,0px,0px)',
-            // 'background':'red'
+        state('close', style({
+            'margin-left': '77px',
+            'transform': 'translate3d(0px, 0px, 0px)',
+            // 'transform':'translate3d(-26%,0,0)',
         })),
         // transition('addOpen => removeClose', animate('1000ms ease'))
     ]),
 ]
 })
 export class DashBoardComponent implements OnInit {
+  // @Input() Sidenav;
   @ViewChild('sidenav') sidenav:MdSidenav;
-  contentOffsetStatus:string = 'add';
+  contentOffsetStatus:string = 'open';
   contentinerSetStatus:string;
   public Checksidebar:any=0;
   public user:any;
@@ -50,24 +48,9 @@ export class DashBoardComponent implements OnInit {
     employee :0,
     account :0,
   };
-  constructor(private router: Router) { }
+  constructor(private router: Router , private elRef:ElementRef) { }
 
   ngOnInit() {
-    // console.log(this.router.url);
-    // if(this.router.url == '/dashboard'){
-    //   // alert("hello");
-    //   this.router.navigate(['dashboard/#']);
-    // }
-    // // console.log(window.location.href)
-    // this.user= JSON.parse(localStorage.getItem('currentUser'));
-    // // console.log(this.user);
-    // if(localStorage.getItem('currentUser')){
-    //   this.router.navigate(['dashboard/#'])
-    // }
-    // else{
-    //   this.router.navigate(['login'])
-    // }
-    // console.log(this.user.id);
 
     this.user= JSON.parse(localStorage.getItem('currentUser'));
 
@@ -99,17 +82,25 @@ export class DashBoardComponent implements OnInit {
         this.router.navigate(['dashboard/list']);
   }
   sidebarToggle(){
-    this.contentOffsetStatus = ( this.contentOffsetStatus === 'add' ? 'remove' : 'add' );
-    if(this.contentOffsetStatus == 'remove'){
-      this.contentinerSetStatus ='addOpen';
+    this.contentOffsetStatus = ( this.contentOffsetStatus === 'open' ? 'close' : 'open' );
+    if(this.contentOffsetStatus == 'close'){// if sidenav close then open it
+      this.contentinerSetStatus ='close';
+      // document.getElementById('contentSideNav').style.visibility='visible';
       this.Checksidebar=1;
     }
     else{
       this.Checksidebar=0;
       // document.getElementsByClassName("mat-sidenav-content").style.display = "hidden";
-      this.contentinerSetStatus='removeClose'
+      // var div = this.elRef.nativeElement.querySelector('div');
+      // console.log(div);
+      // var x = document.querySelectorAll(".mat-drawer-content");
+      // console.log(x);
+      // x.setAttribute("style", "color: blue, margin-top:5px");
+      // x[0].css(background="red");
+
+      this.contentinerSetStatus='open'
     }
-    this.sidenav.toggle();
+    this.sidenav.toggle();//
         // document.getElementsByClassName("mat-sidenav.mat-sidenav-closed").style.visibility="visible";
   }
 
