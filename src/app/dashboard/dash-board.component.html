@@ -1,12 +1,14 @@
+<app-header></app-header>
 <md-sidenav-container class="example-sidenav-fab-container">
   <md-sidenav #sidenav mode="side" opened="true" id="contentSideNav" [@contentOffset]="contentOffsetStatus">
     <!-- <button md-mini-fab class="example-fab" (click)="sidenav.toggle()">
       <md-icon>clear</md-icon>
     </button> -->
-      <div class="sidebarheader"></div>
+      <!-- <div class="sidebarheader"></div> -->
+
       <div class="example-scrolling-content">
             <div class="nav" *ngIf="!Checksidebar">
-                <div class="items">
+                <div class="itemsdash">
                   <a md-raised-button routerLink="/dashboard/#" color="primary"><md-icon>dashboard</md-icon>&nbsp;&nbsp;
                     Dashboard</a>
                 </div>
@@ -17,7 +19,7 @@
                     </button>
                     <md-menu #HR="mdMenu">
                       <button md-menu-item (click)="addEmp()">
-                        <md-icon>person_add</md-icon>&nbsp;&nbsp;ADD
+                        <md-icon>person_add</md-icon>&nbsp;&nbsp;Add Employee
                     <!-- <a md-raised-button routerLink="/dashboard/add" color="primary"></a> -->
                       </button>
                       <button md-menu-item (click)="listEmp()">
@@ -67,53 +69,58 @@
                       </button>
                       </md-menu>
                 </div>
-                <div class="items">
+                <!-- <div class="items">
                   <a md-raised-button routerLink="list" color="primary"><md-icon>list</md-icon>&nbsp;&nbsp;&nbsp;&nbsp;Table</a>
-                </div>
+                </div> -->
             </div>
             <div class="mini-nav" *ngIf="Checksidebar">
-            <div class="items">
+            <div class="itemsMini">
                 <a md-raised-button routerLink="/dashboard/#" width="6px" color="primary">
                 <md-icon>dashboard</md-icon>
                 <div>Dash</div></a>
             </div>
-            <div class="items" *ngIf="role.hr">
+            <div class="itemsMini" *ngIf="role.hr">
                 <a md-raised-button routerLink="/dashboard/#" width="6px" color="primary">
                   <md-icon>supervisor_account</md-icon>
                   <div>HR</div></a>
             </div>
-            <div class="items" *ngIf="role.employee">
+            <div class="itemsMini" *ngIf="role.employee">
                 <a md-raised-button routerLink="/dashboard/#" width="6px" color="primary">
                   <md-icon>person</md-icon>
                   <div>Emp</div></a>
             </div>
-            <div class="items" *ngIf="role.account">
+            <div class="itemsMini" *ngIf="role.account">
                 <a md-raised-button routerLink="/dashboard/#" width="6px" color="primary">
                   <md-icon>account_box</md-icon>
                   <div>Acc</div></a>
             </div>
-            <div class="items">
+            <div class="itemsMini">
                 <a md-raised-button routerLink="list" color="primary">
                   <md-icon>list</md-icon>
                   <div>Table</div></a>
             </div>
         </div>
+
       </div>
+      <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidebarToggle()">
+        <md-icon>menu</md-icon>
+      </button>
   </md-sidenav>
   <div  id="contentContainer" [@contentinerSet]="contentinerSetStatus">
-      <div class="example-fab" >
+      <!-- <div class="example-fab" >
         <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidebarToggle()">
           <md-icon>menu</md-icon>
         </button>
           <div>
           </div>
-      </div>
-      <app-header></app-header>
+      </div> -->
+
       <div class="example-scrolling-content">
           <div class="dashboard-content">
           <router-outlet></router-outlet>
           </div>
     </div>
-    <app-footer></app-footer>
+
 </div>
 </md-sidenav-container>
+<app-footer></app-footer>

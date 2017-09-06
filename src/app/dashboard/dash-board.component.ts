@@ -15,7 +15,7 @@ import {MdSidenav} from '@angular/material';
             'transition':'transform .100s cubic-bezier(.25,.8,.25,1)'
         })),
         state('close', style({ //sidenav closed
-            'width':'78px',
+            'width':'88px',
             'visibility':'visible',
             'transform':'translate3d(0,0,0)',
         })),
@@ -26,7 +26,7 @@ import {MdSidenav} from '@angular/material';
             'margin-left': '0px',
         })),
         state('close', style({
-            'margin-left': '77px',
+            'margin-left': '86px',
             'transform': 'translate3d(0px, 0px, 0px)',
             // 'transform':'translate3d(-26%,0,0)',
         })),

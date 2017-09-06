@@ -1,65 +1,34 @@
-<!-- <md-card class="example-card">
-  <md-card-header> -->
 <md-toolbar class="primary">
-      <!-- <div class="toggle">
-        <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidenav.toggle()">
-          <md-icon>menu</md-icon>
+    <img src="assets/images/axovel.png" height="60%" width="13%" id="comapnyLogoimg">
+    <span id="userRole"> {{user.role | uppercase}}</span>
+      <div class="flex-spacer"></div>
+        <md-input-container>
+            <md-icon>search</md-icon>
+            <input mdInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;search here" type="search" floatPlaceholder="auto">
+        </md-input-container>
+        <button md-icon-button [mdMenuTriggerFor]="notifications">
+            <md-icon>notifications</md-icon>
         </button>
-</div> -->
-
-
-<!-- <div md-card-avatar class="example-header-image"></div> -->
-    <div class="userRole">
-    <span> {{user.role | uppercase}}</span>
-    </div>
-    <div class="header-content">
-      <md-input-container>
-        <md-icon>search</md-icon>
-        <input mdInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;search here" type="search" floatPlaceholder="auto">
-
-      </md-input-container>
-    <!-- </div> -->
-    <!-- <div class="items"> -->
-      <button md-icon-button [mdMenuTriggerFor]="notifications">
-      <md-icon>notifications</md-icon>
-      <!-- <span>HR</span> -->
-      </button>
-      <md-menu #notifications="mdMenu">
-      <button md-menu-item>
-        <!-- <md-icon>person_add</md-icon> -->
-        <span>1 notification</span>
-      </button>
-      <!-- <button md-menu-item disabled>
-        <md-icon>voicemail</md-icon>
-        <span>Check voicemail</span>
-      </button> -->
-      <button md-menu-item>
-        <!-- <md-icon>view_list</md-icon> -->
-        <span>2 notification</span>
-      </button>
-      </md-menu>
-
-      <button md-icon-button [mdMenuTriggerFor]="Account">
-
-      <img md-card-avatar src="assets/images/rj.jpg">
-
-      <!-- <span>HR</span> -->
-      </button>
-      <md-menu #Account="mdMenu">
-      <button md-menu-item>
-        <md-icon>Account</md-icon>
-        <span>Account</span>
-      </button>
-      <button md-menu-item (click)="logout()">
-        <md-icon>view_list</md-icon>
-        <span>log out</span>
-      </button>
-      </md-menu>
-    </div>
-
-
-
+        <md-menu #notifications="mdMenu">
+            <button md-menu-item>
+              <span>1 notification</span>
+            </button>
+            <button md-menu-item>
+              <span>2 notification</span>
+            </button>
+        </md-menu>
+        <button md-icon-button [mdMenuTriggerFor]="Account">
+            <img md-card-avatar src="assets/images/rj.jpg">
+        </button>
+        <md-menu #Account="mdMenu">
+          <button md-menu-item>
+            <md-icon>Account</md-icon>
+            <span>Account</span>
+          </button>
+          <button md-menu-item (click)="logout()">
+            <md-icon>view_list</md-icon>
+            <span>log out</span>
+          </button>
+        </md-menu>
 
 </md-toolbar>
-<!-- </md-card-header>
-</md-card> -->
