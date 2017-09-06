@@ -12,8 +12,8 @@
                   <a md-raised-button routerLink="/dashboard/#" color="primary"><md-icon>dashboard</md-icon>&nbsp;&nbsp;
                     Dashboard</a>
                 </div>
-                <div class="items" *ngIf="role.hr">
-                    <button md-icon-button [mdMenuTriggerFor]="HR">
+                <div class="items" *ngIf="role.hr" [mdMenuTriggerFor]="HR">
+                    <button md-icon-button >
                         <md-icon>supervisor_account</md-icon>&nbsp;&nbsp;&nbsp;
                         <span>HR</span>
                     </button>
@@ -28,8 +28,8 @@
                       </button>
                     </md-menu>
                   </div>
-                <div class="items" *ngIf="role.employee">
-                      <button md-icon-button [mdMenuTriggerFor]="menu">
+                <div class="items" *ngIf="role.employee" [mdMenuTriggerFor]="menu">
+                      <button md-icon-button >
                         <md-icon>person</md-icon>&nbsp;&nbsp;&nbsp;
                         <span>Employee</span>
                       </button>
@@ -48,8 +48,8 @@
                         </button>
                       </md-menu>
                 </div>
-                <div class="items" *ngIf="role.account">
-                      <button md-icon-button [mdMenuTriggerFor]="menu">
+                <div class="items" *ngIf="role.account" [mdMenuTriggerFor]="menu">
+                      <button md-icon-button >
                         <md-icon>account_box
                         </md-icon>&nbsp;&nbsp;&nbsp;
                         <span>Account</span>
@@ -102,25 +102,20 @@
         </div>
 
       </div>
-      <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidebarToggle()">
-        <md-icon>menu</md-icon>
+      <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidebarToggle()" >
+        <md-icon *ngIf="Checksidebar">menu</md-icon>
+        <md-icon *ngIf="!Checksidebar">clear</md-icon>
       </button>
+      <!-- <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidebarToggle()" *ngIf="!Checksidebar">
+        <md-icon>clear</md-icon>
+      </button> -->
   </md-sidenav>
   <div  id="contentContainer" [@contentinerSet]="contentinerSetStatus">
-      <!-- <div class="example-fab" >
-        <button md-mini-fab class="example-fab" md-raised-button color="primary" (click)="sidebarToggle()">
-          <md-icon>menu</md-icon>
-        </button>
-          <div>
-          </div>
-      </div> -->
-
       <div class="example-scrolling-content">
           <div class="dashboard-content">
           <router-outlet></router-outlet>
           </div>
     </div>
-
 </div>
 </md-sidenav-container>
 <app-footer></app-footer>

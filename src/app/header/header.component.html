@@ -1,13 +1,14 @@
 <md-toolbar class="primary">
-    <img src="assets/images/axovel.png" height="60%" width="13%" id="comapnyLogoimg">
+    <img src="assets/images/image(4).jpg" height="60%" width="13%" id="comapnyLogoimg">
     <span id="userRole"> {{user.role | uppercase}}</span>
       <div class="flex-spacer"></div>
         <md-input-container>
             <md-icon>search</md-icon>
             <input mdInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;search here" type="search" floatPlaceholder="auto">
         </md-input-container>
-        <button md-icon-button [mdMenuTriggerFor]="notifications">
+        <button md-icon-button [mdMenuTriggerFor]="notifications" id="notification">
             <md-icon>notifications</md-icon>
+              <span class="mat-select-arraow"></span>
         </button>
         <md-menu #notifications="mdMenu">
             <button md-menu-item>
@@ -17,13 +18,14 @@
               <span>2 notification</span>
             </button>
         </md-menu>
-        <button md-icon-button [mdMenuTriggerFor]="Account">
+        <button md-icon-button [mdMenuTriggerFor]="Account" id="Account">
             <img md-card-avatar src="assets/images/rj.jpg">
         </button>
         <md-menu #Account="mdMenu">
           <button md-menu-item>
             <md-icon>Account</md-icon>
             <span>Account</span>
+
           </button>
           <button md-menu-item (click)="logout()">
             <md-icon>view_list</md-icon>

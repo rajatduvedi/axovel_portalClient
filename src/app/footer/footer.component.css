@@ -7,6 +7,9 @@
 }
 .primary span{
   color : white;
+  /*padding-left: 34px;
+  padding-right: 34px;*/
+  margin-left: 164px;
 }
 .header-content{
   display:inline;
