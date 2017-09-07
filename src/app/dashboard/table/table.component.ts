@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
+import {Component , ViewChild , OnChanges} from '@angular/core';
 import { DataService } from '../../service/data.service';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {FormControl, Validators , NgForm , FormGroup} from '@angular/forms';
 import{EmployeeDetails} from '../../employeeDetails';
+import {PageEvent , MdPaginator} from '@angular/material';
+import {DataSource} from '@angular/cdk/collections';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -16,23 +18,49 @@ import 'rxjs/add/operator/map';
 })
 export class TableComponent {
   users: any = [];
+  loadData:any=[];
   // check:any;
+userFilter: any = {};
+  public tableId:any;
+  pageEvent: PageEvent;
   selectedOption: string;
+  loadSpiner:boolean=true;
+  @ViewChild(MdPaginator) paginator: MdPaginator;
   constructor(private dataService: DataService , public dialog: MdDialog ) {
-    // Fill up the database with 100 users.
-    // for (let i = 0; i < 20; i++) { this.addUser(); }
   }
   ngOnInit(): void{
-      this.getUsersList();
+      this.getUsersList(this.paginator);
 }
-getUsersList() {
+onPaginateChange(event){
+  this.pageload(event);
+}
+pageload(event){
+this.loadData=[];
+var start= event.pageIndex * event.pageSize;//0
+this.tableId = start
+var end = (event.pageIndex +1) * event.pageSize ;
+var j=0;
+for(var i=start ;i<end ;i++){
+  if(this.users[i]){
+  this.loadData[j++] = this.users[i];
+}
+}
+}
+getUsersList(paginator: MdPaginator) {
   this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
     this.users = result.data;
     // console.log(this.users);
+    this.pageload(paginator);
+    setTimeout (() => {
+      // console.log("Hello from setTimeout");
+        this.loadSpiner=false;
+    }, 1000)
+
   }, err => {
     console.log(err);
   });
 }
+
 editUserRow(id:any){
   // console.log(id);
   if(id){
@@ -106,7 +134,14 @@ deleteUserRow(id:any){
 
 }
 }
-
+// export class ExampleDataSource extends DataSource<any> {
+//   /** Connect function called by the table to retrieve one stream containing the data to render. */
+//   connect(): Observable<Element[]> {
+//     return Observable.of(data);
+//   }
+//
+//   disconnect() {}
+// }
 @Component({
   selector: 'dialog-result-example-dialog',
   templateUrl: 'dialog-edit-dialog.html',
@@ -122,6 +157,7 @@ export class DialogResultEditDialog {
   user: any = [];
   updateuser:any=[];
   public errorMsg:any=0;
+  loadSpiner:boolean=true;
   Role= [
     'Permanent',
     'Trainee',
@@ -193,6 +229,7 @@ export class DialogResultEditDialog {
     // console.log(id);
     this.dataService.UserData({emp_user_id: id}).subscribe(result => {
       this.user = result.data;
+      this.loadSpiner=false;
       // console.log(this.user.profile_pic);
       console.log(this.user);
       if(this.user){

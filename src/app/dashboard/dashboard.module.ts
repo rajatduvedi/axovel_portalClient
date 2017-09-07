@@ -14,6 +14,7 @@ import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResult
 // import { CdkTableModule } from '@angular/cdk';
 // import { EmployeeComponent } from './employee/employee.component';
 // import{EmployeeComponent }from '../employee/employee.Component';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { AuthGuard } from '../guards/auth.guard';
 import {MdSidenavModule,
         MdTableModule,
@@ -27,7 +28,10 @@ import {MdSidenavModule,
         MdListModule,
         MdDialogModule,
         MdRadioModule,
-        MdAutocompleteModule
+        MdAutocompleteModule,
+        MdPaginatorModule,
+        MdProgressSpinnerModule,
+        MdDatepickerModule
         } from '@angular/material';
 
 @NgModule({
@@ -49,7 +53,11 @@ import {MdSidenavModule,
         MdListModule,
         MdDialogModule,
         MdRadioModule,
-        MdAutocompleteModule
+        MdAutocompleteModule,
+        MdPaginatorModule,
+        MdProgressSpinnerModule,
+        Ng2FilterPipeModule,
+        MdDatepickerModule
                 // RouterModule.forRoot([
                 //   { path: 'emp',component:EmployeeComponent },
                 //   // {path:'table',component:TableComponent},

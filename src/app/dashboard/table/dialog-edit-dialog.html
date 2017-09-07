@@ -13,7 +13,9 @@
       <md-card-subtitle *ngIf="!check"><h3>preview  details</h3>
       </md-card-subtitle>
     </md-card-header>
-    <md-card-content *ngIf="check">
+    <!-- <div *ngIf="loadSpiner"><h1>loading...........</h1></div> -->
+      <div id="loader" *ngIf="loadSpiner"><md-spinner></md-spinner></div>
+    <md-card-content *ngIf="check && !loadSpiner">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <table class="example-full-width" cellspacing="0"><tr>
             <div class="image">
@@ -196,7 +198,7 @@
         <button md-raised-button color="primary" type="submit" > Update </button>
       </form>
       </md-card-content>
-    <md-card-content *ngIf="!check">
+    <md-card-content *ngIf="!check &&  !loadSpiner">
           <form class="form">
           <table class="example-full-width" cellspacing="0"><tr>
               <div class="image">

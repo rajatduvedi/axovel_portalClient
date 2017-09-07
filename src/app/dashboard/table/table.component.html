@@ -1,6 +1,7 @@
 <div id="demo" >
   <md-list>
-    <table>
+
+    <table >
       <thead>
 
     <tr>
@@ -12,9 +13,28 @@
     <th><h3> Status</h3></th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let item of users, let i = index">
-      <td>{{i+1}}</td>
+  <div *ngIf="loadSpiner"><md-spinner></md-spinner></div>
+
+  <tbody *ngIf="!loadSpiner">
+    <td></td>
+    <td>
+      <md-form-field class="example-full-width">
+      <input type="text" mdInput  [(ngModel)]="userFilter.emp_fname" placeholder="Name">
+    </md-form-field></td>
+    <td>
+      <md-form-field class="example-full-width">
+      <input type="text" mdInput  [(ngModel)]="userFilter.email" placeholder="Email">
+      </md-form-field>
+    </td>
+    <td>
+      <md-form-field class="example-full-width">
+      <input type="text" mdInput  [(ngModel)]="userFilter.mob_no" placeholder="Contact No">
+      </md-form-field>
+    </td>
+    <td></td>
+    <td></td>
+    <tr *ngFor="let item of loadData | filterBy:userFilter, let i = index">
+      <td>{{i+1+tableId}}</td>
       <td>{{item.emp_fname}}
       {{item.emp_lname}}</td>
       <td>{{item.email}}</td>
@@ -27,5 +47,14 @@
     </tr>
   </tbody>
     </table>
+    <md-paginator #paginator
+              [length]="users.length"
+              [pageSize]="3"
+              [pageIndex]="0"
+              [pageSizeOptions]="[3,5,8,25,100]"
+              (page)="pageEvent = $event ; onPaginateChange($event)">
+</md-paginator>
+
+
   </md-list>
 </div>

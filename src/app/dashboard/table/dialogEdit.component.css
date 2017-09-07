@@ -54,3 +54,12 @@ width: 80%
   display: block;
   color:white;
 }
+.mat-progress-spinner{
+  margin-left: 37%;
+  position: absolute;
+  margin-top: 7%;
+}
+#loader{
+  min-width: 347px;
+  min-height: 347px
+}
