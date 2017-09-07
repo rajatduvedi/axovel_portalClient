@@ -1,48 +1,51 @@
-<h1 md-dialog-title>Edit</h1>
+<h1 md-dialog-title *ngIf="check">Edit</h1>
+<h1 md-dialog-title *ngIf="!check">Preview</h1>
 <div md-dialog-content>
 
   <md-card class="example-card">
     <md-card-header>
-      <!-- <div md-card-avatar class="example-header-image"></div> -->
-      <md-card-title><h1>Edit Employee Details</h1>
+      <md-card-title *ngIf="check"><h1>Edit Employee Details</h1>
       </md-card-title>
-      <md-card-subtitle><h3>add previous-company details</h3>
-        <!-- <button md-raised-button color="primary" (click)="skipnextStep()">Skip</button> -->
+      <md-card-title *ngIf="!check"><h1>Preview Employee Details</h1>
+      </md-card-title>
+      <md-card-subtitle *ngIf="check"><h3>Update details</h3>
+      </md-card-subtitle>
+      <md-card-subtitle *ngIf="!check"><h3>preview  details</h3>
       </md-card-subtitle>
     </md-card-header>
-    <md-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <!-- basic details -->
+    <md-card-content *ngIf="check">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <table class="example-full-width" cellspacing="0"><tr>
-          <div class="image">
-          <img *ngIf="1" [src]="this.model.profile_pic" height="100px" width="130px"/>
-          <div id="changePhoto"> Update photo
-              <input type="file" #file (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" style="display:none" required>
-            <md-icon #upload (click)="file.click()">add_a_photo</md-icon> </div>
-        </div>
-        <md-error *ngIf="errorMsg">
-          *{{errorMsg}}
-        </md-error>
-          <td><md-input-container class="example-full-width">
-            <input mdInput placeholder="first_name" name="first_name" [(ngModel)]="model.first_name" formControlName="first_name">
-            <md-error *ngIf="!form.get('first_name').valid">
-              first  Name <strong>required</strong>
+            <div class="image">
+              <img *ngIf="1" [src]="this.model.profile_pic" height="100px" width="130px"/>
+              <div id="changePhoto"> Update photo
+                  <input type="file" #file (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" style="display:none" required>
+                  <md-icon #upload (click)="file.click()">add_a_photo</md-icon>
+             </div>
+            </div>
+            <md-error *ngIf="errorMsg">
+              *{{errorMsg}}
             </md-error>
-          </md-input-container></td>
-          <td><md-input-container class="example-full-width">
-            <input mdInput placeholder="last_name" name="last_name" [(ngModel)]="model.last_name" formControlName="last_name">
-            <md-error *ngIf="!form.get('last_name').valid">
-              Last  Name <strong>required</strong>
-            </md-error>
-          </md-input-container></td>
-          <td><md-input-container class="example-full-width">
-            <span mdPrefix>+91 &nbsp;</span>
-            <input mdInput placeholder="mob_no" name="mob_no" type="tel" minlength="10" maxlength="10" [(ngModel)]="model.mob_no" formControlName="mob_no">
-            <md-icon mdSuffix>mode_edit</md-icon>
-            <md-error *ngIf="!form.get('mob_no').valid">
-              Mobile Number  Name <strong>required</strong>
-            </md-error>
-          </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="first_name" name="first_name" [(ngModel)]="model.first_name" formControlName="first_name">
+              <md-error *ngIf="!form.get('first_name').valid">
+                first  Name <strong>required</strong>
+              </md-error>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="last_name" name="last_name" [(ngModel)]="model.last_name" formControlName="last_name">
+              <md-error *ngIf="!form.get('last_name').valid">
+                Last  Name <strong>required</strong>
+              </md-error>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <span mdPrefix>+91 &nbsp;</span>
+              <input mdInput placeholder="mob_no" name="mob_no" type="tel" minlength="10" maxlength="10" [(ngModel)]="model.mob_no" formControlName="mob_no">
+              <md-icon mdSuffix>mode_edit</md-icon>
+              <md-error *ngIf="!form.get('mob_no').valid">
+                Mobile Number  Name <strong>required</strong>
+              </md-error>
+            </md-input-container></td>
         </tr></table>
         <!-- emergency conctact person current field -->
         <table class="example-full-width" cellspacing="0"><tr>
@@ -60,7 +63,6 @@
             </md-error>
             <md-icon mdSuffix>mode_edit</md-icon>
           </md-input-container></td>
-
         </tr></table>
         <!-- address current field -->
         <table class="example-full-width" cellspacing="0"><tr>
@@ -135,77 +137,183 @@
             <input mdInput placeholder="Company Name" name="company_name" [(ngModel)]="model.company_name" formControlName="company_name">
           </md-input-container></td>
           <td><md-input-container class="example-full-width">
-          <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" formControlName="leaving_date" >
-        </md-input-container></td>
-        <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="C.T.C" name="CTC" [(ngModel)]="model.ctc" formControlName="ctc">
-        </md-input-container></td>
-      </tr></table>
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td><md-input-container class="example-full-width">
-        <span mdPrefix>+91 &nbsp;</span>
-        <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10"[(ngModel)]="model.HR_no" formControlName="HR_no" >
-        <md-icon mdSuffix>mode_edit</md-icon>
-        <!-- <md-error *ngIf="hr_noFormControl.hasError('pattern') ">
-        contact number should  <strong>well form(10 digits require)</strong>
-      </md-error> -->
-      </md-input-container></td>
-        <td><md-input-container class="example-full-width">
-        <span mdPrefix>+91 &nbsp;</span>
-        <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" [(ngModel)]="model.TL_no" formControlName="TL_no">
-        <md-icon mdSuffix>mode_edit</md-icon>
-        <!-- <md-error *ngIf="tl_noFormControl.hasError('pattern') ">
-        contact number should  <strong>well form(10 digits require)</strong>
-      </md-error> -->
-      </md-input-container></td>
-      </tr></table>
-      <table class="example-full-width" cellspacing="0"><tr>
-      <div class="md-radio-group">
-        <label for="user_role">Employee Role</label>
-        <md-radio-group class="example-radio-group" name="emp_role" [(ngModel)]="model.emp_role" formControlName="emp_role">
-            <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
-            {{season}}
-            </md-radio-button>
-        </md-radio-group>
-        <div class="example-selected-value">Employee Role is: {{model.emp_role}}</div>
-      </div>
-      <div class="md-radio-group">
-        <label for="Status">Employee Status</label>
-        <md-radio-group class="example-radio-group" name="status" [(ngModel)]="model.status" formControlName="status">
-            <md-radio-button class="example-radio-button" *ngFor="let status of status" [value]="status">
-            {{status}}
-            </md-radio-button>
-        </md-radio-group>
-        <div class="example-selected-value">Employee Status is : {{model.status}}</div>
-      </div>
-      </tr></table>
-      <h2>  Document List</h2>
-    <table class="example-full-width" cellspacing="0">
-<tr>
-      <thead>
-        <tr>
-        <th><h3>Document Name</h3></th>
-        <th><h3>Document</h3></th>
-        <th> Action</th>
-      </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </tr>
-      </table>
-
-      <button md-raised-button color="primary" type="submit" > Update </button>
+            <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" formControlName="leaving_date" >
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="C.T.C" name="CTC" [(ngModel)]="model.ctc" formControlName="ctc">
+          </md-input-container></td>
+        </tr></table>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+              <span mdPrefix>+91 &nbsp;</span>
+              <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10"[(ngModel)]="model.HR_no" formControlName="HR_no" >
+              <md-icon mdSuffix>mode_edit</md-icon>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+                <span mdPrefix>+91 &nbsp;</span>
+                <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" [(ngModel)]="model.TL_no" formControlName="TL_no">
+                <md-icon mdSuffix>mode_edit</md-icon>
+          </md-input-container></td>
+        </tr></table>
+        <table class="example-full-width" cellspacing="0"><tr>
+            <div class="md-radio-group">
+              <label for="user_role">Employee Role</label>
+              <md-radio-group class="example-radio-group" name="emp_role" [(ngModel)]="model.emp_role" formControlName="emp_role">
+                  <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
+                  {{season}}
+                  </md-radio-button>
+              </md-radio-group>
+              <div class="example-selected-value">Employee Role is: {{model.emp_role}}</div>
+            </div>
+          <div class="md-radio-group">
+            <label for="Status">Employee Status</label>
+            <md-radio-group class="example-radio-group" name="status" [(ngModel)]="model.status" formControlName="status">
+                <md-radio-button class="example-radio-button" *ngFor="let status of status" [value]="status">
+                {{status}}
+                </md-radio-button>
+            </md-radio-group>
+            <div class="example-selected-value">Employee Status is : {{model.status}}</div>
+          </div>
+        </tr></table>
+        <h2>  Document List</h2>
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <thead>
+              <tr>
+              <th><h3>Document Name</h3></th>
+              <th><h3>Document</h3></th>
+              <th> Action</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </tr>
+            </table>
+        <button md-raised-button color="primary" type="submit" > Update </button>
       </form>
+      </md-card-content>
+    <md-card-content *ngIf="!check">
+          <form class="form">
+          <table class="example-full-width" cellspacing="0"><tr>
+              <div class="image">
+                <img *ngIf="1" [src]="this.model.profile_pic" height="100px" width="130px"/>
+                <!-- <div id="changePhoto"> Update photo
+                    <input type="file" #file (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" style="display:none" required>
+                    <md-icon #upload (click)="file.click()">add_a_photo</md-icon>
+               </div> -->
+              </div>
+              <td><md-input-container class="example-full-width">
+                <input mdInput placeholder="first_name" name="first_name" disabled  [(ngModel)]="model.first_name">
+              </md-input-container></td>
+              <td><md-input-container class="example-full-width">
+                <input mdInput placeholder="last_name" name="last_name" disabled [(ngModel)]="model.last_name" >
+              </md-input-container></td>
+              <td><md-input-container class="example-full-width">
+                <span mdPrefix>+91 &nbsp;</span>
+                <input mdInput placeholder="mob_no" name="mob_no" type="tel" minlength="10" maxlength="10" disabled [(ngModel)]="model.mob_no">
+                <md-icon mdSuffix>mode_edit</md-icon>
+              </md-input-container></td>
+          </tr></table>
+          <!-- emergency conctact person current field -->
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="emergency_cont_person" name="emergency_cont_person" disabled [(ngModel)]="model.emergency_cont_person">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <span mdPrefix>+91 &nbsp;</span>
+              <input mdInput placeholder="emergency_cont_no" type="tel" minlength="10" maxlength="10" name="emergency_cont_no" disabled [(ngModel)]="model.emergency_cont_no">
+              <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container></td>
+          </tr></table>
+          <!-- address current field -->
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="cur_address" name="cur_address" disabled [(ngModel)]="model.cur_address">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="cur_city" name="cur_city" disabled [(ngModel)]="model.cur_city">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="cur_country" name="cur_country" disabled [(ngModel)]="model.cur_country">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="cur_pinCode" name="cur_pincode" disabled [(ngModel)]="model.cur_pincode">
+            </md-input-container></td>
 
-    </md-card-content>
+          </tr></table>
+          <!-- addres permanent field -->
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="per_address" name="per_address" disabled [(ngModel)]="model.per_address">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="per_city" name="per_city" disabled [(ngModel)]="model.per_city">
+              <md-error *ngIf="!form.get('per_city').valid">
+                per_city <strong>required</strong>
+              </md-error>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="per_country" name="per_country" disabled [(ngModel)]="model.per_country">
+              <md-error *ngIf="!form.get('per_country').valid">
+                per_country <strong>required</strong>
+              </md-error>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="per_pinCode" name="per_pincode" disabled [(ngModel)]="model.per_pincode">
+            </md-input-container></td>
+          </tr></table>
+          <!-- device detils field -->
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="laptop no" name="laptop_no" disabled [(ngModel)]="model.laptop_no">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="mouse no" name="mouse_no" disabled [(ngModel)]="model.mouse_no" >
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="keyboard no" name="keyboard_no" disabled  [(ngModel)]="model.keyboard_no">
+            </md-input-container></td>
+          </tr></table>
+          <!-- previous company field -->
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="Company Name" name="company_name" disabled [(ngModel)]="model.company_name" >
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" disabled [(ngModel)]="model.leaving_date" >
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="C.T.C" name="CTC" disabled [(ngModel)]="model.ctc">
+            </md-input-container></td>
+          </tr></table>
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+                <span mdPrefix>+91 &nbsp;</span>
+                <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10" disabled [(ngModel)]="model.HR_no" >
+                <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+                  <span mdPrefix>+91 &nbsp;</span>
+                  <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" disabled [(ngModel)]="model.TL_no">
+                  <md-icon mdSuffix>mode_edit</md-icon>
+            </md-input-container></td>
+          </tr></table>
+          <table class="example-full-width" cellspacing="0"><tr>
+              <div class="md-radio-group">
+                <div class="example-selected-value">Employee Role is: {{model.emp_role}}</div>
+              </div>
+            <div class="md-radio-group">
+              <div class="example-selected-value">Employee Status is : {{model.status}}</div>
+            </div>
+          </tr></table>
+          <button md-raised-button color="primary" click="download()" > Download </button>
+        </form>
+        </md-card-content>
     <md-card-actions>
-      <!-- <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
-      <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button> -->
-      <!-- <button md-button>SHARE</button> -->
     </md-card-actions>
   </md-card>
 </div>

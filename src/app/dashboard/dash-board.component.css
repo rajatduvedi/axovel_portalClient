@@ -11,6 +11,9 @@
   color:white;
   box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
+/*.items :hover{
+  background: red;
+}*/
 .mini-nav .itemsMini{
   margin-top:10px;
 }
@@ -22,6 +25,9 @@
   padding: 9px;
   background-color: #673AB7
   }
+  /*.nav .itemsdash a :hover{
+    background: red;
+  }*/
 .mini-nav .itemsMini a{
   background-color: #673AB7
   }
@@ -36,8 +42,10 @@
   position: absolute;
 }
 .dashboard-content{
-  background-color: #303030;
+  /*background-color: #303030;*/
+  color: black;
   min-height: 700px;
+  /*min-width: 600px;*/
   padding-top: 67px;
 }
 .mini-side-bar{
@@ -49,4 +57,10 @@
 }
 .items button{
   margin-left: 12%;
+}
+/deep/.mini-nav {
+  margin-top: 67px !important;
+}
+/deep/.mat-drawer-content{
+       transition-duration: 0s !important;
 }

@@ -11,18 +11,10 @@
   background: red;
 }
 .example-card {
-  /*width: 60%;*/
-  /*text-align: center;*/
-  /*float: center;*/
-  /*margin:0px auto;*/
-  /*height:100px;*/
 }
 .example-form {
   /*width: 00px;*/
 }
-/*.mat-dialog-container ng-tns-c14-6 ng-trigger ng-trigger-slideDialog{
-  width:1030px !;
-}*/
 .example-full-width {
   width: 100%;
   margin:10px;

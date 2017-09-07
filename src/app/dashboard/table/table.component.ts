@@ -16,6 +16,7 @@ import 'rxjs/add/operator/map';
 })
 export class TableComponent {
   users: any = [];
+  // check:any;
   selectedOption: string;
   constructor(private dataService: DataService , public dialog: MdDialog ) {
     // Fill up the database with 100 users.
@@ -52,6 +53,17 @@ editUserRow(id:any){
       // console.log(this.selectedOption);
     });
     dialogRef.componentInstance.user_id = id;
+    dialogRef.componentInstance.check = 1;
+    }
+}
+previewUserRow(id:any){
+  // console.log(id);
+  if(id){
+    let dialogRef = this.dialog.open(DialogResultEditDialog,{
+      width: '1080px',
+    });
+    dialogRef.componentInstance.user_id = id;
+    dialogRef.componentInstance.check = 0;
     }
 }
 deleteUserRow(id:any){
@@ -106,6 +118,7 @@ export class DialogResultEditDialog {
   public model: any={};
   // public model:any={};
   public user_id:any;
+  public check:any;
   user: any = [];
   updateuser:any=[];
   public errorMsg:any=0;
@@ -121,12 +134,8 @@ export class DialogResultEditDialog {
   constructor(public dialog: MdDialog,private domSanitizer: DomSanitizer,public dialogRef: MdDialogRef<DialogResultEditDialog> , private dataService: DataService) {}
 
   ngOnInit() {
-    // console.log("this.model");
-    // console.log(this.model);
+    console.log(this.check);
     this.getUserdata(this.user_id);
-    // console.log("this.user_id");
-    // console.log(this.user_id);
-    // this.model = JSON.parse(localStorage.getItem('empDetails'));
     this.form = new FormGroup({
       'first_name':new FormControl('',[
           Validators.required,
@@ -237,28 +246,6 @@ export class DialogResultEditDialog {
         else{
             this.model.status='Not Active';
         }
-      // this.model.first_name = this.user.emp_fname;
-      // this.model.last_name  =this.user.emp_lname;
-      // this.model.mob_no   =this.user.mob_no;
-      // this.model.emergency_cont_person =this.user.emergency_cont_person;
-      // this.model.emergency_cont_no  =this.user.emergency_cont_no;
-      // this.model.status  =this.user.status;
-      // this.model.emp_role  =this.user.employee_role;
-      // this.model.cur_address  =this.user.cur_address;
-      // this.model.cur_city  =this.user.cur_city;
-      // this.model.cur_pinCode  =this.user.cur_pincode;
-      // this.model.per_address  =this.user.per_address;
-      // this.model.per_city   =this.user.per_city;
-      // this.model.per_pinCode =this.user.per_pincode;
-      // this.model.laptop_no  =this.user.laptop_no;
-      // this.model.mouse_no   =this.user.mouse_no;
-      // this.model.keyboard_no  =this.user.keyboard_no;
-      // this.model.company_name=this.user.company_name;
-      // this.model.leaving_date=this.user.leaving_date;
-      // this.model.ctc=this.user.ctc;
-      // this.model.TL_no=this.user.TL_no;
-      // this.model.HR_no=this.user.HR_no;
-
     }
       // console.log(this.user);
     }, err => {

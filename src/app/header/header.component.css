@@ -2,6 +2,7 @@
   background-color: #673AB7;
   position: fixed !important;
   z-index: 10;
+  color: white;
 }
 .example-header-image {
   background-image: url('http://via.placeholder.com/350x150');
@@ -15,6 +16,7 @@
 }
 #userRole{
   margin-left: 3%;
+  color: black;
 }
 #comapnyLogoimg{
   border-radius: 50%;

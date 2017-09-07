@@ -1,23 +1,46 @@
 table {
-    font-family: arial, sans-serif;
+    /*font-family: arial, sans-serif;*/
     border-collapse: collapse;
     width: 100%;
+    color:#333;
+    font-family: Helvetica ,Arial , sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
+    border: 1px solid #dddddd transparent;
+    /*text-align: left;*/
     padding: 8px;
+    transition: all 0.3s;
 }
 .mat-dialog-container{
   width:1000px !important;
   background: red;
 }
+th {
+    background: #DFDFDF;  /* Darken header a bit */
+    font-weight: bold;
+}
+
+td {
+    background: #FAFAFA;
+    text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */
+tr:nth-child(even) td { background: #F1F1F1; }
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+tr:nth-child(odd) td { background: #FEFEFE; }
+
+tr td:hover { background: #666; color: #FFF; }
+/* Hover cell effect! */
 thead{
-  background: #303030;
+  /*background: #303030;*/
   /*height: 11px;*/
-  color:white;
+  /*color:white;*/
 }
 tbody{
-  color: white;
+  /*color: white;*/
 }
