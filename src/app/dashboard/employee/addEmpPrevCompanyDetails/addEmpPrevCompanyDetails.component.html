@@ -13,54 +13,40 @@
   <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
   <md-card-content>
     <form class="formgroup" name="myform">
-
       <table class="example-full-width" cellspacing="0"><tr>
-        <td><md-input-container class="example-full-width">
+          <td><md-input-container class="example-full-width">
           <input mdInput placeholder="Company Name" name="company_name" [(ngModel)]="model.company_name">
-        </md-input-container></td>
+          </md-input-container></td>
+          </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+          <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" >
+          </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
-      <!-- <md-input-container>
-      <input mdInput [mdDatepicker]="picker" placeholder="Join-Date">
-      <button mdSuffix [mdDatepickerToggle]="picker"></button>
-      </md-input-container>
-      <md-datepicker #picker></md-datepicker> -->
-    <td>  <md-input-container class="example-full-width">
-        <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" >
-      </md-input-container></td>
-    </tr></table>
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-input-container class="example-full-width">
-        <input mdInput placeholder="C.T.C" name="ctc" [(ngModel)]="model.ctc" >
-      </md-input-container></td>
-    </tr></table>
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-input-container class="example-full-width">
-      <span mdPrefix>+91 &nbsp;</span>
-      <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10"[(ngModel)]="model.HR_no" [formControl]="hr_noFormControl" >
-      <md-icon mdSuffix>mode_edit</md-icon>
-      <md-error *ngIf="hr_noFormControl.hasError('pattern') ">
-      contact number should  <strong>well form(10 digits require)</strong>
-    </md-error>
-    </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="C.T.C" name="ctc" [(ngModel)]="model.ctc" >
+          </md-input-container></td>
       </tr></table>
       <table class="example-full-width" cellspacing="0"><tr>
-      <td><md-input-container class="example-full-width">
-      <span mdPrefix>+91 &nbsp;</span>
-      <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" [(ngModel)]="model.TL_no" [formControl]="tl_noFormControl">
-      <md-icon mdSuffix>mode_edit</md-icon>
-      <md-error *ngIf="tl_noFormControl.hasError('pattern') ">
-      contact number should  <strong>well form(10 digits require)</strong>
-    </md-error>
-    <!-- <md-error *ngIf="tl.hasError('minLength')">
-    contact number should  <strong>well form(10 digits require)</strong>
-  </md-error> -->
-
-  <!-- <md-error *ngIf="!(10-TL_no.value.length)">
-pincode  is <strong> digit form</strong>
-</md-error> -->
-    </md-input-container></td>
-
+          <td><md-input-container class="example-full-width">
+          <span mdPrefix>+91 &nbsp;</span>
+          <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10"[(ngModel)]="model.HR_no" [formControl]="hr_noFormControl" >
+          <md-icon mdSuffix>mode_edit</md-icon>
+          <md-error *ngIf="hr_noFormControl.hasError('pattern') ">
+          contact number should  <strong>well form(10 digits require)</strong>
+          </md-error>
+          </md-input-container></td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+          <span mdPrefix>+91 &nbsp;</span>
+          <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" [(ngModel)]="model.TL_no" [formControl]="tl_noFormControl">
+          <md-icon mdSuffix>mode_edit</md-icon>
+          <md-error *ngIf="tl_noFormControl.hasError('pattern') ">
+          contact number should  <strong>well form(10 digits require)</strong>
+          </md-error>
+          </md-input-container></td>
     </tr></table>
     </form>
   </md-card-content>

@@ -1,4 +1,4 @@
-import {Component , ViewChild , OnChanges} from '@angular/core';
+import {Component , ViewChild , ElementRef , OnChanges} from '@angular/core';
 import { DataService } from '../../service/data.service';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {FormControl, Validators , NgForm , FormGroup} from '@angular/forms';
@@ -6,6 +6,7 @@ import{EmployeeDetails} from '../../employeeDetails';
 import {PageEvent , MdPaginator} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import { DomSanitizer } from '@angular/platform-browser';
+import jsPDF from 'jspdf';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -43,8 +44,16 @@ var j=0;
 for(var i=start ;i<end ;i++){
   if(this.users[i]){
   this.loadData[j++] = this.users[i];
+    }
+  }
 }
-}
+downloadCsvfie(){
+  this.dataService.exportCsv({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result=>{
+  console.log(result);
+  window.open("result.data")
+  }, err=>{
+
+  });
 }
 getUsersList(paginator: MdPaginator) {
   this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
@@ -149,6 +158,7 @@ deleteUserRow(id:any){
   providers:[DataService],
 })
 export class DialogResultEditDialog {
+   @ViewChild('test') el: ElementRef;
   form:FormGroup;
   public model: any={};
   // public model:any={};
@@ -225,6 +235,7 @@ export class DialogResultEditDialog {
 
     });
   }
+
   getUserdata(id:any){
     // console.log(id);
     this.dataService.UserData({emp_user_id: id}).subscribe(result => {
@@ -321,6 +332,26 @@ export class DialogResultEditDialog {
 
         // this.showImage = true;
   }
+  downloadprview(){
+    // console.log("downloadprview")
+    let doc = new jsPDF();
+    // var doctext=document.getElementById('preview').innerHTML;
+    var doctext = `<table>hello</table>`
+    // console.log(doctext)
+    doc.text(20,20,doctext);
+    doc.save('test.pdf');
+  }
+//  downloadprview() {
+//    console.log(this.el)
+//    console.log(this.el.nativeElement)
+//      var printDoc = new jsPDF();
+//     printDoc.fromHTML(document.getElementById('preview'), 10, 10, {'width': 180});
+//     printDoc.autoPrint();
+//
+//   // pdf.addHTML(this.el.nativeElement, 0, 0, options, () => {
+//   //   pdf.save("test.pdf");
+//   // });
+// }
   onSubmit(){
     // console.log(this.model);
     if(!this.model.leaving_date){

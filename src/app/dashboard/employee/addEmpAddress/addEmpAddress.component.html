@@ -1,109 +1,76 @@
 
 <md-card class="example-card">
   <md-card-header>
-    <!-- <div md-card-avatar class="example-header-image"></div> -->
     <md-card-title><h1>ADD Empolyee</h1></md-card-title>
     <md-card-subtitle><h3>Add address STEP2</h3></md-card-subtitle>
   </md-card-header>
-  <!-- <img md-card-image src="assets/img/examples/shiba2.jpg"> -->
   <md-card-content>
-    <!-- <md-error *ngIf="errorsubmit">
-   * field is <strong>required</strong> please fill details
-  </md-error> -->
-    <form class="formgroup" name="myform" (ngSubmit)="gotonextStep()" #f="ngForm">
-  <h3>  <span>Current address :</span></h3>
+<form class="formgroup" name="myform" (ngSubmit)="gotonextStep()" #f="ngForm">
+  <h3><span>Current address :</span></h3>
   <p>
-  <md-input-container class="example-full-width">
-    <textarea mdInput placeholder=" current Address " name="cur_address" [(ngModel)]="model.cur_address" [formControl]="curaddFormControl"></textarea>
-    <md-error *ngIf="curaddFormControl.hasError('required') ">
-  address field is <strong>required</strong>
-  </md-error>
-  </md-input-container>
-</p>
+    <md-input-container class="example-full-width">
+      <textarea mdInput placeholder=" current Address " name="cur_address" [(ngModel)]="model.cur_address" [formControl]="curaddFormControl"></textarea>
+      <md-error *ngIf="curaddFormControl.hasError('required') ">
+        address field is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+  </p>
 <table class="example-full-width" cellspacing="0"><tr>
-  <td><md-input-container class="example-full-width">
-    <input mdInput placeholder="current country" name="cur_country" [(ngModel)]="model.cur_country" [formControl]="curaddcountryFormControl">
-    <md-error *ngIf="curaddcountryFormControl.hasError('required') ">
-  country field is <strong>required</strong>
-  </md-error>
-  </md-input-container></td>
-  <td><md-input-container class="example-full-width">
-    <input mdInput placeholder="current City" name="cur_city" [(ngModel)]="model.cur_city" [formControl]="curaddcityFormControl">
-    <md-error *ngIf="curaddcityFormControl.hasError('required') ">
-  city field is <strong>required</strong>
-  </md-error>
-  </md-input-container></td>
-  <!-- <td><md-input-container>
-    <input mdInput placeholder="Country" [mdAutocomplete]="auto" [formControl]="CountryCtrl">
-  </md-input-container>
-
-  <md-autocomplete #auto="mdAutocomplete">
-    <md-option *ngFor="let country of filteredCountry | async" [value]="country">
-      {{ country }}
-    </md-option>
-  </md-autocomplete></td>
-  <td><md-input-container>
-    <input mdInput placeholder="State" [mdAutocomplete]="auto" [formControl]="StateCtrl">
-  </md-input-container>
-
-  <md-autocomplete #auto="mdAutocomplete">
-    <md-option *ngFor="let state of filteredStates | async" [value]="state">
-      {{ state }}
-    </md-option>
-  </md-autocomplete></td> -->
-  <td><md-input-container class="example-full-width">
-    <input mdInput #postalCodeC maxlength="6" placeholder=" current Pin Code" name="cur_pincode" [(ngModel)]="model.cur_pincode" [formControl]="curaddpinFormControl">
-    <md-hint align="end">{{postalCodeC.value.length}} / 6</md-hint>
-    <md-error *ngIf="curaddpinFormControl.hasError('required') ">
-  pincode field is <strong>required</strong>
-  </md-error>
-  <md-error *ngIf="curaddpinFormControl.hasError('pattern') ">
-pincode  is <strong> digit form</strong>
-</md-error>
-
-  </md-input-container></td>
+    <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="current country" name="cur_country" [(ngModel)]="model.cur_country" [formControl]="curaddcountryFormControl">
+        <md-error *ngIf="curaddcountryFormControl.hasError('required') ">
+        country field is <strong>required</strong>
+        </md-error>
+        </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="current City" name="cur_city" [(ngModel)]="model.cur_city" [formControl]="curaddcityFormControl">
+        <md-error *ngIf="curaddcityFormControl.hasError('required') ">
+        city field is <strong>required</strong>
+        </md-error>
+        </md-input-container></td>
+        <td><md-input-container class="example-full-width">
+        <input mdInput #postalCodeC maxlength="6" placeholder=" current Pin Code" name="cur_pincode" [(ngModel)]="model.cur_pincode" [formControl]="curaddpinFormControl">
+        <md-hint align="end">{{postalCodeC.value.length}} / 6</md-hint>
+        <md-error *ngIf="curaddpinFormControl.hasError('required') ">
+        pincode field is <strong>required</strong>
+        </md-error>
+        <md-error *ngIf="curaddpinFormControl.hasError('pattern') ">
+        pincode  is <strong> digit form</strong>
+        </md-error>
+    </md-input-container></td>
 </tr></table>
-<h3>  <span>Permanent address :</span></h3><md-checkbox class="example-margin"  (click)="checkbox()">same as current address </md-checkbox>
+<h3> <span>Permanent address :</span></h3><md-checkbox class="example-margin"  (click)="checkbox()">same as current address </md-checkbox>
 <p>
-<md-input-container class="example-full-width">
-  <textarea mdInput placeholder=" Permanent Address" name="per_address" [(ngModel)]="model.per_address" [formControl]="peraddFormControl"></textarea>
-  <md-error *ngIf="peraddFormControl.hasError('required') ">
-address field is <strong>required</strong>
-</md-error>
-</md-input-container>
+  <md-input-container class="example-full-width">
+    <textarea mdInput placeholder=" Permanent Address" name="per_address" [(ngModel)]="model.per_address" [formControl]="peraddFormControl"></textarea>
+    <md-error *ngIf="peraddFormControl.hasError('required') ">
+    address field is <strong>required</strong>
+    </md-error>
+  </md-input-container>
 </p>
 <table class="example-full-width" cellspacing="0"><tr>
-<td><md-input-container class="example-full-width">
-  <input mdInput placeholder="Permanent country" name="per_country" [(ngModel)]="model.per_country" [formControl]="peraddcountryFormControl">
-  <md-error *ngIf="peraddcountryFormControl.hasError('required') ">
-country field is <strong>required</strong>
-</md-error>
-</md-input-container></td>
-<td><md-input-container class="example-full-width">
-  <input mdInput placeholder="Permanent City" name="per_city" [(ngModel)]="model.per_city" [formControl]="peraddcityFormControl">
-  <md-error *ngIf="peraddcityFormControl.hasError('required') ">
-city field is <strong>required</strong>
-</md-error>
-</md-input-container></td>
-<!-- <td><md-input-container>
-  <input mdInput placeholder="State" [mdAutocomplete]="auto" [formControl]="StateCtrl">
-</md-input-container>
-
-<md-autocomplete #auto="mdAutocomplete">
-  <md-option *ngFor="let state of filteredStates | async" [value]="state">
-    {{ state }}
-  </md-option>
-</md-autocomplete></td> -->
-<td><md-input-container class="example-full-width">
-  <input mdInput #postalCodeP maxlength="6" placeholder=" Permanent Pin Code" name="per_pincode" [(ngModel)]="model.per_pincode" [formControl]="peraddpinFormControl">
-  <md-hint align="end">{{postalCodeP.value.length}} / 6</md-hint>
-  <md-error *ngIf="peraddpinFormControl.hasError('required') ">
-pincode field is <strong>required</strong>
-</md-error>
-<md-error *ngIf="peraddpinFormControl.hasError('pattern') ">
-pincode  is <strong> digit form</strong>
-</md-error>
-</md-input-container></td>
+  <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="Permanent country" name="per_country" [(ngModel)]="model.per_country" [formControl]="peraddcountryFormControl">
+      <md-error *ngIf="peraddcountryFormControl.hasError('required') ">
+      country field is <strong>required</strong>
+      </md-error>
+  </md-input-container></td>
+  <td><md-input-container class="example-full-width">
+      <input mdInput placeholder="Permanent City" name="per_city" [(ngModel)]="model.per_city" [formControl]="peraddcityFormControl">
+      <md-error *ngIf="peraddcityFormControl.hasError('required') ">
+      city field is <strong>required</strong>
+      </md-error>
+  </md-input-container></td>
+  <td><md-input-container class="example-full-width">
+      <input mdInput #postalCodeP maxlength="6" placeholder=" Permanent Pin Code" name="per_pincode" [(ngModel)]="model.per_pincode" [formControl]="peraddpinFormControl">
+      <md-hint align="end">{{postalCodeP.value.length}} / 6</md-hint>
+      <md-error *ngIf="peraddpinFormControl.hasError('required') ">
+      pincode field is <strong>required</strong>
+      </md-error>
+      <md-error *ngIf="peraddpinFormControl.hasError('pattern') ">
+      pincode  is <strong> digit form</strong>
+      </md-error>
+  </md-input-container></td>
 </tr></table>
 
   <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>

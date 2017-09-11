@@ -2,7 +2,7 @@
 <h1 md-dialog-title *ngIf="!check">Preview</h1>
 <div md-dialog-content>
 
-  <md-card class="example-card">
+  <md-card class="example-card" >
     <md-card-header>
       <md-card-title *ngIf="check"><h1>Edit Employee Details</h1>
       </md-card-title>
@@ -199,7 +199,7 @@
       </form>
       </md-card-content>
     <md-card-content *ngIf="!check &&  !loadSpiner">
-          <form class="form">
+          <form class="form" #test id="preview">
           <table class="example-full-width" cellspacing="0"><tr>
               <div class="image">
                 <img *ngIf="1" [src]="this.model.profile_pic" height="100px" width="130px"/>
@@ -312,8 +312,9 @@
               <div class="example-selected-value">Employee Status is : {{model.status}}</div>
             </div>
           </tr></table>
-          <button md-raised-button color="primary" click="download()" > Download </button>
+          <button md-raised-button color="primary" (click)="downloadprview()" > Download </button>
         </form>
+
         </md-card-content>
     <md-card-actions>
     </md-card-actions>

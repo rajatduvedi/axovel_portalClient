@@ -20,7 +20,8 @@ import {MdSidenavModule,
         MdCardModule,
         MdDatepickerModule,
         MdNativeDateModule,
-        MdCheckboxModule
+        MdCheckboxModule,
+        MdRadioModule
 
 
 } from '@angular/material';
@@ -43,7 +44,8 @@ import {MdSidenavModule,
         MdDatepickerModule,
         MdNativeDateModule,
         FormsModule,ReactiveFormsModule,HttpModule,
-        MdCheckboxModule
+        MdCheckboxModule,
+        MdRadioModule
         // StatModule,
         // SharedModule,
         // AlertSharedModule

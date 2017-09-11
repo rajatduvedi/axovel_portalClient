@@ -1,5 +1,5 @@
 
-<md-card class="example-card">
+<md-card class="example-card" *ngIf="!previewPage">
   <md-card-header>
     <!-- <div md-card-avatar class="example-header-image"></div> -->
     <md-card-title><h1>ADD Empolyee</h1></md-card-title>
@@ -10,14 +10,6 @@
     <form class="form-horizontal" role="form" (ngSubmit)="f.form.valid && add()" #f="ngForm">
       <span><h3> ADD profile picture</h3> </span>
     <input type="file"  (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" required>
-    <!-- <p *ngIf="(f.submitted && !image.valid) || errors.image" class="help-block">
-    <span *ngIf="errors.image; else imageError">
-        {{ errors.image }}
-    </span>
-    <ng-template #imageError>Image is required</ng-template>
-</p> -->
-<!-- <img *ngIf="showImage" src="{{ model.image }}" height="90"  class="img-responsive"> -->
-
 </form>
     <form [formGroup]="invoiceForm">
   <div formArrayName="itemRows">
@@ -46,16 +38,271 @@
   <button md-mini-fab color="primary" (click)="addNewRow()"><md-icon>add</md-icon></button>
 
 </form>
-<!-- <pre>{{itemrow.value | json}}</pre> -->
-
-<!-- <pre>{{itemrow.value | json}}</pre> -->
 
   </md-card-content>
 
   <md-card-actions>
     <button md-raised-button color="primary" (click)="gotoprevStep()">Back</button>
-    <button md-raised-button color="primary"(click)="gotonextStep()">Save and Countinue </button>
+    <button md-raised-button color="primary"(click)="gotonextStep()">Save and Preview </button>
     <!-- <button md-button>SHARE</button> -->
+  </md-card-actions>
+
+  <div *ngIf="checkMsg">
+    {{checkMsg}}
+  </div>
+</md-card>
+<md-card class="example-card" *ngIf="previewPage">
+  <md-card-header>
+    <md-card-title><h1>Preview Form</h1></md-card-title>
+    <md-card-subtitle><h3>Update form and Save </h3></md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <form class="formgroup" name="myform" (ngSubmit)="onSubmitPreview()" [formGroup]="form">
+        <!-- first name  and last name field -->
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+                <input mdInput placeholder="First name" name="first_name"   [(ngModel)]="model.first_name" formControlName="fnameFormControl" required>
+                <md-error *ngIf="!form.get('fnameFormControl').valid && form.get('fnameFormControl').touched">
+                    first  Name <strong>required</strong>"
+                </md-error>
+                <md-error *ngIf="!form.get('fnameFormControl').valid">
+                    name doesnot contain digit
+                </md-error>
+              </md-input-container>
+            </td>
+          <td><md-input-container class="example-full-width">
+              <input mdInput placeholder=" Last Name" name="last_name" [(ngModel)]="model.last_name" formControlName="lnameFormControl" >
+              <md-error *ngIf="!form.get('lnameFormControl').valid">
+                  name doesnot contain digit
+              </md-error>
+              </md-input-container>
+          </td>
+        </tr></table>
+        <!-- join date and service field  -->
+        <table class="example-full-width" cellspacing="0"><tr>
+                <td>  <md-input-container>
+                <input mdInput [mdDatepicker]="pickerJoinDate"
+                 placeholder="Join-Date" name="join_date"
+                 formControlName="joinDate"
+                  (dateInput)="onInput( pickerJoinDate)">
+                <md-datepicker-toggle mdSuffix [for]="pickerJoinDate"></md-datepicker-toggle>
+                <md-datepicker #pickerJoinDate></md-datepicker>
+              </md-input-container>
+              <md-error *ngIf=" !dateerror">
+                Joinning date is required
+            </md-error>
+
+            <!-- <md-error *ngIf="!form.get('joinDate').valid ">
+              Joinning date is requiredds
+          </md-error> -->
+            </td>
+              <td>  <md-input-container>
+              <input mdInput [mdDatepicker]="pickerServiceContEnd"
+              [min]="minDate" placeholder="service_cont_end"
+              name="service_cont_end" formControlName="serviceEnd"
+              >
+              <md-datepicker-toggle mdSuffix [for]="pickerServiceContEnd"></md-datepicker-toggle>
+              <md-datepicker #pickerServiceContEnd></md-datepicker>
+
+            </md-input-container>
+            <md-error *ngIf="!dateerror">
+            Please  insert joinning date then service contact end date
+          </md-error>
+          </td>
+            <td><md-input-container class="example-full-width">
+                <span mdPrefix>+91 &nbsp;</span>
+                <input type="tel" mdInput placeholder="Contact Number" maxlength="10" name="mob_no" [(ngModel)]="model.mob_no" formControlName="mob_noFormControl" >
+                <md-icon mdSuffix>mode_edit</md-icon>
+                <md-error *ngIf="!form.get('mob_noFormControl').valid">
+                    name doesnot contain digit
+                </md-error>
+              </md-input-container>
+          </td>
+        </tr></table>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <!-- contact person field -->
+          <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="Emergency Contact Person" name="emergency_cont_person" [(ngModel)]="model.emergency_cont_person" formControlName="conpernameFormControl">
+              <md-error *ngIf="!form.get('conpernameFormControl').valid">
+                  Name of contact person <strong>required</strong>
+              </md-error>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+              <span mdPrefix>+91 &nbsp;</span>
+              <input type="tel" mdInput placeholder=" Emergency Contact Number" maxlength="10" name="emergency_cont_no" [(ngModel)]="model.emergency_cont_no" formControlName="conpermobFormControl" >
+              <md-icon mdSuffix>mode_edit</md-icon>
+              <md-error *ngIf="!form.get('conpermobFormControl').valid">
+                contact number of contact person <strong>required</strong>
+              </md-error>
+          </md-input-container></td>
+        </tr></table>
+      <!-- user name and email field  -->
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="User Name"  name="username" [(ngModel)]="model.username" formControlName="usernameFormControl" (blur)="onBlurMethodUser(model.username)" >
+              <md-error *ngIf="!form.get('usernameFormControl').valid">
+              Name <strong>required</strong>
+              </md-error>
+          <label class="email-check" *ngIf="checkUserErrorMsg">
+              <md-error >
+                {{checkUserErrorMsg}}
+              </md-error>
+          </label>
+          </md-input-container></td>
+          <td><md-input-container class="example-full-width">
+              <input mdInput placeholder="User Email"  name="email" type="email"  [(ngModel)]="model.email" formControlName="emailFormControl">
+
+            </md-input-container></td>
+          </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="User Password"  name="password" type="password" #password maxlength="15" minlength="4"  [(ngModel)]="model.password" formControlName="passwordFormControl">
+          <md-error *ngIf="!form.get('passwordFormControl').valid">
+           <strong>password must be 6 digits long <p> we need another {{6-password.value.length}} characters </p></strong>
+         </md-error>
+        </md-input-container></td>
+      </tr></table>
+      <div class="md-radio-group">
+        <label for="user_role">Employee Role</label>
+        <md-radio-group class="example-radio-group" name="emp_role" [(ngModel)]="model.emp_role" formControlName="emp_role">
+            <md-radio-button class="example-radio-button" *ngFor="let season of Role" [value]="season">
+            {{season}}
+            </md-radio-button>
+        </md-radio-group>
+        <div class="example-selected-value">Employee Role is: {{model.emp_role}}</div>
+      </div>
+      <div class="md-radio-group">
+        <label for="Status">Employee Status</label>
+        <md-radio-group class="example-radio-group" name="status" [(ngModel)]="model.status" formControlName="status">
+            <md-radio-button class="example-radio-button" *ngFor="let status of status" [value]="status">
+            {{status}}
+            </md-radio-button>
+        </md-radio-group>
+        <div class="example-selected-value">Employee Status is : {{model.status}}</div>
+      </div>
+
+      <h3><span>Current address :</span></h3>
+      <p>
+        <md-input-container class="example-full-width">
+          <textarea mdInput placeholder=" current Address " name="cur_address" [(ngModel)]="model.cur_address" formControlName="curaddFormControl"></textarea>
+          <md-error *ngIf="!form.get('curaddFormControl').valid">
+            address field is <strong>required</strong>
+          </md-error>
+        </md-input-container>
+      </p>
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="current country" name="cur_country" [(ngModel)]="model.cur_country" formControlName="curaddcountryFormControl">
+            <md-error *ngIf="!form.get('curaddcountryFormControl').valid ">
+            country field is <strong>required</strong>
+            </md-error>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="current City" name="cur_city" [(ngModel)]="model.cur_city" formControlName="curaddcityFormControl">
+            <md-error *ngIf="!form.get('curaddcityFormControl').valid ">
+            city field is <strong>required</strong>
+            </md-error>
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+            <input mdInput #postalCodeC maxlength="6" placeholder=" current Pin Code" name="cur_pincode" [(ngModel)]="model.cur_pincode" formControlName="curaddpinFormControl">
+            <md-hint align="end">{{postalCodeC.value.length}} / 6</md-hint>
+            <md-error *ngIf="!form.get('curaddpinFormControl').valid">
+            pincode field is <strong>required</strong>
+            </md-error>
+            <md-error *ngIf="!form.get('curaddpinFormControl').valid">
+            pincode  is <strong> digit form</strong>
+            </md-error>
+        </md-input-container></td>
+    </tr></table>
+    <h3> <span>Permanent address :</span></h3><md-checkbox class="example-margin"  (click)="checkbox()">same as current address </md-checkbox>
+    <p>
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder=" Permanent Address" name="per_address" [(ngModel)]="model.per_address" formControlName="peraddFormControl"></textarea>
+        <md-error *ngIf="!form.get('peraddFormControl').valid">
+        address field is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+    </p>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="Permanent country" name="per_country" [(ngModel)]="model.per_country" formControlName="peraddcountryFormControl">
+          <md-error *ngIf="!form.get('peraddcountryFormControl').valid">
+          country field is <strong>required</strong>
+          </md-error>
+      </md-input-container></td>
+      <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="Permanent City" name="per_city" [(ngModel)]="model.per_city" formControlName="peraddcityFormControl">
+          <md-error *ngIf="!form.get('peraddcityFormControl').valid">
+          city field is <strong>required</strong>
+          </md-error>
+      </md-input-container></td>
+      <td><md-input-container class="example-full-width">
+          <input mdInput #postalCodeP maxlength="6" placeholder=" Permanent Pin Code" name="per_pincode" [(ngModel)]="model.per_pincode" formControlName="peraddpinFormControl">
+          <md-hint align="end">{{postalCodeP.value.length}} / 6</md-hint>
+          <md-error *ngIf="!form.get('peraddpinFormControl').valid">
+          pincode field is <strong>required</strong>
+          </md-error>
+          <md-error *ngIf="!form.get('peraddpinFormControl').valid">
+          pincode  is <strong> digit form</strong>
+          </md-error>
+      </md-input-container></td>
+    </tr></table>
+    <h3><span>Device Details :</span></h3>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="laptop no" name="laptop_no" [(ngModel)]="model.laptop_no" formControlName="laptop_no">
+      </md-input-container></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="mouse no" name="mouse_no" [(ngModel)]="model.mouse_no" formControlName="mouse_no">
+      </md-input-container></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="keyboard no" name="keyboard_no" [(ngModel)]="model.keyboard_no" formControlName="keyboard_no">
+      </md-input-container></td>
+    </tr></table>
+    <h3><span>Previous Company Details  :</span></h3>
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="Company Name" name="company_name" [(ngModel)]="model.company_name" formControlName="company_name">
+        </md-input-container></td>
+        </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+        <input mdInput placeholder=" Leaving Date" name="leaving_date" type="date" [(ngModel)]="model.leaving_date" formControlName="leaving_date" >
+        </md-input-container></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="C.T.C" name="ctc" [(ngModel)]="model.ctc" formControlName="ctc">
+        </md-input-container></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+        <span mdPrefix>+91 &nbsp;</span>
+        <input type="tel" mdInput placeholder="HR Number" name="HR_no" minlength="10" maxlength="10"[(ngModel)]="model.HR_no" formControlName="hr_noFormControl" >
+        <md-icon mdSuffix>mode_edit</md-icon>
+        <md-error *ngIf="!form.get('hr_noFormControl').valid">
+        contact number should  <strong>well form(10 digits require)</strong>
+        </md-error>
+        </md-input-container></td>
+    </tr></table>
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><md-input-container class="example-full-width">
+        <span mdPrefix>+91 &nbsp;</span>
+        <input type="tel" mdInput placeholder="TL Number" #TL_no name="TL_no" minlength="3" maxlength="10" [(ngModel)]="model.TL_no" formControlName="tl_noFormControl">
+        <md-icon mdSuffix>mode_edit</md-icon>
+        <md-error *ngIf="!form.get('tl_noFormControl').valid">
+        contact number should  <strong>well form(10 digits require)</strong>
+        </md-error>
+        </md-input-container></td>
+  </tr></table>
+      <button md-raised-button color="primary" type="submit" [disabled]="!this.confirmPassword && !form.valid " >Save and Download  </button>
+      </form>
+  </md-card-content>
+  <md-card-actions>
   </md-card-actions>
   <div *ngIf="checkAddErrorMsg">
     <ul *ngFor="let error of checkAddErrorMsg ; let i = index">
@@ -63,8 +310,5 @@
   {{i+1}} :  {{error.message}} <h4>{{error.value}}  is not consider</h4>
   </md-error>
 </ul>
-  </div>
-  <div *ngIf="checkMsg">
-    {{checkMsg}}
   </div>
 </md-card>

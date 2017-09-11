@@ -22,10 +22,17 @@ export class EmpAddService{
 
     // console.log( item.profile_pic);
     // delete item.image;
-    console.log( item);
+
+    // console.log( item);
         let body = '';
 
         for(let entry in item) {
+          // console.log(typeof(item[entry]));
+          if(typeof item[entry] === 'undefined'){
+            delete item[entry];
+          }
+          else{
+          // console.log((item[entry]))
           if(item[entry].constructor === Array){
               for(let i=0;i<item[entry].length;i++){
                   body += entry + '=' + encodeURIComponent(item[entry][i]) + '&';
@@ -35,9 +42,10 @@ export class EmpAddService{
             body += entry + '=' + encodeURIComponent(item[entry]) + '&';
           }
         }
+        }
         body = body.substring(0, body.length-1);
         // console.log("service file");
-        // console.log(body);
+        console.log(body);
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.dataurl, body, {headers: headers})

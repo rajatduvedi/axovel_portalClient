@@ -11,6 +11,7 @@ export class DataService{
   private DataUserUrl= 'http://192.241.153.62:1223/api/getEmpDetail';
   private updatedataurl= 'http://192.241.153.62:1223/api/editEmpDetail';
   private deletedataurl = 'http://192.241.153.62:1223/api/deleteEmp';
+  private exportCsvUrl= 'http://192.241.153.62:1223/api/createCsv'
   private options: any;
   constructor(
   private route: ActivatedRoute,
@@ -31,6 +32,17 @@ export class DataService{
     }
     return this.http
       .post(this.listUsersUrl, params.toString(), this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+  exportCsv(user){
+    let params = new URLSearchParams();
+    for(let key in user){
+      params.set(key, user[key])
+    }
+    return this.http
+      .post(this.exportCsvUrl, params.toString(), this.options)
       .map((response: Response) => {
         return response.json();
       });

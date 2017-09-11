@@ -7,6 +7,11 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+#downloadCsv{
+  float: right;
+  background: #673AB7
+  /*position: absolute;*/
+}
 
 td, th {
     border: 1px solid #dddddd transparent;
