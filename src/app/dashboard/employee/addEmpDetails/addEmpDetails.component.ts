@@ -44,11 +44,11 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
     if(localStorage.getItem('empDetails')){
     this.model = JSON.parse(localStorage.getItem('empDetails'));
     setTimeout(() =>this.model );
-    const str: string[] = this.model.joinDate.split('-');
+    const str: string[] = this.model.join_date.split('-');
     const strEnd:string[]= this.model.service_cont_end.split('-');
-    this.model.joinDate = new Date(+str[2].slice(0,2), +str[1], +str[0]);
+    this.model.join_date = new Date(+str[2].slice(0,2), +str[1], +str[0]);
     this.model.service_cont_end = new Date(+strEnd[2].slice(0,2), +strEnd[1], +strEnd[0]);
-    this.minDate = new Date(this.model.joinDate);
+    this.minDate = new Date(this.model.join_date);
         }
     this.form = this.formBuilder.group({
       'emailFormControl': new FormControl('', [
@@ -84,7 +84,7 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
       'emp_role' : new FormControl(''),
       'status' : new FormControl(''),
 
-      'joinDate' : new FormControl(this.model.joinDate,[
+      'joinDate' : new FormControl(this.model.join_date,[
           Validators.required]),
       'serviceEnd' : new FormControl(this.model.service_cont_end ,[
           Validators.required]),
@@ -154,10 +154,8 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
   }
   }
   onSubmit(){
-    this.model.joinDate = this.form.value.joinDate;
+    this.model.join_date = this.form.value.joinDate;
     this.model.service_cont_end=this.form.value.serviceEnd;
-    console.log(this.form.value.joinDate);
-    console.log(this.form);
       if(this.confirmPassword ){
           if(this.model.status =='Active'){
               this.model.status =true;

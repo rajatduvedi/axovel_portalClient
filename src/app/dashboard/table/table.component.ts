@@ -1,4 +1,4 @@
-import {Component , ViewChild , ElementRef , OnChanges} from '@angular/core';
+import {Component , ViewChild ,Directive, ElementRef , OnChanges} from '@angular/core';
 import { DataService } from '../../service/data.service';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {FormControl, Validators , NgForm , FormGroup} from '@angular/forms';
@@ -17,6 +17,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'table.component.html',
     providers:[DataService],
 })
+@Directive({ selector: '[highlight]' })
 export class TableComponent {
   users: any = [];
   loadData:any=[];
@@ -27,9 +28,10 @@ userFilter: any = {};
   selectedOption: string;
   loadSpiner:boolean=true;
   @ViewChild(MdPaginator) paginator: MdPaginator;
-  constructor(private dataService: DataService , public dialog: MdDialog ) {
+  constructor(private dataService: DataService , public dialog: MdDialog,public el: ElementRef ) {
   }
   ngOnInit(): void{
+      this.el.nativeElement.style.backgroundColor = 'gold';
       this.getUsersList(this.paginator);
 }
 onPaginateChange(event){
@@ -50,7 +52,7 @@ for(var i=start ;i<end ;i++){
 downloadCsvfie(){
   this.dataService.exportCsv({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result=>{
   console.log(result);
-  window.open("result.data")
+  window.open(result.data)
   }, err=>{
 
   });
@@ -333,25 +335,24 @@ export class DialogResultEditDialog {
         // this.showImage = true;
   }
   downloadprview(){
-    // console.log("downloadprview")
-    let doc = new jsPDF();
-    // var doctext=document.getElementById('preview').innerHTML;
-    var doctext = `<table>hello</table>`
-    // console.log(doctext)
-    doc.text(20,20,doctext);
-    doc.save('test.pdf');
+    let printContents, popupWin;
+     printContents = document.getElementById('previewDownload').innerHTML;
+     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+     popupWin.document.open();
+     popupWin.document.write(`
+       <html>
+         <head>
+           <title>Print tab</title>
+           <style>
+           //........Customized style.......
+           </style>
+         </head>
+     <body onload="window.print();window.close()">${printContents}</body>
+       </html>`
+     );
+     popupWin.document.close();
   }
-//  downloadprview() {
-//    console.log(this.el)
-//    console.log(this.el.nativeElement)
-//      var printDoc = new jsPDF();
-//     printDoc.fromHTML(document.getElementById('preview'), 10, 10, {'width': 180});
-//     printDoc.autoPrint();
-//
-//   // pdf.addHTML(this.el.nativeElement, 0, 0, options, () => {
-//   //   pdf.save("test.pdf");
-//   // });
-// }
+
   onSubmit(){
     // console.log(this.model);
     if(!this.model.leaving_date){

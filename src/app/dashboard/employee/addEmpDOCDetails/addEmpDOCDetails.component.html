@@ -99,12 +99,13 @@
               <td>  <md-input-container>
               <input mdInput [mdDatepicker]="pickerServiceContEnd"
               [min]="minDate" placeholder="service_cont_end"
-              name="service_cont_end" formControlName="serviceEnd"
-              >
+              name="service_cont_end" formControlName="serviceEnd">
+
               <md-datepicker-toggle mdSuffix [for]="pickerServiceContEnd"></md-datepicker-toggle>
               <md-datepicker #pickerServiceContEnd></md-datepicker>
 
             </md-input-container>
+            {{model.joinDate}}
             <md-error *ngIf="!dateerror">
             Please  insert joinning date then service contact end date
           </md-error>
@@ -304,6 +305,9 @@
   </md-card-content>
   <md-card-actions>
   </md-card-actions>
+  <div *ngIf="checkMsg">
+    {{checkMsg}}
+  </div>
   <div *ngIf="checkAddErrorMsg">
     <ul *ngFor="let error of checkAddErrorMsg ; let i = index">
   <md-error>

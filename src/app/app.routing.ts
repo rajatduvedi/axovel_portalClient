@@ -1,23 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import { DashBoardComponent } from './dashboard/dash-board.component';
-import{UserLoginComponent} from './user-login/user-login.component';
-
-// import { DashBoardComponent } from './dashboard/dashboard.component';
+import{ UserLoginComponent } from './user-login/user-login.component';
 import { AuthGuard } from './guards/auth.guard';
-// import { ConfirmationRedirectComponent } from './confirmation-redirect/confirmation-redirect.component';
-
+import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
 const appRoutes: Routes = [
-	// {
-  //   path: 'admin',
-  //   loadChildren: './admin/admin.module#AdminModule',
-	// },
-
-  // { path: 'emp', loadChildren: './employee/employee.module#EmployeesModule'},
+  // otherwise redirect to dashboard
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard',loadChildren: './dashboard/dashboard.module#DashBoardModule', canActivate: [AuthGuard]},
   { path: 'login',component:UserLoginComponent},
-  // otherwise redirect to home
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  // if page is not found
+  { path:'**' , component: PageNotfoundComponent}
+
 ];
 
 @NgModule({

@@ -198,8 +198,8 @@
         <button md-raised-button color="primary" type="submit" > Update </button>
       </form>
       </md-card-content>
-    <md-card-content *ngIf="!check &&  !loadSpiner">
-          <form class="form" #test id="preview">
+    <md-card-content *ngIf="!check &&  !loadSpiner" >
+          <form class="form" #test id="previewDownload">
           <table class="example-full-width" cellspacing="0"><tr>
               <div class="image">
                 <img *ngIf="1" [src]="this.model.profile_pic" height="100px" width="130px"/>

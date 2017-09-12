@@ -40,6 +40,8 @@ showImage: boolean = false;
     public sucessCheck:any;
     public dateerror:boolean =true;
     public previewPage:any=0;
+    public str:any=[];
+    public strEnd:any=[];
     checked = 0;
     minDate=new Date();
     // minDate=new Date(this.model.joinDate);
@@ -61,7 +63,13 @@ constructor( private router: Router,private empAddService :EmpAddService , priva
 ngOnInit() {
     if(localStorage.getItem('empDetails')){
       this.model = JSON.parse(localStorage.getItem('empDetails'));
-
+        // console.log(this.model.joinDate);
+      this.str= this.model.join_date.split('-');
+       this.strEnd= this.model.service_cont_end.split('-');
+      //  console.log(this.str)
+      this.model.join_date = new Date(+this.str[0],+this.str[1],+this.str[2].slice(0,2));
+      this.model.service_cont_end = new Date(  +this.strEnd[0],+this.strEnd[1],+this.strEnd[2].slice(0,2));
+      console.log(this.model.join_date);
       }
     else {
       this.router.navigate(['dashboard/add']);
@@ -69,11 +77,7 @@ ngOnInit() {
     if(!this.model.per_address && this.model.username){
       this.router.navigate(['dashboard/add-step2']);
     }
-    const str: string[] = this.model.joinDate.split('-');
-    const strEnd:string[]= this.model.service_cont_end.split('-');
 
-    this.model.joinDate = new Date(+str[2].slice(0,2), +str[1], +str[0]);
-    this.model.service_cont_end = new Date(+strEnd[2].slice(0,2), +strEnd[1], +strEnd[0]);
     this.invoiceForm = this._fb.group({
       itemRows: this._fb.array([this.initItemRows()]) // here
     });
@@ -105,7 +109,7 @@ ngOnInit() {
       'emp_role' : new FormControl(''),
       'status' : new FormControl(''),
 
-      'joinDate' : new FormControl(this.model.joinDate,[
+      'joinDate' : new FormControl(this.model.join_date,[
           Validators.required]),
       'serviceEnd' : new FormControl(this.model.service_cont_end,[
           Validators.required]),
@@ -131,13 +135,13 @@ ngOnInit() {
                   Validators.required]),
       'mouse_no' : new FormControl('not allocated'),
       'keyboard_no' : new FormControl('not allocated'),
-      'company_name':new FormControl('this.model.company_name'),
-      'leaving_date':new FormControl('this.model.leaving_date'),
+      'company_name':new FormControl(''),
+      'leaving_date':new FormControl(''),
       'ctc':new FormControl('null'),
       'hr_noFormControl':new FormControl(''),
-      'tl_noFormControl':new FormControl('this.model.TL_no'),
+      'tl_noFormControl':new FormControl(''),
     });
-    this.minDate = new Date(this.model.joinDate)
+    this.minDate = new Date(this.model.join_date)
 }
 initItemRows() {
     return this._fb.group({
@@ -200,8 +204,6 @@ gotonextStep(){
     //     // console.log(error);
     //   }
     // );
-
-
   }
 }
 checkbox(){
@@ -222,13 +224,24 @@ checkbox(){
     }
 }
 onSubmitPreview(){
-  console.log(this.model)
+  var pad = function(num) {
+      var s = '0' + num;
+      return s.substr(s.length - 2);
+  }
+  if(this.form.value.joinDate && this.form.value.serviceEnd){
+     this.model.join_date = this.form.value.joinDate.getFullYear()+'-'+pad(this.form.value.joinDate.getMonth()+1)+'-'+pad(this.form.value.joinDate.getDate());
+    //  console.log(this.model.joinDate)
+     this.model.service_cont_end=this.form.value.serviceEnd.getFullYear()+'-'+pad(this.form.value.serviceEnd.getMonth()+1)+'-'+pad(this.form.value.serviceEnd.getDate());
+  }
   this.empAddService.empAddDetails(this.model).subscribe(data=>{
     if(data){
     this.checkMsg=data.message;
+    console.log(data);
+    localStorage.removeItem('empDetails');
+    this.previewPage=0; //doc page show
   }
   }, error => {
-    // console.log(error);
+    console.log(error);
   }
 );
 }

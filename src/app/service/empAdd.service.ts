@@ -18,17 +18,12 @@ export class EmpAddService{
     this.options = new RequestOptions({ headers: headers });
   }
   empAddDetails(item:any) {
-    // console.log( "item.profile_pic");
-
-    // console.log( item.profile_pic);
-    // delete item.image;
-
-    // console.log( item);
         let body = '';
 
         for(let entry in item) {
           // console.log(typeof(item[entry]));
-          if(typeof item[entry] === 'undefined'){
+          if(item[entry]== 'NULL' || typeof item[entry]==='undefined' || item[entry]===""){
+            console.log("leaving_date")
             delete item[entry];
           }
           else{
@@ -45,6 +40,8 @@ export class EmpAddService{
         }
         body = body.substring(0, body.length-1);
         // console.log("service file");
+        console.log(typeof item.joinDate)
+        console.log(item);
         console.log(body);
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');

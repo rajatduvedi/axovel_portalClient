@@ -54,3 +54,12 @@ tbody{
   position: absolute;
   margin-top: 7%;
 }
+#edit{
+  cursor: pointer;
+}
+#delete{
+  cursor: pointer;
+}
+#visibility{
+  cursor: pointer;
+}

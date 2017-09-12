@@ -22,11 +22,6 @@ export class UserLoginComponent implements OnInit {
  } ;
 
   constructor(private userservice: UserService,private checkuser:User, private router: Router , private routes : ActivatedRoute){
-    // this.id = this.routes.snapshot.params['id'];
-    // if(this.id=='x'){
-    //   this.checkregmsg= 1;
-    // }
-    // console.log(this.id);
      }
      ngOnInit() {
        if(localStorage.getItem('currentUser')){
@@ -34,11 +29,14 @@ export class UserLoginComponent implements OnInit {
        }
      }
 
-  emailFormControl = new FormControl('', [
-   Validators.required,
-   Validators.pattern(EMAIL_REGEX)]);
+    emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(EMAIL_REGEX)]);
+    passwordFormControl = new FormControl('', [
+    Validators.required]);
 
    userLogin() {
+    if(this.model.loginId && this.model.password){
      this.userservice.login(this.model).subscribe(data =>
         {
           if(data.data){
@@ -47,11 +45,11 @@ export class UserLoginComponent implements OnInit {
           }
         }, error => {
               console.log(error)
-              console.log(error._body);
+              // console.log(error._body.data);
               this.checkloginErrorMsg=JSON.parse(error._body).message;
               console.log(this.checkloginErrorMsg)
         });
-  //  }
+   }
 // this.router.navigate(['dashboard']);
 }
 }

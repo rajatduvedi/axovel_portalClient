@@ -7,7 +7,7 @@
       <thead>
 
     <tr>
-    <th><h3>id</h3></th>
+    <th><h3 highlight>id</h3></th>
     <th><h3>Name</h3></th>
     <th><h3>Email</h3></th>
     <th><h3>Contact Number</h3></th>
@@ -41,9 +41,9 @@
       {{item.emp_lname}}</td>
       <td>{{item.email}}</td>
       <td>{{item.mob_no}}</td>
-      <td><md-icon (click)="editUserRow(item.userId)">edit</md-icon></td>
-      <td><md-icon (click)="previewUserRow(item.userId)">visibility</md-icon></td>
-      <td><md-icon (click)="deleteUserRow(item.userId)">delete</md-icon></td>
+      <td><md-icon (click)="editUserRow(item.userId)" id="edit">edit</md-icon></td>
+      <td><md-icon (click)="previewUserRow(item.userId)" id="visibility">visibility</md-icon></td>
+      <td><md-icon (click)="deleteUserRow(item.userId)" id="delete">delete</md-icon></td>
       <td *ngIf="item.status"> Active</td>
       <td *ngIf="!item.status"> Not Active</td>
     </tr>
