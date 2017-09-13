@@ -1,4 +1,4 @@
-import {Component , ViewChild ,Directive, ElementRef , OnChanges} from '@angular/core';
+import {Component , ViewChild , ElementRef , OnChanges} from '@angular/core';
 import { DataService } from '../../service/data.service';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {FormControl, Validators , NgForm , FormGroup} from '@angular/forms';
@@ -9,69 +9,65 @@ import { DomSanitizer } from '@angular/platform-browser';
 import jsPDF from 'jspdf';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
 @Component({
   moduleId: module.id,
   selector: 'app-table',
   styleUrls: ['table.component.css'],
   templateUrl: 'table.component.html',
-    providers:[DataService],
+  providers:[DataService],
 })
-@Directive({ selector: '[highlight]' })
 export class TableComponent {
   users: any = [];
   loadData:any=[];
-  // check:any;
-userFilter: any = {};
+  userFilter: any = {};
   public tableId:any;
   pageEvent: PageEvent;
   selectedOption: string;
   loadSpiner:boolean=true;
   @ViewChild(MdPaginator) paginator: MdPaginator;
-  constructor(private dataService: DataService , public dialog: MdDialog,public el: ElementRef ) {
-  }
+constructor(private dataService: DataService , public dialog: MdDialog,public el: ElementRef ) {
+}
   ngOnInit(): void{
       this.el.nativeElement.style.backgroundColor = 'gold';
       this.getUsersList(this.paginator);
-}
-onPaginateChange(event){
-  this.pageload(event);
-}
-pageload(event){
-this.loadData=[];
-var start= event.pageIndex * event.pageSize;//0
-this.tableId = start
-var end = (event.pageIndex +1) * event.pageSize ;
-var j=0;
-for(var i=start ;i<end ;i++){
-  if(this.users[i]){
-  this.loadData[j++] = this.users[i];
+  }
+  onPaginateChange(event){
+    this.pageload(event);
+  }
+  pageload(event){
+  this.loadData=[];
+  var start= event.pageIndex * event.pageSize;//0
+  this.tableId = start
+  var end = (event.pageIndex +1) * event.pageSize ;
+  var j=0;
+  for(var i=start ;i<end ;i++){
+    if(this.users[i]){
+    this.loadData[j++] = this.users[i];
+      }
     }
   }
-}
-downloadCsvfie(){
-  this.dataService.exportCsv({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result=>{
-  console.log(result);
-  window.open(result.data)
-  }, err=>{
+  downloadCsvfie(){
+    this.dataService.exportCsv({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result=>{
+    console.log(result);
+    window.open(result.data)
+    }, err=>{
 
-  });
-}
-getUsersList(paginator: MdPaginator) {
-  this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
-    this.users = result.data;
-    // console.log(this.users);
-    this.pageload(paginator);
-    setTimeout (() => {
-      // console.log("Hello from setTimeout");
-        this.loadSpiner=false;
-    }, 1000)
+    });
+  }
+  getUsersList(paginator: MdPaginator) {
+    this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
+      this.users = result.data;
+      // console.log(this.users);
+      this.pageload(paginator);
+      setTimeout (() => {
+        // console.log("Hello from setTimeout");
+          this.loadSpiner=false;
+      }, 1000)
 
-  }, err => {
-    console.log(err);
-  });
-}
-
+    }, err => {
+      console.log(err);
+    });
+  }
 editUserRow(id:any){
   // console.log(id);
   if(id){
@@ -106,53 +102,33 @@ previewUserRow(id:any){
     }
 }
 deleteUserRow(id:any){
-// var div=document.getElementById("demo");
-// div.style.display="none";
-// confirmation box
   let dialogRef=  this.dialog.open(DialogConfirmDialog,{
   width: '400px',
 });
-      dialogRef.afterClosed().subscribe(result => {
-        // console.log(result);
-          if(result == 1){
-
-            this.dataService.deleteUserRow({user_id: JSON.parse(localStorage.getItem('currentUser')).id ,
-                                            emp_user_id:id}).subscribe(result => {
-              if(result){
-              let dialogRef=  this.dialog.open(DialogResultUpdateUserDialog,{
-              width: '400px',
-            });
+  dialogRef.afterClosed().subscribe(result => {
+      if(result == 1){
+        this.dataService.deleteUserRow({user_id: JSON.parse(localStorage.getItem('currentUser')).id ,
+                                      emp_user_id:id}).subscribe(result => {
+          if(result){
+            let dialogRef=  this.dialog.open(DialogResultUpdateUserDialog,{
+            width: '400px',
+          });
             this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
-              this.users = result.data;
-              // console.log(this.users);
+            this.users = result.data;
             }, err => {
               console.log(err);
             });
             dialogRef.componentInstance.resultMsg = 'delete';
           }
-
-            }, err => {
-              console.log(err);
-            });
-
-
-          }
-          else if(result == 2){
-            // console.log(result);
-            // alert("no")
-          }
+      }, err => {
+        console.log(err);
       });
-
+      }
+      // else if(result == 2){
+      // }
+  });
 }
 }
-// export class ExampleDataSource extends DataSource<any> {
-//   /** Connect function called by the table to retrieve one stream containing the data to render. */
-//   connect(): Observable<Element[]> {
-//     return Observable.of(data);
-//   }
-//
-//   disconnect() {}
-// }
 @Component({
   selector: 'dialog-result-example-dialog',
   templateUrl: 'dialog-edit-dialog.html',

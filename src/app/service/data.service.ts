@@ -11,7 +11,8 @@ export class DataService{
   private DataUserUrl= 'http://192.241.153.62:1223/api/getEmpDetail';
   private updatedataurl= 'http://192.241.153.62:1223/api/editEmpDetail';
   private deletedataurl = 'http://192.241.153.62:1223/api/deleteEmp';
-  private exportCsvUrl= 'http://192.241.153.62:1223/api/createCsv'
+  private exportCsvUrl= 'http://192.241.153.62:1223/api/createCsv';
+
   private options: any;
   constructor(
   private route: ActivatedRoute,
@@ -84,11 +85,12 @@ export class DataService{
     console.log("body");
     console.log(body);
     let headers = new Headers();
-  headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http.post(this.deletedataurl, body, {headers: headers})
     .map((res: Response) => {
         return res.json();
     });
   }
+
 }

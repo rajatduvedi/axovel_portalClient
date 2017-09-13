@@ -2,6 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 Body{
   margin: 0px;
+  overflow-x: hidden;
 }
 .mat-dialog-container{
   /*color: white;*/

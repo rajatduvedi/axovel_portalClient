@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter , Output} from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-// import { UserService } from '../../service/user.service';
 import { EmpAddService } from '../../../service/empAdd.service';
 import { FormBuilder, FormControl,Validators, FormArray, FormGroup } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
@@ -14,7 +13,6 @@ const NAME_REGEX = /^[a-zA-Z][a-zA-Z ]+/ ;
 const PIN_REGEX = /^[0-9]*$/i;
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-
 @Component({
     moduleId: module.id,
     templateUrl: './addEmpDOCDetails.component.html',
@@ -44,7 +42,6 @@ showImage: boolean = false;
     public strEnd:any=[];
     checked = 0;
     minDate=new Date();
-    // minDate=new Date(this.model.joinDate);
     Role= [
       'Permanent',
       'Trainee',
@@ -63,13 +60,10 @@ constructor( private router: Router,private empAddService :EmpAddService , priva
 ngOnInit() {
     if(localStorage.getItem('empDetails')){
       this.model = JSON.parse(localStorage.getItem('empDetails'));
-        // console.log(this.model.joinDate);
       this.str= this.model.join_date.split('-');
-       this.strEnd= this.model.service_cont_end.split('-');
-      //  console.log(this.str)
+      this.strEnd= this.model.service_cont_end.split('-');
       this.model.join_date = new Date(+this.str[0],+this.str[1],+this.str[2].slice(0,2));
       this.model.service_cont_end = new Date(  +this.strEnd[0],+this.strEnd[1],+this.strEnd[2].slice(0,2));
-      console.log(this.model.join_date);
       }
     else {
       this.router.navigate(['dashboard/add']);
@@ -77,13 +71,11 @@ ngOnInit() {
     if(!this.model.per_address && this.model.username){
       this.router.navigate(['dashboard/add-step2']);
     }
-
     this.invoiceForm = this._fb.group({
       itemRows: this._fb.array([this.initItemRows()]) // here
     });
     this.form = this._fb.group({
       'emailFormControl': new FormControl({value: this.model.email, disabled: true}, Validators.required),
-
       'usernameFormControl': new FormControl({value: this.model.username, disabled: true}, Validators.required
         ),
       'fnameFormControl': new FormControl('', [
@@ -108,7 +100,6 @@ ngOnInit() {
           Validators.pattern(M0B_REGEX)]),
       'emp_role' : new FormControl(''),
       'status' : new FormControl(''),
-
       'joinDate' : new FormControl(this.model.join_date,[
           Validators.required]),
       'serviceEnd' : new FormControl(this.model.service_cont_end,[
@@ -160,14 +151,10 @@ get itemRows(): FormArray {
 }
 
 addNewRow(){
-  // this.itemRows.push(this._fb.group(itemrow));
-  // control refers to your formarray
     const control = <FormArray>this.invoiceForm.controls['itemRows'];
-    // add new formgroup
     control.push(this.initItemRows());
 }
 deleteRow(index: number) {
-// control refers to your formarray
     const control = <FormArray>this.invoiceForm.controls['itemRows'];
     // remove the chosen row
     control.removeAt(index);
@@ -196,14 +183,6 @@ gotonextStep(){
       this.model.doc_name = this.arraydataName;//label name
       this.model.doc=this.arraydoc;//docunt
       console.log(this.model)
-    //   this.empAddService.empAddDetails(this.model).subscribe(data=>{
-    //     if(data){
-    //     this.checkMsg=data.message;
-    //   }
-    //   }, error => {
-    //     // console.log(error);
-    //   }
-    // );
   }
 }
 checkbox(){
@@ -212,7 +191,6 @@ checkbox(){
       this.model.per_city=this.model.cur_city;
       this.model.per_pincode=this.model.cur_pincode;
       this.model.per_country=this.model.cur_country;
-
       this.checked=1;
   }
     else if (this.checked==1){
@@ -230,13 +208,12 @@ onSubmitPreview(){
   }
   if(this.form.value.joinDate && this.form.value.serviceEnd){
      this.model.join_date = this.form.value.joinDate.getFullYear()+'-'+pad(this.form.value.joinDate.getMonth()+1)+'-'+pad(this.form.value.joinDate.getDate());
-    //  console.log(this.model.joinDate)
      this.model.service_cont_end=this.form.value.serviceEnd.getFullYear()+'-'+pad(this.form.value.serviceEnd.getMonth()+1)+'-'+pad(this.form.value.serviceEnd.getDate());
   }
   this.empAddService.empAddDetails(this.model).subscribe(data=>{
     if(data){
     this.checkMsg=data.message;
-    console.log(data);
+    window.print();
     localStorage.removeItem('empDetails');
     this.previewPage=0; //doc page show
   }

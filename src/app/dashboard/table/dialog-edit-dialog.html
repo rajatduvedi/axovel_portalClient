@@ -13,7 +13,6 @@
       <md-card-subtitle *ngIf="!check"><h3>preview  details</h3>
       </md-card-subtitle>
     </md-card-header>
-    <!-- <div *ngIf="loadSpiner"><h1>loading...........</h1></div> -->
       <div id="loader" *ngIf="loadSpiner"><md-spinner></md-spinner></div>
     <md-card-content *ngIf="check && !loadSpiner">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -203,10 +202,6 @@
           <table class="example-full-width" cellspacing="0"><tr>
               <div class="image">
                 <img *ngIf="1" [src]="this.model.profile_pic" height="100px" width="130px"/>
-                <!-- <div id="changePhoto"> Update photo
-                    <input type="file" #file (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" style="display:none" required>
-                    <md-icon #upload (click)="file.click()">add_a_photo</md-icon>
-               </div> -->
               </div>
               <td><md-input-container class="example-full-width">
                 <input mdInput placeholder="first_name" name="first_name" disabled  [(ngModel)]="model.first_name">
@@ -322,5 +317,4 @@
 </div>
 <div md-dialog-actions>
   <button md-button md-dialog-close="Cancel">Cancel</button>
-  <!-- <button md-button md-dialog-close="Option 2">save</button> -->
 </div>

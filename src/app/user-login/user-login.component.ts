@@ -10,7 +10,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
   moduleId: module.id,
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css'],
-    providers: [UserService , User]
+  providers: [UserService , User]
 })
 export class UserLoginComponent implements OnInit {
   id: any;

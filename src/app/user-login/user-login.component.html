@@ -1,39 +1,51 @@
-<div class="container">
-  <div class="header">
-    <div class="head">
-      <h1>Login to Axovel Account</h1>
-    </div>
-  </div>
-  <div class="formcontainer">
-    <div class="error" *ngIf="checkregmsg">
-      <h3>  WAOOOOO  !!!! login here!! </h3>
-    </div>
-
-    <form class="formgroup">
-      <div *ngIf="checkloginErrorMsg">
-        <md-error>
-        {{checkloginErrorMsg}}
-        </md-error>
-      </div>
-      <div class="input">
+  <md-card class="example-card">
+    <md-card-header>
+      <md-card-title><h2>LOG IN</h2></md-card-title>
+      <!-- <md-card-subtitle><h3>add Devices details</h3>
+      </md-card-subtitle> -->
+    </md-card-header>
+    <md-card-content>
+      <form class="formgroup">
+        <div *ngIf="checkloginErrorMsg">
+          <md-error>
+          {{checkloginErrorMsg}}
+          </md-error>
+        </div>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td>
+          <md-input-container class="inputrow">
+          <input mdInput name="loginId" [(ngModel)]="model.loginId" [formControl]="emailFormControl" placeholder="Email">
+          <md-error *ngIf="emailFormControl.hasError('required')">
+          Email is required
+          </md-error>
+          </md-input-container>
+        </td>
+        </tr></table>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td>
         <md-input-container class="inputrow">
-        <input mdInput name="loginId" [(ngModel)]="model.loginId" [formControl]="emailFormControl" placeholder="Email">
-        <md-error *ngIf="emailFormControl.hasError('required')">
-        Email is required
+        <input type="password" mdInput name="password" [(ngModel)]="model.password" placeholder="Password" [formControl]="passwordFormControl">
+        <md-error *ngIf="passwordFormControl.hasError('required')">
+        password is required
         </md-error>
         </md-input-container>
-      </div>
-      <div class="input">
-      <md-input-container class="inputrow">
-      <input type="password" mdInput name="password" [(ngModel)]="model.password" placeholder="Password" [formControl]="passwordFormControl">
-      <md-error *ngIf="passwordFormControl.hasError('required')">
-      password is required
-      </md-error>
-      </md-input-container>
-      </div>
-      <div class="input">
-      <button md-raised-button color="primary" name="login" (click)="userLogin()">Login</button>
-      </div>
-    </form>
-  </div>
-</div>
+      </td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td>
+      <md-checkbox class="example-margin">Remember me </md-checkbox>
+        </td>
+      </tr></table>
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td>
+        <button md-raised-button color="primary" name="login" (click)="userLogin()">Login</button>
+      </td>
+      <td>
+        <a routerLink="/forgot-password">Forgot password</a>
+      </td>
+      </tr></table>
+      </form>
+    </md-card-content>
+  </md-card>
+  <md-card-actions>
+  </md-card-actions>

@@ -1,14 +1,8 @@
 .primary{
   background-color: #673AB7;
-  /*margin-top: 38%;*/
-  /*min-height: 670px;*/
-
-/*position: absolute;*/
 }
 .primary span{
   color : white;
-  /*padding-left: 34px;
-  padding-right: 34px;*/
   margin-left: 164px;
 }
 .header-content{

@@ -1,18 +1,10 @@
 .example-card {
   width: 70%;
-  /*height:100%;*/
-  /*text-align: center;*/
-  /*float: center;*/
   margin:0px auto;
-  /*height:100px;*/
 }
 .example-form {
   width: 500px;
 }
-
 .example-full-width {
   width: 100%;
 }
-/*#skip{
-  float:right;
-}*/

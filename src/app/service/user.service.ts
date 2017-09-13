@@ -9,8 +9,11 @@ import { User } from '../user';
 import{ EmployeeDetails } from '../employeeDetails';
 @Injectable()
 export class UserService{
+    // private options: any;
   private dataurl='http://localhost:8000/apis/register';
   private loginurl='http://192.241.153.62:1223/api/login';
+  private forgotPasswordUrl= 'http://192.241.153.62:1223/api/forgotPassword';
+  private resetPasswordUrl= 'http://192.241.153.62:1223/api/resetPassword';
   constructor( private http:Http){}
   userRegister(item:any) {
         let body = '';
@@ -59,7 +62,30 @@ export class UserService{
         // console.log(item);
         return item;
     }
-    // gotonextStep(){
-    //
-    // }
+    forgotPassword(item:any){
+      let body = '';
+      for(let entry in item) {
+          body += entry + '=' + encodeURIComponent(item[entry]) + '&';
+      }
+      body = body.substring(0, body.length-1);
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return this.http.post(this.forgotPasswordUrl, body, {headers: headers})
+      .map((res: Response) => {
+          return res.json();
+      });
+    }
+    resetPassword(item:any){
+      let body = '';
+      for(let entry in item) {
+          body += entry + '=' + encodeURIComponent(item[entry]) + '&';
+      }
+      body = body.substring(0, body.length-1);
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return this.http.post(this.resetPasswordUrl, body, {headers: headers})
+      .map((res: Response) => {
+          return res.json();
+      });
+    }
 }

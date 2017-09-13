@@ -40,9 +40,9 @@ export class EmpAddService{
         }
         body = body.substring(0, body.length-1);
         // console.log("service file");
-        console.log(typeof item.joinDate)
-        console.log(item);
-        console.log(body);
+        // console.log(typeof item.joinDate)
+        // console.log(item);
+        // console.log(body);
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.dataurl, body, {headers: headers})

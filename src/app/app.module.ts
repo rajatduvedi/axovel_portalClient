@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpModule,Headers } from '@angular/http';
+import { HttpModule,Headers , XSRFStrategy, CookieXSRFStrategy } from '@angular/http';
 import { AppRoutingModule } from './app.routing';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppComponent }   from './app.component';
@@ -18,10 +18,13 @@ import {MdSidenavModule,
         MdToolbarModule,
         MdMenuModule,
         MdCardModule,
+        MdCheckboxModule
 
 } from '@angular/material';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasseordComponent } from './reset-passeord/reset-passeord.component';
 @NgModule({
     imports:      [
         AppRoutingModule,
@@ -38,13 +41,21 @@ import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
         MdCardModule,
         FormsModule,
         ReactiveFormsModule,
+        MdCheckboxModule
     ],
     declarations: [ AppComponent,
                     DropdownDirective,
                     UserLoginComponent,
                     PageNotfoundComponent,
+                    ForgotPasswordComponent,
+                    ResetPasseordComponent,
       ],
-    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, AuthGuard],
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
+          {
+            provide: XSRFStrategy,
+            useValue: new CookieXSRFStrategy('csrftoken', 'X-CSRFToken')
+          },
+       AuthGuard],
     bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
