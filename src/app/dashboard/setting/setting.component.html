@@ -1,0 +1,43 @@
+<md-card class="example-card">
+  <md-card-header>
+    <md-card-title><h1>Setting</h1></md-card-title>
+
+    <md-card-subtitle><h4>Setting your account </h4>
+    </md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <md-card class="example-card">
+      <md-card-header>
+        <md-card-title> <h3> <md-icon>vpn_key</md-icon>Change Password</h3></md-card-title>
+      </md-card-header>
+      <md-card-content>
+          <md-expansion-panel>
+            <md-expansion-panel-header>
+              <md-panel-title>
+
+                Change Password
+              </md-panel-title>
+              <md-panel-description>
+              Type your old password and new Password
+
+              </md-panel-description>
+            </md-expansion-panel-header>
+            <form class="formgroup" name="myform" (ngSubmit)="changePassword()" [formGroup]="form">
+            <md-form-field>
+            <input mdInput placeholder="Current password" formControlName="CurrentPassword">
+            </md-form-field>
+            <md-form-field>
+            <input mdInput placeholder="New password" formControlName="password">
+            </md-form-field>
+            <md-form-field>
+            <input mdInput placeholder="Confirm password" formControlName="ConfirmPassword">
+            </md-form-field>
+            <md-action-row>
+            <button md-button color="primary" type="submit" [disabled]="!form.valid " >Change Password</button>
+          </md-action-row>
+        </form>
+          </md-expansion-panel>
+      </md-card-content>
+    </md-card>
+  </md-card-content>
+</md-card>

@@ -24,7 +24,7 @@ export class AddEmpDOCDetailsComponent implements OnInit {
     private _files: File[];
     invoiceForm: FormGroup;
     form: FormGroup;
-    errors:any = [];
+    public errors:any = [];
     public checkMsg:any;
     checkAddErrorMsg:any;
 showImage: boolean = false;
@@ -40,6 +40,7 @@ showImage: boolean = false;
     public previewPage:any=0;
     public str:any=[];
     public strEnd:any=[];
+    public loadSpiner:boolean=true;
     checked = 0;
     minDate=new Date();
     Role= [
@@ -202,6 +203,7 @@ checkbox(){
     }
 }
 onSubmitPreview(){
+  this.loadSpiner=false;
   var pad = function(num) {
       var s = '0' + num;
       return s.substr(s.length - 2);
@@ -211,14 +213,20 @@ onSubmitPreview(){
      this.model.service_cont_end=this.form.value.serviceEnd.getFullYear()+'-'+pad(this.form.value.serviceEnd.getMonth()+1)+'-'+pad(this.form.value.serviceEnd.getDate());
   }
   this.empAddService.empAddDetails(this.model).subscribe(data=>{
+    setTimeout (() => {
+        this.loadSpiner=true;
+    }, 1000)
     if(data){
+
     this.checkMsg=data.message;
     window.print();
     localStorage.removeItem('empDetails');
     this.previewPage=0; //doc page show
   }
   }, error => {
-    console.log(error);
+    this.loadSpiner=true;
+    // console.log(JSON.parse(error._body).data);
+    this.errors = JSON.parse(error._body).data;
   }
 );
 }

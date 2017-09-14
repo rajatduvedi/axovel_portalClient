@@ -17,7 +17,8 @@ import {MdSidenavModule,
         MdDatepickerModule,
         MdNativeDateModule,
         MdRadioModule,
-        MdCheckboxModule
+        MdCheckboxModule,
+        MdProgressSpinnerModule
 
 } from '@angular/material';
 @NgModule({
@@ -37,6 +38,7 @@ import {MdSidenavModule,
         MdNativeDateModule,
         FileUploadModule,
         MdCheckboxModule,
+        MdProgressSpinnerModule,
         FormsModule,ReactiveFormsModule,HttpModule,MdRadioModule
     ],
     declarations: [

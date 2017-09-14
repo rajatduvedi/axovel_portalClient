@@ -15,10 +15,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user= JSON.parse(localStorage.getItem('currentUser'));
+
   }
   logout(){
     // alert("hello");
     this.userservice.logout();
       this.router.navigate(['login']);
+  }
+  setting(){
+    this.router.navigate(['dashboard/setting']);
   }
 }

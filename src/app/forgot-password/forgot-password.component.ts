@@ -43,7 +43,7 @@ export class ForgotPasswordComponent implements OnInit {
     if(this.model.email){
       const str: string[] =this.model.email.split('@');
       this.emailChange= str[0].slice(0, 2)+'*****'+str[0].slice(str[0].length-3,str[0].length)+'@'+str[1];
-      console.log(this.emailChange)
+      // console.log(this.emailChange)
     // console.log({email:this.model.email })
     this.userservice.forgotPassword({email:this.model.email }).subscribe(data=>{
       this.step2 = false;
@@ -54,10 +54,14 @@ export class ForgotPasswordComponent implements OnInit {
   );
   }
 }
+BackPage(){
+  // this.step2= true;
+  this.router.navigate(['login']);
+}
 ResendCode(){
   this.userservice.forgotPassword({email:this.model.email }).subscribe(data=>{
     // this.step2 = false;
-    console.log(data);
+    // console.log(data);
     this.ErrorMsg=data.message;
   }, error => {
       this.ErrorMsg=JSON.parse(error._body).message;
@@ -70,7 +74,7 @@ ResendCode(){
     // console.log({email:this.model.email })
     this.userservice.resetPassword({email:this.model.email , reset_code:this.model.reset_code , password:this.model.password}).subscribe(data=>{
       // this.step2 = false;
-      console.log(data);
+      // console.log(data);
       if(data){
         this.Sucessmsg = data.message;
         // this.router.navigate(['dashboard']);

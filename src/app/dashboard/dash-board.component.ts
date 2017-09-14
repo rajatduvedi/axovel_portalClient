@@ -1,12 +1,14 @@
 import { Component, OnInit ,  ViewChild,Input,
 trigger, state, style, transition, animate , ElementRef} from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
+import { UserRoleAuth } from './../service/userRoleAuth.service';
 import {MdSidenav} from '@angular/material';
 
 @Component({
   moduleId:module.id,
   templateUrl: './dash-board.component.html',
   styleUrls: ['./dash-board.component.css'],
+  providers:[UserRoleAuth],
   animations: [
     trigger('contentOffset', [
         state('open', style({ // sidenav open
@@ -40,40 +42,13 @@ export class DashBoardComponent implements OnInit {
   contentOffsetStatus:string = 'open';
   contentinerSetStatus:string;
   public Checksidebar:any=0;
-  public user:any;
+  // public user:any;
   public dashBoardCheck:any=1;
-  public role ={
-    admin :0,
-    hr :0,
-    employee :0,
-    account :0,
-  };
-  constructor(private router: Router , private elRef:ElementRef) { }
+  public role:any;
+  constructor(private router: Router , private elRef:ElementRef, private userRoleAuth :UserRoleAuth) { }
 
   ngOnInit() {
-
-    this.user= JSON.parse(localStorage.getItem('currentUser'));
-
-    if(this.user.role == 'admin'){
-        this.role.admin=1;
-        this.role.hr=1;
-        this.role.employee=1;
-        this.role.account=1;
-        // console.log(this.role);
-    }
-    if(this.user.role == 'hr'){
-        this.role.admin=0;
-        this.role.hr=1;
-        this.role.employee=1;
-        this.role.account=1;
-        // console.log(this.role);
-    }
-    if(this.user.role == 'employee'){
-        this.role.admin=0;
-        this.role.hr=0;
-        this.role.employee=1;
-        // console.log(this.role);
-    }
+    this.role =this.userRoleAuth.roleCheck()
   }
   addEmp(){
         this.router.navigate(['dashboard/add']);

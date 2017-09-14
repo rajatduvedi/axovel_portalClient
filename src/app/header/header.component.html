@@ -1,6 +1,6 @@
 <md-toolbar class="primary">
     <img src="assets/images/image(4).jpg" height="60%" width="13%" id="comapnyLogoimg">
-    <span id="userRole"> {{user.role | uppercase}}</span>
+
       <div class="flex-spacer"></div>
         <md-input-container>
             <md-icon>search</md-icon>
@@ -19,18 +19,25 @@
             </button>
         </md-menu>
         <button md-icon-button [mdMenuTriggerFor]="Account" id="Account">
-            <img md-card-avatar src="assets/images/rj.jpg">
+            <img md-card-avatar [src]="this.user.profile_pic">
         </button>
+
         <md-menu #Account="mdMenu">
+          <!-- <span id="userRole">Role : {{user.role | uppercase}}</span> -->
           <button md-menu-item>
             <md-icon>perm_identity</md-icon>
-            <span>Account</span>
+            <span>{{user.role | uppercase}}</span>
 
+          </button>
+          <button md-menu-item (click)="setting()">
+            <md-icon>settings</md-icon>
+            <span>Setting</span>
           </button>
           <button md-menu-item (click)="logout()">
             <md-icon>settings_power</md-icon>
-            <span>log out</span>
+            <span>Log out</span>
           </button>
+
         </md-menu>
 
 </md-toolbar>

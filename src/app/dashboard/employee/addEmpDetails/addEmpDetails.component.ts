@@ -3,6 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import {FormControl, Validators , NgForm, FormGroup, FormBuilder,} from '@angular/forms';
 import{ EmployeeDetails } from '../../../employeeDetails';
 import { EmpAddService } from '../../../service/empAdd.service';
+import { UserRoleAuth } from '../../../service/userRoleAuth.service';
 import{ Http , Response , Headers} from '@angular/http';
 import{ Observable }from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -15,7 +16,7 @@ const NAME_REGEX = /^[a-zA-Z][a-zA-Z ]+/ ;
     moduleId: module.id,
     templateUrl: './addEmpDetails.component.html',
     styleUrls: ['./addEmpDetails.component.css'],
-    providers:[EmpAddService],
+    providers:[EmpAddService , UserRoleAuth],
 })
 export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
   form: FormGroup;
@@ -37,10 +38,12 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
     'Active',
     'Not Active',
   ]
-  constructor( private formBuilder: FormBuilder,private router: Router,private route: ActivatedRoute,private cdr: ChangeDetectorRef,private empAddService :EmpAddService ) {
+  constructor(private userRoleAuth :UserRoleAuth, private formBuilder: FormBuilder,private router: Router,private route: ActivatedRoute,private cdr: ChangeDetectorRef,private empAddService :EmpAddService ) {
     this.errors.text=1;
   }
   ngOnInit() {
+    console.log(this.userRoleAuth.roleCheck().admin)
+    if(this.userRoleAuth.roleCheck().admin || this.userRoleAuth.roleCheck().hr){}
     if(localStorage.getItem('empDetails')){
     this.model = JSON.parse(localStorage.getItem('empDetails'));
     setTimeout(() =>this.model );
@@ -90,7 +93,7 @@ export class AddEmpDetailsComponent implements AfterViewInit,OnInit {
           Validators.required]),
     });
         // console.log(this.emailFormControl.touched);
-
+        
   }
   ngAfterViewChecked(){
   }

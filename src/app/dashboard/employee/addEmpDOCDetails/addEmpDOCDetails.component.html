@@ -57,6 +57,7 @@
     <md-card-subtitle><h3>Update form and Save </h3></md-card-subtitle>
   </md-card-header>
   <md-card-content>
+
     <form class="formgroup" name="myform" (ngSubmit)="onSubmitPreview()" [formGroup]="form">
         <!-- first name  and last name field -->
         <table class="example-full-width" cellspacing="0"><tr>
@@ -301,6 +302,12 @@
         </md-input-container></td>
   </tr></table>
       <button md-raised-button color="primary" type="submit" [disabled]="!this.confirmPassword && !form.valid " >Save and Download  </button>
+      <div *ngIf="!loadSpiner"><md-spinner></md-spinner></div>
+      <div *ngFor="let error of errors">
+        <md-error>
+        {{error.message}}
+      </md-error>
+      </div>
       </form>
   </md-card-content>
   <md-card-actions>

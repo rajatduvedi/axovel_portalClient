@@ -11,11 +11,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HrComponent } from './hr/hr.component';
 import{ DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResultUpdateUserDialog} from './table/table.component';
-// import { CdkTableModule } from '@angular/cdk';
-// import { EmployeeComponent } from './employee/employee.component';
-// import{EmployeeComponent }from '../employee/employee.Component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-import { AuthGuard } from '../guards/auth.guard';
+// import { AuthGuard } from '../guards/auth.guard';
+import { RoleAuthGuard } from '../guards/roleAuth.guard';
 import {MdSidenavModule,
         MdTableModule,
         MdInputModule,
@@ -31,8 +29,10 @@ import {MdSidenavModule,
         MdAutocompleteModule,
         MdPaginatorModule,
         MdProgressSpinnerModule,
-        MdDatepickerModule
+        MdDatepickerModule,
+        MdExpansionModule
         } from '@angular/material';
+import { SettingComponent } from './setting/setting.component';
 
 @NgModule({
     imports: [
@@ -57,7 +57,8 @@ import {MdSidenavModule,
         MdPaginatorModule,
         MdProgressSpinnerModule,
         Ng2FilterPipeModule,
-        MdDatepickerModule
+        MdDatepickerModule,
+        MdExpansionModule
                 // RouterModule.forRoot([
                 //   { path: 'emp',component:EmployeeComponent },
                 //   // {path:'table',component:TableComponent},
@@ -76,12 +77,13 @@ import {MdSidenavModule,
         TableComponent,
         DialogResultEditDialog,
         DialogResultUpdateUserDialog,
-        DialogConfirmDialog
+        DialogConfirmDialog,
+        SettingComponent
         // EmployeeComponent
 
     ],
     providers: [
-        AuthGuard
+        RoleAuthGuard
     ],
     entryComponents:[DialogResultEditDialog,DialogResultUpdateUserDialog,DialogConfirmDialog]
 })
