@@ -1,7 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpModule,Headers , XSRFStrategy, CookieXSRFStrategy } from '@angular/http';
+import { HttpModule,Headers  } from '@angular/http';
 import { AppRoutingModule } from './app.routing';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppComponent }   from './app.component';
@@ -51,10 +51,10 @@ import { ResetPasseordComponent } from './reset-passeord/reset-passeord.componen
                     ResetPasseordComponent,
       ],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
-          {
-            provide: XSRFStrategy,
-            useValue: new CookieXSRFStrategy('csrftoken', 'X-CSRFToken')
-          },
+          // {
+          //   provide: XSRFStrategy,
+          //   useValue: new CookieXSRFStrategy('csrftoken', 'X-CSRFToken')
+          // },
        AuthGuard],
     bootstrap:    [ AppComponent ]
 })
