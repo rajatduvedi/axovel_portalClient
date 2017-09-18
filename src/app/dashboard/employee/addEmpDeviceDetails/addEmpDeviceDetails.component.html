@@ -7,21 +7,60 @@
   <md-card-content>
     <form [formGroup]="form">
       <table class="example-full-width" cellspacing="0"><tr>
-        <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="laptop no" name="laptop_no" [(ngModel)]="model.laptop_no" formControlName="laptop_no">
-        </md-input-container></td>
-      </tr></table>
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="mouse no" name="mouse_no" [(ngModel)]="model.mouse_no" formControlName="mouse_no">
-        </md-input-container></td>
-      </tr></table>
-      <table class="example-full-width" cellspacing="0"><tr>
-        <td><md-input-container class="example-full-width">
-          <input mdInput placeholder="keyboard no" name="keyboard_no" [(ngModel)]="model.keyboard_no" formControlName="keyboard_no">
-        </md-input-container></td>
+        <td>
+          <md-select placeholder="Device No" [(ngModel)]="model.deviceId" name="deviceId" formControlName="deviceId" (change)="selectDevice(model.deviceId)">
+            <md-option *ngFor="let device of devices" [value]="device.id">
+              {{device.device_no}}
+            </md-option>
+          </md-select>
+        </td>
       </tr></table>
     </form>
+    <div *ngIf ="devicefield ">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="Device Name" name="device_name" disabled [(ngModel)]="devicefield.device_name">
+          </md-input-container></td>
+        </tr>
+      <tr>
+        <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="Device Company" name="device_company" disabled [(ngModel)]="devicefield.device_company">
+        </md-input-container></td>
+      </tr>
+      <tr>
+        <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="Device Code" name="device_code" disabled [(ngModel)]="devicefield.device_code">
+        </md-input-container></td>
+      </tr>
+
+        <tr>
+        <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="bag" name="bag" disabled [(ngModel)]="devicefield.bag">
+        </md-input-container>
+        </td>
+      </tr>
+      <tr>
+
+      <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="mouse" name="mouse" disabled [(ngModel)]="devicefield.mouse">
+      </md-input-container></td>
+      </tr>
+      <tr>
+
+      <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="keyboard" name="keyboard" disabled [(ngModel)]="devicefield.keyboard">
+      </md-input-container></td>
+      </tr>
+      <tr>
+
+      <td><md-input-container class="example-full-width">
+        <input mdInput placeholder="charger" name="charger" disabled [(ngModel)]="devicefield.charger">
+      </md-input-container></td>
+      </tr>
+        </table>
+    </div>
   </md-card-content>
 
   <md-card-actions>

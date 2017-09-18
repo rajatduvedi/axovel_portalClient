@@ -44,10 +44,7 @@ export class UserLoginComponent implements OnInit {
             this.router.navigate(['/dashboard/#']);
           }
         }, error => {
-              console.log(error)
-              // console.log(error._body.data);
               this.checkloginErrorMsg=JSON.parse(error._body).message;
-              console.log(this.checkloginErrorMsg)
         });
    }
 // this.router.navigate(['dashboard']);

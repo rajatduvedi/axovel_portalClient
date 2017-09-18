@@ -12,6 +12,9 @@ export class DataService{
   private updatedataurl= 'http://192.241.153.62:1223/api/editEmpDetail';
   private deletedataurl = 'http://192.241.153.62:1223/api/deleteEmp';
   private exportCsvUrl= 'http://192.241.153.62:1223/api/createCsv';
+  private addDeviceUrl='http://192.241.153.62:1223/api/addDevice';
+  private bulkDeleteUrl= 'http://192.241.153.62:1223/api/bluckDeleteEmp';
+  private getDeviceUrl= 'http://192.241.153.62:1223/api/getAlldevices';
 
   private options: any;
   constructor(
@@ -88,6 +91,66 @@ export class DataService{
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http.post(this.deletedataurl, body, {headers: headers})
+    .map((res: Response) => {
+        return res.json();
+    });
+  }
+
+  addDeviceService(item: any) {
+    let body = '';
+    // console.log(item)
+    for(let entry in item) {
+        body += entry + '=' + encodeURIComponent(item[entry]) + '&';
+    }
+    body = body.substring(0, body.length-1);
+    // console.log("body");
+    // console.log(body);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.post(this.addDeviceUrl, body, {headers: headers})
+    .map((res: Response) => {
+        return res.json();
+    });
+  }
+
+  deleteMulEmp(item: any) {
+    let body = '';
+    // console.log(item)
+    for(let entry in item) {
+      if(item[entry].constructor === Array){
+          for(let i=0;i<item[entry].length;i++){
+              body += entry + '=' + encodeURIComponent(item[entry][i]) + '&';
+          }
+      }
+      else{
+        body += entry + '=' + encodeURIComponent(item[entry]) + '&';
+      }
+    }
+    body = body.substring(0, body.length-1);
+    // console.log(body);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.post(this.bulkDeleteUrl, body, {headers: headers})
+    .map((res: Response) => {
+        return res.json();
+    });
+  }
+
+  getDevices(item: any) {
+    let body = '';
+    // console.log(item)
+    for(let entry in item) {
+        body += entry + '=' + encodeURIComponent(item[entry]) + '&';
+    }
+    body = body.substring(0, body.length-1);
+    // console.log("body");
+    // console.log(body);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.post(this.getDeviceUrl, body, {headers: headers})
     .map((res: Response) => {
         return res.json();
     });

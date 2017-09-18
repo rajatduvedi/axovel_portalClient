@@ -123,10 +123,7 @@ ngOnInit() {
           Validators.pattern(PIN_REGEX)]),
       'curaddcountryFormControl' :new FormControl('', [
           Validators.required]),
-      'laptop_no' : new FormControl('not allocated',[
-                  Validators.required]),
-      'mouse_no' : new FormControl('not allocated'),
-      'keyboard_no' : new FormControl('not allocated'),
+      'device_no' : new FormControl('not allocated'),
       'company_name':new FormControl(''),
       'leaving_date':new FormControl(''),
       'ctc':new FormControl('null'),

@@ -8,7 +8,6 @@ import { DashBoardComponent } from './dash-board.component';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { HrComponent } from './hr/hr.component';
 import{ DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResultUpdateUserDialog} from './table/table.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
@@ -30,9 +29,11 @@ import {MdSidenavModule,
         MdPaginatorModule,
         MdProgressSpinnerModule,
         MdDatepickerModule,
-        MdExpansionModule
+        MdExpansionModule,
+        MdCheckboxModule
         } from '@angular/material';
 import { SettingComponent } from './setting/setting.component';
+import { AddDeviceComponent } from './hr/addDevice.component';
 
 @NgModule({
     imports: [
@@ -58,7 +59,8 @@ import { SettingComponent } from './setting/setting.component';
         MdProgressSpinnerModule,
         Ng2FilterPipeModule,
         MdDatepickerModule,
-        MdExpansionModule
+        MdExpansionModule,
+        MdCheckboxModule
                 // RouterModule.forRoot([
                 //   { path: 'emp',component:EmployeeComponent },
                 //   // {path:'table',component:TableComponent},
@@ -72,13 +74,13 @@ import { SettingComponent } from './setting/setting.component';
         FooterComponent,
         HeaderComponent,
         SidebarComponent,
-        HrComponent,
         DashboardContentComponent,
         TableComponent,
         DialogResultEditDialog,
         DialogResultUpdateUserDialog,
         DialogConfirmDialog,
-        SettingComponent
+        SettingComponent,
+        AddDeviceComponent
         // EmployeeComponent
 
     ],

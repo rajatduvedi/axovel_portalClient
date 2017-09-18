@@ -56,6 +56,9 @@ export class DashBoardComponent implements OnInit {
   listEmp(){
         this.router.navigate(['dashboard/list']);
   }
+  addDevice(){
+    this.router.navigate(['dashboard/addDevice']);
+  }
   sidebarToggle(){
     this.contentOffsetStatus = ( this.contentOffsetStatus === 'open' ? 'close' : 'open' );
     if(this.contentOffsetStatus == 'close'){// if sidenav close then open it

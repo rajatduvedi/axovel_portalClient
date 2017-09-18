@@ -1,11 +1,15 @@
 <div id="demo" >
   <md-list>
-    <button id="downloadCsv" md-raised-button color="primary" (click)="downloadCsvfie()">
+    <button class="downloadCsv" md-raised-button color="primary" (click)="deleteSelectedEmp()">
+      Delete
+    </button>
+    <button class="downloadCsv" md-raised-button color="primary" (click)="downloadCsvfie()">
       Export
     </button>
     <table >
       <thead>
         <tr>
+        <th><h3 highlight>Check</h3></th>
         <th><h3 highlight>id</h3></th>
         <th><h3>Name</h3></th>
         <th><h3>Email</h3></th>
@@ -16,6 +20,7 @@
       </thead>
       <div *ngIf="loadSpiner"><md-spinner></md-spinner></div>
       <tbody *ngIf="!loadSpiner">
+        <td></td>
         <td></td>
         <td>
         <md-form-field class="example-full-width">
@@ -34,6 +39,7 @@
         <td></td>
         <td></td>
         <tr *ngFor="let item of loadData | filterBy:userFilter, let i = index">
+          <td><md-checkbox [checked]="checked" (click)="selectEmp(item.userId)"></md-checkbox></td>
         <td>{{i+1+tableId}}</td>
         <td>{{item.emp_fname}}
         {{item.emp_lname}}</td>
@@ -47,6 +53,7 @@
         </tr>
       </tbody>
     </table>
+    <!-- <span>{{model.emp_user_id}}</span> -->
     <md-paginator #paginator
               [length]="users.length"
               [pageSize]="3"

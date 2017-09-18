@@ -1,0 +1,83 @@
+<md-card class="example-card">
+  <div class="error" *ngIf="errorMsg">
+    <span>{{errorMsg}}</span>
+  </div>
+  <md-card-header>
+    <md-card-title><h1>ADD Device</h1></md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <form [formGroup]="form" (ngSubmit)="addDevice()">
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td>
+          <md-select placeholder="Select Device" name="device_name" [(ngModel)]="model.device_name" formControlName="device_name">
+            <md-option *ngFor="let device of devices" [value]="device.value">
+              {{ device.viewValue }}
+            </md-option>
+        </md-select>
+        </td>
+      </tr>
+      <tr>
+        <td><md-input-container class="example-full-width">
+          <span mdPrefix>Axovel&nbsp;</span>
+          <input type="number" min="1" mdInput placeholder="Device No" name="device_no" [(ngModel)]="model.device_no" formControlName="device_no">
+        </md-input-container></td>
+      </tr>
+      <tr>
+        <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="Device Company" name="device_company" [(ngModel)]="model.device_company" formControlName="device_company">
+        </md-input-container></td>
+      </tr>
+      <tr>
+        <td><md-input-container class="example-full-width">
+          <input mdInput placeholder="Device Code" name="device_code" [(ngModel)]="model.device_code" formControlName="device_code">
+        </md-input-container></td>
+      </tr>
+      </table>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+        <td><label for="bag">Bag:</label></td>
+      <td><md-radio-group class="example-radio-group" name="bag" [(ngModel)]="model.bag" formControlName="bag">
+          <md-radio-button class="example-radio-button" *ngFor="let check of checks" [value]="check.value">
+          {{check.viewValue}}
+          </md-radio-button>
+      </md-radio-group></td>
+      </tr>
+      <tr>
+        <td><label for="mouse">Mouse:</label></td>
+      <td><md-radio-group class="example-radio-group" name="mouse" [(ngModel)]="model.mouse" formControlName="mouse">
+          <md-radio-button class="example-radio-button" *ngFor="let check of checks" [value]="check.value">
+          {{check.viewValue}}
+          </md-radio-button>
+      </md-radio-group></td>
+      </tr>
+      <tr>
+        <td><label for="keyboard">Keyboard:</label></td>
+      <td><md-radio-group class="example-radio-group" name="keyboard" [(ngModel)]="model.keyboard" formControlName="keyboard">
+          <md-radio-button class="example-radio-button" *ngFor="let check of checks" [value]="check.value">
+          {{check.viewValue}}
+          </md-radio-button>
+      </md-radio-group></td>
+      </tr>
+      <tr>
+        <td><label for="charger">Charger:</label></td>
+      <td><md-radio-group class="example-radio-group" name="charger" [(ngModel)]="model.charger" formControlName="charger">
+          <md-radio-button class="example-radio-button" *ngFor="let check of checks" [value]="check.value">
+          {{check.viewValue}}
+          </md-radio-button>
+      </md-radio-group></td>
+      </tr>
+      <tr>
+        <td><label for="charger">Assigned:</label></td>
+      <td><md-radio-group class="example-radio-group" name="assign_status" [(ngModel)]="model.assign_status" formControlName="assign_status">
+          <md-radio-button class="example-radio-button" *ngFor="let check of checks" [value]="check.value">
+          {{check.viewValue}}
+          </md-radio-button>
+      </md-radio-group></td>
+      </tr>
+    </table>
+      <button type="submit" md-raised-button color="primary" [disabled]="!form.valid">Submit</button>
+    </form>
+
+  </md-card-content>
+
+</md-card>

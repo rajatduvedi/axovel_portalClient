@@ -4,6 +4,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import{ EmployeeDetails } from '../../../employeeDetails';
 import{ Http , Response , Headers} from '@angular/http';
 import {FormControl, Validators , NgForm , FormGroup} from '@angular/forms';
+import { DataService } from '../../../service/data.service';
 import{ Observable }from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -15,13 +16,15 @@ import 'rxjs/add/operator/do';
     moduleId: module.id,
     templateUrl: './addEmpDeviceDetails.component.html',
     styleUrls: ['./addEmpDeviceDetails.component.css'],
-    // providers:[UserService],
+    providers:[DataService],
     // animations: [routerTransition()]
 })
 export class AddEmpDeviceDetailsComponent implements OnInit {
     public model: any={};
     form:FormGroup
-    constructor( private router: Router) {
+    devices: any =[];
+    devicefield: any;
+    constructor( private router: Router, private dataService: DataService) {
 
     }
 
@@ -36,23 +39,31 @@ export class AddEmpDeviceDetailsComponent implements OnInit {
         this.router.navigate(['dashboard/add-step2']);
       }
       this.form = new FormGroup({
-        'laptop_no' : new FormControl('not allocated',[
-                    Validators.required]),
-        'mouse_no' : new FormControl('not allocated'),
-        'keyboard_no' : new FormControl('not allocated'),
+        'deviceId' : new FormControl('not allocated',[
+                    Validators.required])
+                  });
+        this.getAllDevices();
 
-      });
+    }
+
+    selectDevice(item: any) {
+      this.devicefield= this.devices.filter(function(event){
+        return event.id == item;
+      })[0];
+      this.model.device_no = this.devicefield.device_no;
+    }
+
+    getAllDevices() {
+      this.dataService.getDevices({user_id: JSON.parse(localStorage.getItem('currentUser')).id})
+        .subscribe(result => {
+          this.devices = result.data;
+        },
+      err => {
+        console.log(err);
+      })
     }
     gotonextStep(){
-      if(!this.model.laptop_no){
-        this.model.laptop_no = "not allocated"
-      }
-      if(!this.model.mouse_no){
-        this.model.mouse_no = "not allocated"
-      }
-      if(!this.model.keyboard_no){
-        this.model.keyboard_no = "not allocated"
-      }
+      console.log(this.model);
       localStorage.setItem('empDetails', JSON.stringify(this.model));
       this.model = JSON.parse(localStorage.getItem('empDetails'));
       this.router.navigate(['dashboard/add-step5']);

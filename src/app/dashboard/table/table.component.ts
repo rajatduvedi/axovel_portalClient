@@ -1,5 +1,6 @@
 import {Component , ViewChild , ElementRef , OnChanges} from '@angular/core';
 import { DataService } from '../../service/data.service';
+import { Router,ActivatedRoute } from '@angular/router';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {FormControl, Validators , NgForm , FormGroup} from '@angular/forms';
 import{EmployeeDetails} from '../../employeeDetails';
@@ -17,6 +18,8 @@ import 'rxjs/add/operator/map';
   providers:[DataService],
 })
 export class TableComponent {
+  model: any={};
+  emp_user_id: any = [];
   users: any = [];
   loadData:any=[];
   userFilter: any = {};
@@ -24,8 +27,10 @@ export class TableComponent {
   pageEvent: PageEvent;
   selectedOption: string;
   loadSpiner:boolean=true;
+  checked: boolean=false;
   @ViewChild(MdPaginator) paginator: MdPaginator;
-constructor(private dataService: DataService , public dialog: MdDialog,public el: ElementRef ) {
+  selectedEmp: any = [];
+constructor(private router: Router,private dataService: DataService , public dialog: MdDialog,public el: ElementRef ) {
 }
   ngOnInit(): void{
       this.el.nativeElement.style.backgroundColor = 'gold';
@@ -34,6 +39,51 @@ constructor(private dataService: DataService , public dialog: MdDialog,public el
   onPaginateChange(event){
     this.pageload(event);
   }
+
+  selectEmp(item: any) {
+    // for(int i=0; i<)
+    if(this.selectedEmp.find(x => x==item)) {
+      this.selectedEmp.splice(this.selectedEmp.indexOf(item), 1)
+    }
+    else {
+      this.selectedEmp.push(item);
+    }
+  }
+  deleteSelectedEmp(){
+    let dialogRef=  this.dialog.open(DialogConfirmDialog,{
+    width: '400px',
+  });
+  dialogRef.afterClosed().subscribe(result => {
+      if(result == 1){
+        this.dataService.deleteMulEmp({user_id: JSON.parse(localStorage.getItem('currentUser')).id, emp_user_id: this.selectedEmp})
+          .subscribe(result => {
+          if(result){
+            let dialogRef=  this.dialog.open(DialogResultUpdateUserDialog,{
+            width: '400px',
+          });
+            // this.dataService.listUsers({user_id: JSON.parse(localStorage.getItem('currentUser')).id}).subscribe(result => {
+            // this.users = result.data;
+            // }, err => {
+            //   // console.log(err);
+            // });
+            // this.router.renavigate(['dashboard/list']);
+            location.reload();
+            dialogRef.componentInstance.resultMsg = 'delete';
+          }
+      }, err => {
+        console.log(err);
+      });
+      }
+  });
+    // this.dataService.deleteMulEmp({user_id: JSON.parse(localStorage.getItem('currentUser')).id, emp_user_id: this.selectedEmp})
+    //   .subscribe(result => {
+    //     console.log(result);
+    //   },
+    // err => {
+    //
+    // })
+  }
+
   pageload(event){
   this.loadData=[];
   var start= event.pageIndex * event.pageSize;//0
@@ -124,8 +174,6 @@ deleteUserRow(id:any){
         console.log(err);
       });
       }
-      // else if(result == 2){
-      // }
   });
 }
 }

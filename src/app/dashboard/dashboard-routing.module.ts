@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 // import { AuthGuard } from '../_guards/auth.guard';
 import { RoleAuthGuard } from '../guards/roleAuth.guard';
 import { DashBoardComponent } from './dash-board.component';
-import { HrComponent } from './hr/hr.component';
 import {TableComponent} from './table/table.component';
 import{ DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import { SettingComponent } from './setting/setting.component';
+import { AddDeviceComponent } from './hr/addDevice.component';
 const routes: Routes = [
     {
 	    path: '', component: DashBoardComponent ,
@@ -21,11 +21,10 @@ const routes: Routes = [
           { path: 'add-step5', loadChildren: './employee/addEmpDOCDetails/addEmpDOCDetails.module#AddEmpDOCDetailsModule'},
           { path: 'list', component:TableComponent,canActivate:[RoleAuthGuard]},
           { path: 'setting', component:SettingComponent},
-          {path: '#', component:DashboardContentComponent },
-
-
+          { path: '#', component:DashboardContentComponent },
+          { path: 'addDevice', component: AddDeviceComponent}
         ]
-      },{path: 'hr', component:HrComponent},
+      },
   // },{
   //   path: 'hr', loadChildren:'./hr/hr.component#HrComponent'
   // }

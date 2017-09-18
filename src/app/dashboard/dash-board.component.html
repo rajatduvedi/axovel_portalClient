@@ -26,6 +26,10 @@
                         <md-icon>view_list</md-icon>
                         <span>List Employee</span>
                       </button>
+                      <button md-menu-item (click)="addDevice()">
+                        <md-icon>important_devices</md-icon>
+                        <span>Add Device</span>
+                      </button>
                     </md-menu>
                   </div>
                 <div class="items" *ngIf="role.employee" [mdMenuTriggerFor]="menu">
