@@ -23,3 +23,12 @@ a{
 a:hover {
     text-decoration: underline;
 }
+#facebookLogo {
+  cursor: pointer;
+  /*text-align: center;*/
+  /*margin-left:50px;*/
+}
+#sapnlogin{
+  text-align: center;
+  margin-left:34%;
+}
