@@ -75,6 +75,7 @@ ngOnInit() {
     this.invoiceForm = this._fb.group({
       itemRows: this._fb.array([this.initItemRows()]) // here
     });
+
     this.form = this._fb.group({
       'emailFormControl': new FormControl({value: this.model.email, disabled: true}, Validators.required),
       'usernameFormControl': new FormControl({value: this.model.username, disabled: true}, Validators.required

@@ -24,15 +24,38 @@
             </md-expansion-panel-header>
             <form class="formgroup" name="myform" (ngSubmit)="changePassword()" [formGroup]="form">
             <md-form-field>
-            <input mdInput placeholder="Current password" formControlName="CurrentPassword">
+            <input mdInput placeholder="Current password" type="password" formControlName="CurrentPassword" (keyup)="OldpasswordInput()">
+            <md-error *ngIf="!form.get('CurrentPassword').valid">
+                current  password  is <strong>required</strong>
+            </md-error>
             </md-form-field>
             <md-form-field>
-            <input mdInput placeholder="New password" formControlName="password">
+            <input mdInput placeholder="New password" type="password" formControlName="password">
+            <md-error *ngIf="!form.get('password').valid">
+                New  password  is <strong>required</strong> password must contain at least 6 digits
+            </md-error>
             </md-form-field>
             <md-form-field>
-            <input mdInput placeholder="Confirm password" formControlName="ConfirmPassword">
+            <input mdInput placeholder="Confirm password" type="password" formControlName="ConfirmPassword" (keyup)="passwordInput()" (blur)="onblurPassword()">
+            <label class="password-check" id="confirm" *ngIf="confirmPassword=='1'">
+                   password match
+            </label>
+            <label class="password-check" *ngIf="confirmPassword=='0'">
+                <md-error >
+                   password does not match
+                </md-error>
+            </label>
+            <md-error *ngIf="!form.get('ConfirmPassword').valid">
+                  password confirmation is <strong>required</strong>
+            </md-error>
             </md-form-field>
+            <label  *ngIf="respMsg">
+                <md-error >
+                   {{respMsg}}
+                </md-error>
+            </label>
             <md-action-row>
+              <div *ngIf="!loadSpiner"><md-spinner></md-spinner></div>
             <button md-button color="primary" type="submit" [disabled]="!form.valid " >Change Password</button>
           </md-action-row>
         </form>

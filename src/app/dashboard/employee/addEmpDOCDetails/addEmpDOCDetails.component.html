@@ -7,14 +7,14 @@
   </md-card-header>
 
   <md-card-content>
-    <form class="form-horizontal" role="form" (ngSubmit)="f.form.valid && add()" #f="ngForm">
+    <form class="form-horizontal" role="form" (ngSubmit)="f.form.valid" #f="ngForm">
       <span><h3> ADD profile picture</h3> </span>
     <input type="file"  (change)="changeListener($event)" accept="image/*" ngf-max-size="2MB" required>
 </form>
     <form [formGroup]="invoiceForm">
   <div formArrayName="itemRows">
     <!-- Check the correct way to iterate your form array -->
-    <div *ngFor="let itemrow of invoiceForm.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+    <div *ngFor="let itemrow of invoiceForm.controls.itemRows['controls']; let i=index"  [formGroupName]="i">
 
       <h3>Add Document #{{ i + 1 }}</h3>
       <div class="form-group">

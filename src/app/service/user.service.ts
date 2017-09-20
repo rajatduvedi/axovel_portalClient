@@ -14,6 +14,7 @@ export class UserService{
   private loginurl='http://192.241.153.62:1223/api/login';
   private forgotPasswordUrl= 'http://192.241.153.62:1223/api/forgotPassword';
   private resetPasswordUrl= 'http://192.241.153.62:1223/api/resetPassword';
+  private changePasswordUrl= 'http://192.241.153.62:1223/api/changePassword';
   constructor( private http:Http){}
   userRegister(item:any) {
         let body = '';
@@ -84,6 +85,20 @@ export class UserService{
       let headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       return this.http.post(this.resetPasswordUrl, body, {headers: headers})
+      .map((res: Response) => {
+          return res.json();
+      });
+    }
+    changePassword(item:any){
+      console.log(item);
+      let body = '';
+      for(let entry in item) {
+          body += entry + '=' + encodeURIComponent(item[entry]) + '&';
+      }
+      body = body.substring(0, body.length-1);
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return this.http.post(this.changePasswordUrl, body, {headers: headers})
       .map((res: Response) => {
           return res.json();
       });
