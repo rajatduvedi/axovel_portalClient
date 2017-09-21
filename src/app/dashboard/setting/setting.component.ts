@@ -57,6 +57,7 @@ export class SettingComponent implements OnInit {
         this.respMsg = result.message;
       },err=>{
         this.loadSpiner=true;
+        // console.error(err)
         this.respMsg=JSON.parse(err._body).message;
       });
   }

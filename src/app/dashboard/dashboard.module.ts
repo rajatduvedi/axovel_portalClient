@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-// import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DashBoardRoutingModule } from './dashboard-routing.module';
 import { DashBoardComponent } from './dash-board.component';
@@ -11,63 +10,18 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import{ DashboardContentComponent } from './dashboard-content/dashboard-content.component';
 import {TableComponent ,DialogConfirmDialog, DialogResultEditDialog,DialogResultUpdateUserDialog} from './table/table.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-// import { AuthGuard } from '../guards/auth.guard';
 import { RoleAuthGuard } from '../guards/roleAuth.guard';
-import {MdSidenavModule,
-        MdTableModule,
-        MdInputModule,
-        MdButtonModule,
-        MdSelectModule,
-        MdIconModule,
-        MdToolbarModule,
-        MdMenuModule,
-        MdCardModule,
-        MdListModule,
-        MdDialogModule,
-        MdRadioModule,
-        MdAutocompleteModule,
-        MdPaginatorModule,
-        MdProgressSpinnerModule,
-        MdDatepickerModule,
-        MdExpansionModule,
-        MdCheckboxModule
-        } from '@angular/material';
 import { SettingComponent } from './setting/setting.component';
 import { AddDeviceComponent } from './hr/addDevice.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        // NgbDropdownModule.forRoot(),
         DashBoardRoutingModule,
-        MdSidenavModule,
-        MdTableModule,
-        MdInputModule,
-        MdButtonModule,
-        MdSelectModule,
-        MdIconModule,
-        MdToolbarModule,
-        MdMenuModule,
-        MdCardModule,
+        SharedModule,
         FormsModule,ReactiveFormsModule,
-        // CdkTableModule,
-        MdListModule,
-        MdDialogModule,
-        MdRadioModule,
-        MdAutocompleteModule,
-        MdPaginatorModule,
-        MdProgressSpinnerModule,
         Ng2FilterPipeModule,
-        MdDatepickerModule,
-        MdExpansionModule,
-        MdCheckboxModule
-                // RouterModule.forRoot([
-                //   { path: 'emp',component:EmployeeComponent },
-                //   // {path:'table',component:TableComponent},
-                //   // { path: 'login/:id', component: LoginComponent },
-                //   // { path : 'register', component:RegisterComponent},
-                // ])
-
     ],
     declarations: [
         DashBoardComponent,
@@ -81,8 +35,6 @@ import { AddDeviceComponent } from './hr/addDevice.component';
         DialogConfirmDialog,
         SettingComponent,
         AddDeviceComponent
-        // EmployeeComponent
-
     ],
     providers: [
         RoleAuthGuard
